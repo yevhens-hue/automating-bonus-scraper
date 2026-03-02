@@ -295,7 +295,7 @@ def get_fallback_bonuses(site: dict, geo: str, bonus_type: str) -> list:
 
 # ─── Google Sheets Export ─────────────────────────────────────────────────────
 
-def export_to_sheets(geo: str = None, bonus_type: str = None):
+def export_to_sheets(geo: str = None, bonus_type: str = None, clear_sheets: bool = False):
     """
     Export active bonuses from the local DB to the Google Sheet.
     Unified storage: https://docs.google.com/spreadsheets/d/1yQJKYRpdc8I-xRlLYrEgz8hhN1bQYM4NuG7NOUbyqAc/
@@ -323,9 +323,12 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
         tab_name = geo.upper() if geo else "All Bonuses"
         try:
             worksheet = spreadsheet.worksheet(tab_name)
+            if clear_sheets:
+                # Clear everything to start fresh
+                worksheet.clear()
         except gspread.exceptions.WorksheetNotFound:
             # Create if it doesn't exist
-            worksheet = spreadsheet.add_worksheet(title=tab_name, rows=1000, cols=12)
+            worksheet = spreadsheet.add_worksheet(title=tab_name, rows=1000, cols=15)
         
         # Desired header structure
         headers = [
@@ -333,26 +336,26 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
             "Amount", "Wagering", "Providers", "Conditions", "Affiliate URL", "Rating"
         ]
 
-        # Get existing data to avoid duplicates in Sheet
+        # Get existing data to avoid duplicates (if not cleared)
         existing_rows = worksheet.get_all_values()
-        
-        # Unique key: Brand + Title + Amount
         existing_keys = set()
-        if len(existing_rows) > 0:
-            # Check/Fix headers if they are there
+
+        if clear_sheets or not existing_rows:
+            worksheet.append_row(headers)
+            # Freeze header
+            worksheet.freeze(rows=1)
+        else:
+            # Check/Fix headers
             if existing_rows[0] != headers:
                 worksheet.update("A1", [headers])
             
-            # Key indices: Brand(5), Title(6), Amount(7) based on 0-indexed headers above
-            for row in existing_rows[1:]: # Skip header
+            # Key indices: Brand(5), Title(6), Amount(7)
+            for row in existing_rows[1:]:
                 if len(row) >= 8:
                     key = f"{row[5]}|{row[6]}|{row[7]}".strip().lower()
                     existing_keys.add(key)
-        else:
-            # If empty, add headers first
-            worksheet.append_row(headers)
         
-        # Get data from DB (include recently inactive to show "Missing" ones if they are new)
+        # Get data from DB
         bonuses = get_bonuses(geo, bonus_type, include_inactive=True)
         
         # Prepare new rows
@@ -368,23 +371,27 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
                 row = [
                     datetime.datetime.fromisoformat(b.get("scraped_at")).strftime("%d.%m.%Y %H:%M") if b.get("scraped_at") else "",
                     status,
-                    b.get("id"),
-                    b.get("geo"),
-                    b.get("type"),
+                    str(b.get("id") or ""),
+                    b.get("geo", ""),
+                    b.get("type", ""),
                     brand,
                     title,
                     amount,
-                    b.get("wagering"),
-                    b.get("featured_providers"),
+                    b.get("wagering", ""),
+                    b.get("featured_providers", ""),
                     str(b.get("conditions") or "")[:100],
-                    b.get("affiliate_url"),
-                    b.get("rating")
+                    b.get("affiliate_url", ""),
+                    b.get("rating", 4.0)
                 ]
                 new_rows.append(row)
-                existing_keys.add(key) # Avoid duplicates within the same run
-            
-        # Append only new rows
-        if new_rows:
+                existing_keys.add(key)
+
+        # If clear_sheets, we overwrite EVERYTHING starting from A1
+        if clear_sheets:
+            full_data = [headers] + new_rows
+            worksheet.update("A1", full_data)
+            print(f"🧹 Tab {tab_name} hard-reset with {len(new_rows)} rows.")
+        elif new_rows:
             worksheet.append_rows(new_rows)
             print(f"✅ Appended {len(new_rows)} NEW bonuses to Google Sheet (Tab: {tab_name}).")
         else:
@@ -482,13 +489,17 @@ if __name__ == "__main__":
     parser.add_argument("--geo",     default="IN",  help="Country code: IN, UA, BR etc.")
     parser.add_argument("--type",    default="all", help="'casino', 'betting' or 'all'")
     parser.add_argument("--dry-run", action="store_true", help="Print results, don't save to DB")
-    parser.add_argument("--export",  action="store_true", help="Export current DB to JSON")
-    parser.add_argument("--output",  default=None,  help="Output file for --export")
+    parser.add_argument("--export",  action="store_true", help="Export JSON for frontend")
+    parser.add_argument("--sheets",  action="store_true", help="Export to Google Sheets")
+    parser.add_argument("--clear-sheets", action="store_true", help="Clear sheets before export")
+    parser.add_argument("--output",  help="Output file for JSON export")
     args = parser.parse_args()
 
     init_db()
 
-    if args.export:
+    if args.sheets:
+        export_to_sheets(args.geo, args.type, clear_sheets=args.clear_sheets)
+    elif args.export:
         export_json_api(geo=args.geo, bonus_type=args.type, output_file=args.output)
     else:
         run_scraper(geo=args.geo, bonus_type=args.type, dry_run=args.dry_run)
