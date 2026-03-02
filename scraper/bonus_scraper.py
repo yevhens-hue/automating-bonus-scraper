@@ -104,20 +104,25 @@ def save_bonuses(bonuses: list):
     print(f"💾 Saved {len(bonuses)} bonuses to database.")
 
 
-def get_bonuses(geo: str = None, bonus_type: str = None) -> list:
-    """Query the database for active bonuses."""
+def get_bonuses(geo: str = None, bonus_type: str = None, include_inactive: bool = False) -> list:
+    """Query the database for active (and optionally recent inactive) bonuses."""
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     c = conn.cursor()
-    query = "SELECT * FROM bonuses WHERE is_active = 1"
+    
+    query = "SELECT * FROM bonuses WHERE 1=1"
+    if not include_inactive:
+        query += " AND is_active = 1"
+    
     params = []
     if geo:
         query += " AND geo = ?"
         params.append(geo.upper())
-    if bonus_type:
+    if bonus_type and bonus_type != "all":
         query += " AND type = ?"
         params.append(bonus_type)
-    query += " ORDER BY rating DESC"
+        
+    query += " ORDER BY is_active DESC, rating DESC"
     rows = c.execute(query, params).fetchall()
     conn.close()
     return [dict(r) for r in rows]
@@ -417,14 +422,31 @@ def run_scraper(geo: str, bonus_type: str = "all", dry_run: bool = False):
 # ─── JSON API Export ──────────────────────────────────────────────────────────
 
 def export_json_api(geo: str = None, bonus_type: str = None, output_file: str = None):
-    """Export bonuses from DB as JSON (for use as a static API or WordPress feed)."""
-    bonuses = get_bonuses(geo, bonus_type)
+    """Export bonuses from DB as JSON (including New/Expired status logic)."""
+    # Fetch both active and recently inactive
+    all_bonuses = get_bonuses(geo, bonus_type, include_inactive=True)
+    
+    now = datetime.datetime.utcnow()
+    processed = []
+    
+    for b in all_bonuses:
+        scraped_at = datetime.datetime.fromisoformat(b["scraped_at"])
+        age_hours = (now - scraped_at).total_seconds() / 3600
+        
+        # We only want to export inactive bonuses if they are "Freshly Expired" (within 48h)
+        if b["is_active"] == 0 and age_hours > 48:
+            continue
+            
+        b["is_new"] = age_hours < 24 and b["is_active"] == 1
+        b["is_expired"] = b["is_active"] == 0
+        processed.append(b)
+
     output = {
-        "updated_at": datetime.datetime.utcnow().isoformat() + "Z",
+        "updated_at": now.isoformat() + "Z",
         "geo": geo or "all",
         "type": bonus_type or "all",
-        "count": len(bonuses),
-        "bonuses": bonuses
+        "count": len(processed),
+        "bonuses": processed
     }
     json_str = json.dumps(output, indent=2, ensure_ascii=False)
     if output_file:

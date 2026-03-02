@@ -13,6 +13,9 @@ export interface Bonus {
   logo_url: string;
   rating: number;
   scraped_at: string;
+  is_new?: boolean;
+  is_expired?: boolean;
+  is_active?: number;
 }
 
 import bonusesData from '../data/bonuses.json';
