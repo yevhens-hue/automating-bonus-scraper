@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { STATIC_BONUSES } from '@/lib/bonuses';
+import { getAllPosts } from '@/lib/posts';
 import BonusCard from '@/components/BonusCard';
 
 export const metadata = {
@@ -7,7 +8,8 @@ export const metadata = {
     description: 'Compare the latest casino bonuses and sports betting offers for Indian players. Verified, up-to-date deals from top platforms.',
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+    const posts = await getAllPosts();
     const topCasino = STATIC_BONUSES.filter(b => b.type === 'casino').slice(0, 3);
     const topBetting = STATIC_BONUSES.filter(b => b.type === 'betting').slice(0, 3);
 
@@ -24,9 +26,9 @@ export default function HomePage() {
                         <span className="bg-white/5 border border-white/10 text-white text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full flex items-center gap-2">
                             Global Edition 2026
                         </span>
-                        <Link href="/blog" className="bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full hover:bg-blue-500/20 transition-all">
-                            Latest Insights →
-                        </Link>
+                        <div className="bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-[0.2em] px-4 py-1.5 rounded-full hover:bg-blue-500/20 transition-all">
+                            Latest Insights Below ↓
+                        </div>
                     </div>
 
                     <h1 className="text-6xl md:text-8xl font-black text-white mb-8 leading-[0.9] tracking-tighter">
@@ -48,10 +50,10 @@ export default function HomePage() {
                             className="bg-white text-black font-black px-10 py-5 rounded-2xl transition-all transform hover:scale-105 shadow-xl shadow-white/5 uppercase tracking-widest text-sm">
                             View All 30+ Bonuses
                         </Link>
-                        <Link href="/blog"
+                        <a href="#blog"
                             className="bg-white/5 hover:bg-white/10 border border-white/20 text-white font-black px-10 py-5 rounded-2xl transition-all transform hover:scale-105 uppercase tracking-widest text-sm backdrop-blur-md">
                             Read iGaming Blog
-                        </Link>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -70,6 +72,51 @@ export default function HomePage() {
                             <div className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">{stat.label}</div>
                         </div>
                     ))}
+                </div>
+            </section>
+
+            {/* Main Blog Section */}
+            <section id="blog" className="py-24 px-4 bg-white/[0.02] border-b border-white/5">
+                <div className="max-w-6xl mx-auto">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+                        <div className="max-w-xl">
+                            <h2 className="text-5xl font-black text-white mb-6 tracking-tighter uppercase">Latest iGaming<br />Inspiration</h2>
+                            <p className="text-gray-400 text-lg">Daily market analysis and bonus strategy guides powered by AI.</p>
+                        </div>
+                    </div>
+
+                    {posts.length === 0 ? (
+                        <div className="text-center py-20 border border-dashed border-gray-800 rounded-3xl">
+                            <p className="text-gray-500 italic">Our AI analysts are currently writing new insights. Check back soon!</p>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {posts.map((post) => (
+                                <Link
+                                    key={post.slug}
+                                    href={`/blog/${post.slug}`}
+                                    className="block group h-full"
+                                >
+                                    <article className="bg-[#111] border border-gray-800 p-8 rounded-3xl hover:border-blue-500/50 transition-all duration-300 group-hover:bg-[#151515] h-full flex flex-col">
+                                        <div className="flex justify-between items-start mb-6">
+                                            <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+                                                {post.date}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-xl font-black mb-4 group-hover:text-blue-400 transition-colors tracking-tight uppercase leading-tight">
+                                            {post.title}
+                                        </h3>
+                                        <p className="text-gray-500 text-sm line-clamp-3 leading-relaxed mb-8 flex-grow">
+                                            {post.excerpt || "Expert analysis of the latest iGaming trends and bonus opportunities in the global market..."}
+                                        </p>
+                                        <div className="flex items-center text-blue-400 font-bold uppercase tracking-widest text-[10px]">
+                                            Read Article <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                                        </div>
+                                    </article>
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 
@@ -94,36 +141,13 @@ export default function HomePage() {
                 </Link>
             </section>
 
-            {/* Quick Blog Teaser */}
-            <section className="py-24 px-4 bg-white/[0.02] border-y border-white/5">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-                        <div className="max-w-xl">
-                            <h2 className="text-5xl font-black text-white mb-6 tracking-tighter uppercase">Latest iGaming<br />Inspiration</h2>
-                            <p className="text-gray-400 text-lg">Daily market analysis and bonus strategy guides powered by AI.</p>
-                        </div>
-                        <Link href="/blog" className="px-10 py-4 bg-blue-500 hover:bg-blue-600 text-white font-black rounded-2xl transition-all shadow-lg shadow-blue-500/20 uppercase tracking-widest text-xs">
-                            Visit The Blog
-                        </Link>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[1, 2, 3].map((i) => (
-                            <div key={i} className="h-48 rounded-3xl bg-white/5 border border-white/5 flex items-center justify-center text-gray-700 text-xs uppercase tracking-widest font-bold">
-                                Recent Insight #{i}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* Footer */}
             <footer className="py-16 px-4 border-t border-white/5 text-center">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-white font-black text-2xl mb-8 tracking-widest">GAMES INCOME</div>
                     <div className="flex justify-center gap-8 mb-12 text-gray-500 font-bold uppercase tracking-widest text-[10px]">
                         <Link href="/all-bonuses" className="hover:text-white transition-colors">Database</Link>
-                        <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+                        <a href="#blog" className="hover:text-white transition-colors">Blog</a>
                         <Link href="/casino-bonuses" className="hover:text-white transition-colors">Casino</Link>
                         <Link href="/betting-bonuses" className="hover:text-white transition-colors">Betting</Link>
                     </div>

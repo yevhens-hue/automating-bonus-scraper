@@ -45,10 +45,10 @@ export default async function BlogPostPage({ params }: PageProps) {
             <article className="max-w-3xl mx-auto">
                 <header className="mb-12 border-b border-gray-800 pb-12">
                     <Link
-                        href="/blog"
+                        href="/#blog"
                         className="text-blue-400 hover:text-blue-300 mb-8 inline-block font-medium"
                     >
-                        ← Back to Blog
+                        ← Back to Insights
                     </Link>
                     <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight tracking-tighter">
                         {post!.title}

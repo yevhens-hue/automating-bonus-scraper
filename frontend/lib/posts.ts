@@ -1,7 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 
-const postsDirectory = path.join(process.cwd(), 'data', 'blog');
+// Determine the posts directory, accounting for whether we're in the project root or the frontend directory
+const baseDir = fs.existsSync(path.join(process.cwd(), 'frontend'))
+  ? path.join(process.cwd(), 'frontend')
+  : process.cwd();
+
+const postsDirectory = path.join(baseDir, 'data', 'blog');
 
 export interface PostData {
   title: string;
@@ -23,7 +28,7 @@ export async function getAllPosts(): Promise<PostData[]> {
       const fullPath = path.join(postsDirectory, fileName);
       const fileContents = fs.readFileSync(fullPath, 'utf8');
       const postData = JSON.parse(fileContents);
-      
+
       return {
         ...postData,
         date: fileName.split('-').slice(0, 3).join('-'), // Use date from filename if missing

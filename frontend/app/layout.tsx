@@ -79,9 +79,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <Link href="/betting-bonuses" className="text-gray-400 hover:text-white hover:bg-white/5 transition-all px-3 py-2 rounded-lg">
                                 🏏 Betting
                             </Link>
-                            <Link href="/blog" className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-all px-3 py-2 rounded-lg border border-blue-500/20">
+                            <a href="/#blog" className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-all px-3 py-2 rounded-lg border border-blue-500/20">
                                 ✍️ Blog
-                            </Link>
+                            </a>
                         </div>
 
                         <div className="flex items-center gap-2 flex-shrink-0">
