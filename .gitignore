@@ -1,4 +1,4 @@
-.env
+# .env
 pbn-reporter-*.json
 # node_modules and other junk already ignored below
 *.log
@@ -9,4 +9,4 @@ bot_package.zip
 *.zip
 *.db
 .vercel
-.env*.local
+# .env*.local
