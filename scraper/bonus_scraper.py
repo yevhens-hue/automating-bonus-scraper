@@ -329,7 +329,7 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
                 str(b.get("conditions") or "")[:100], # Keep it brief
                 b.get("affiliate_url"),
                 b.get("rating"),
-                b.get("scraped_at")
+                datetime.datetime.fromisoformat(b.get("scraped_at")).strftime("%d.%m.%Y %H:%M") if b.get("scraped_at") else ""
             ])
             
         # Clear and update the sheet

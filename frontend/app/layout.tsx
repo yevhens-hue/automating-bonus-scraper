@@ -14,9 +14,10 @@ export const metadata: Metadata = {
 import bonusesData from '../data/bonuses.json';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    const lastUpdate = new Date(bonusesData.updated_at).toLocaleDateString('en-IN', {
-        day: 'numeric',
-        month: 'short',
+    const lastUpdate = new Date(bonusesData.updated_at).toLocaleString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
         hour: '2-digit',
         minute: '2-digit'
     });
