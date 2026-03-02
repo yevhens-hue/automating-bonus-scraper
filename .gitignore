@@ -8,3 +8,5 @@ __pycache__/
 bot_package.zip
 *.zip
 *.db
+.vercel
+.env*.local
