@@ -69,14 +69,23 @@ def init_db():
 
 def save_bonuses(bonuses: list):
     """Save scraped bonuses to the database, replacing old ones for same brand+geo."""
+    if not bonuses:
+        return
+        
     conn = sqlite3.connect(DB_PATH)
     c = conn.cursor()
-    for b in bonuses:
-        # Deactivate old records for this brand+geo+type
+    
+    # Get unique (geo, brand_id, type) combinations in the new batch
+    affected_sites = set((b["geo"], b["brand_id"], b["type"]) for b in bonuses)
+    
+    # Deactivate all active bonuses for these sites ONCE
+    for geo, brand_id, b_type in affected_sites:
         c.execute("""
             UPDATE bonuses SET is_active = 0
             WHERE geo = ? AND brand_id = ? AND type = ?
-        """, (b["geo"], b["brand_id"], b["type"]))
+        """, (geo, brand_id, b_type))
+        
+    for b in bonuses:
         # Insert new
         c.execute("""
             INSERT INTO bonuses
@@ -305,37 +314,59 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
             # Create if it doesn't exist
             worksheet = spreadsheet.add_worksheet(title=tab_name, rows=1000, cols=12)
         
+        # Get existing data to avoid duplicates in Sheet
+        existing_rows = worksheet.get_all_values()
+        
+        # Unique key: Brand + Title + Amount
+        # We assume headers are always row 0
+        existing_keys = set()
+        if len(existing_rows) > 0:
+            for row in existing_rows[1:]: # Skip header
+                if len(row) >= 6:
+                    key = f"{row[3]}|{row[4]}|{row[5]}".strip().lower()
+                    existing_keys.add(key)
+        else:
+            # If empty, add headers first
+            headers = [
+                "ID", "GEO", "Type", "Brand", "Bonus Title", 
+                "Amount", "Wagering", "Conditions", "Affiliate URL", 
+                "Rating", "Scraped At"
+            ]
+            worksheet.append_row(headers)
+        
         # Get data from DB
         bonuses = get_bonuses(geo, bonus_type)
         
-        # Prepare headers
-        headers = [
-            "ID", "GEO", "Type", "Brand", "Bonus Title", 
-            "Amount", "Wagering", "Conditions", "Affiliate URL", 
-            "Rating", "Scraped At"
-        ]
-        
-        # Prepare rows
-        rows = [headers]
+        # Prepare new rows
+        new_rows = []
         for b in bonuses:
-            rows.append([
-                b.get("id"),
-                b.get("geo"),
-                b.get("type"),
-                b.get("brand_name"),
-                b.get("bonus_title"),
-                b.get("bonus_amount"),
-                b.get("wagering"),
-                str(b.get("conditions") or "")[:100], # Keep it brief
-                b.get("affiliate_url"),
-                b.get("rating"),
-                datetime.datetime.fromisoformat(b.get("scraped_at")).strftime("%d.%m.%Y %H:%M") if b.get("scraped_at") else ""
-            ])
+            brand = b.get("brand_name", "")
+            title = b.get("bonus_title", "")
+            amount = b.get("bonus_amount", "")
+            key = f"{brand}|{title}|{amount}".strip().lower()
             
-        # Clear and update the sheet
-        worksheet.clear()
-        worksheet.update(rows, "A1")
-        print(f"✅ Exported {len(bonuses)} bonuses to Google Sheet (Tab: {tab_name}).")
+            if key not in existing_keys:
+                new_rows.append([
+                    b.get("id"),
+                    b.get("geo"),
+                    b.get("type"),
+                    brand,
+                    title,
+                    amount,
+                    b.get("wagering"),
+                    str(b.get("conditions") or "")[:100], # Keep it brief
+                    b.get("affiliate_url"),
+                    b.get("rating"),
+                    datetime.datetime.fromisoformat(b.get("scraped_at")).strftime("%d.%m.%Y %H:%M") if b.get("scraped_at") else ""
+                ])
+                existing_keys.add(key) # Avoid duplicates within the same run
+            
+        # Append only new rows
+        if new_rows:
+            worksheet.append_rows(new_rows)
+            print(f"✅ Appended {len(new_rows)} NEW bonuses to Google Sheet (Tab: {tab_name}).")
+        else:
+            print(f"ℹ️  No new bonuses to append for {tab_name}.")
         
     except Exception as e:
         print(f"  ❌ Google Sheets export failed: {e}")
