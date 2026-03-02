@@ -11,7 +11,13 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXXXXX';
 export const metadata: Metadata = {
     title: 'Games Income — Best Casino & Betting Bonuses 2026',
     description: 'Compare casino and sports betting bonuses across India, Turkey, and Brazil. Auto-updated every 6 hours. Expert insights and AI-powered guides.',
-    icons: { icon: '/favicon.ico' },
+    icons: {
+        icon: [
+            { url: '/favicon.svg', type: 'image/svg+xml' },
+        ],
+        shortcut: '/favicon.svg',
+        apple: '/favicon.svg',
+    },
     verification: {
         // Add your Google Search Console verification token here
         google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || '',
