@@ -1,0 +1,10 @@
+.env
+pbn-reporter-*.json
+# node_modules and other junk already ignored below
+*.log
+node_modules/
+__pycache__/
+.DS_Store
+bot_package.zip
+*.zip
+*.db
