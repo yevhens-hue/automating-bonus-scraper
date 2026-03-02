@@ -68,6 +68,18 @@ def run_all(export: bool = False, sheets: bool = False, clear_sheets: bool = Fal
         export_json_api(output_file=str(frontend_data_path))
         print(f"✨ Consolidated data exported to {frontend_data_path}")
 
+        # Run SEO content generator
+        print("\n✍️ Generating AI Blog Content...")
+        gen_cmd = [sys.executable, str(Path(__file__).parent / "content_generator.py")]
+        subprocess.run(gen_cmd, capture_output=False)
+        print("✨ Blog articles generated.")
+
+        # Submit new articles to Google Indexing API
+        print("\n🔎 Submitting new blog posts to Google Indexing API...")
+        idx_cmd = [sys.executable, str(Path(__file__).parent / "indexing_api.py"), "--all"]
+        subprocess.run(idx_cmd, capture_output=False)
+        print("✨ Indexing requests sent.")
+
     print(f"\n🎉 All GEOs scraped successfully!")
 
 
