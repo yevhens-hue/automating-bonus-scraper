@@ -263,7 +263,7 @@ def get_fallback_bonuses(site: dict, geo: str, bonus_type: str) -> list:
         "type": bonus_type,
         "brand_id": site["brand_id"],
         "brand_name": site["name"],
-        **data,
+        **brand_data,
         "expires_at": None,
         "affiliate_url": site.get("affiliate_url"),
         "logo_url": site.get("logo"),
