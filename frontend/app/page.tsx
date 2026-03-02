@@ -1,4 +1,5 @@
 import Link from 'next/link';
+// Deployment Trigger: Blog to Root Movement
 import { STATIC_BONUSES } from '@/lib/bonuses';
 import { getAllPosts } from '@/lib/posts';
 import BonusCard from '@/components/BonusCard';
