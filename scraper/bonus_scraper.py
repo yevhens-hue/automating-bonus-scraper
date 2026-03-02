@@ -327,28 +327,33 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
             # Create if it doesn't exist
             worksheet = spreadsheet.add_worksheet(title=tab_name, rows=1000, cols=12)
         
+        # Desired header structure
+        headers = [
+            "Scraped At", "Status", "ID", "GEO", "Type", "Brand", "Bonus Title", 
+            "Amount", "Wagering", "Providers", "Conditions", "Affiliate URL", "Rating"
+        ]
+
         # Get existing data to avoid duplicates in Sheet
         existing_rows = worksheet.get_all_values()
         
         # Unique key: Brand + Title + Amount
-        # We assume headers are always row 0
         existing_keys = set()
         if len(existing_rows) > 0:
+            # Check/Fix headers if they are there
+            if existing_rows[0] != headers:
+                worksheet.update("A1", [headers])
+            
+            # Key indices: Brand(5), Title(6), Amount(7) based on 0-indexed headers above
             for row in existing_rows[1:]: # Skip header
-                if len(row) >= 6:
-                    key = f"{row[3]}|{row[4]}|{row[5]}".strip().lower()
+                if len(row) >= 8:
+                    key = f"{row[5]}|{row[6]}|{row[7]}".strip().lower()
                     existing_keys.add(key)
         else:
             # If empty, add headers first
-            headers = [
-                "ID", "GEO", "Type", "Brand", "Bonus Title", 
-                "Amount", "Wagering", "Conditions", "Affiliate URL", 
-                "Rating", "Scraped At"
-            ]
             worksheet.append_row(headers)
         
-        # Get data from DB
-        bonuses = get_bonuses(geo, bonus_type)
+        # Get data from DB (include recently inactive to show "Missing" ones if they are new)
+        bonuses = get_bonuses(geo, bonus_type, include_inactive=True)
         
         # Prepare new rows
         new_rows = []
@@ -359,7 +364,10 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
             key = f"{brand}|{title}|{amount}".strip().lower()
             
             if key not in existing_keys:
-                new_rows.append([
+                status = "ACTIVE" if b.get("is_active") == 1 else "EXPIRED"
+                row = [
+                    datetime.datetime.fromisoformat(b.get("scraped_at")).strftime("%d.%m.%Y %H:%M") if b.get("scraped_at") else "",
+                    status,
                     b.get("id"),
                     b.get("geo"),
                     b.get("type"),
@@ -367,11 +375,12 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
                     title,
                     amount,
                     b.get("wagering"),
-                    str(b.get("conditions") or "")[:100], # Keep it brief
+                    b.get("featured_providers"),
+                    str(b.get("conditions") or "")[:100],
                     b.get("affiliate_url"),
-                    b.get("rating"),
-                    datetime.datetime.fromisoformat(b.get("scraped_at")).strftime("%d.%m.%Y %H:%M") if b.get("scraped_at") else ""
-                ])
+                    b.get("rating")
+                ]
+                new_rows.append(row)
                 existing_keys.add(key) # Avoid duplicates within the same run
             
         # Append only new rows
