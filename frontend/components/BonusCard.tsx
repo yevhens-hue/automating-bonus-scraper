@@ -18,13 +18,18 @@ export default function BonusCard({ bonus, rank }: { bonus: Bonus; rank?: number
     const isNew = bonus.is_new;
 
     return (
-        <div className={`group relative bg-white/5 hover:bg-white/8 border border-white/10 ${isExpired ? 'opacity-60 grayscale-[0.5]' : 'hover:border-purple-500/50'} rounded-2xl p-5 transition-all duration-300 ${!isExpired && 'hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-900/20'}`}>
+        <div className={`group relative bg-white/5 hover:bg-white/8 border border-white/10 ${isExpired ? 'opacity-60 grayscale-[0.5]' : 'hover:border-purple-500/50'} rounded-2xl p-4 md:p-5 transition-all duration-300 ${!isExpired && 'hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-900/20'}`}>
 
             {/* Status Badges */}
             <div className="absolute -top-2 left-4 flex gap-2">
                 {isNew && (
                     <span className="bg-green-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-lg animate-pulse">
                         NEW
+                    </span>
+                )}
+                {(bonus.wagering === 'N/A' || bonus.wagering === '0x') && !isExpired && (
+                    <span className="bg-amber-500 text-white text-[10px] font-black px-2 py-0.5 rounded-md shadow-lg">
+                        NO WAGER 💎
                     </span>
                 )}
                 {isExpired && (
@@ -66,6 +71,17 @@ export default function BonusCard({ bonus, rank }: { bonus: Bonus; rank?: number
                 </span>
             </div>
 
+            {/* Providers - Trust factor */}
+            {bonus.featured_providers && (
+                <div className="mb-3 flex flex-wrap gap-1">
+                    {bonus.featured_providers.split(',').map(p => (
+                        <span key={p} className="text-[9px] bg-white/5 text-gray-400 px-1.5 py-0.5 rounded border border-white/5 uppercase tracking-tighter">
+                            {p.trim()}
+                        </span>
+                    ))}
+                </div>
+            )}
+
             {/* Bonus Amount - the hero */}
             <div className={`bg-gradient-to-br ${isExpired ? 'from-gray-900 to-gray-800' : 'from-purple-900/40 to-indigo-900/40'} border ${isExpired ? 'border-white/5' : 'border-purple-500/20'} rounded-xl p-4 mb-4 text-center`}>
                 <div className={`text-xs ${isExpired ? 'text-gray-500' : 'text-purple-400'} mb-1 font-semibold uppercase tracking-wider`}>{bonus.bonus_title}</div>
@@ -76,7 +92,9 @@ export default function BonusCard({ bonus, rank }: { bonus: Bonus; rank?: number
             <div className="space-y-2 mb-4">
                 <div className="flex justify-between text-sm">
                     <span className="text-gray-500">Wagering:</span>
-                    <span className="text-gray-300 font-semibold">{bonus.wagering || 'N/A'}</span>
+                    <span className={`${bonus.wagering === 'N/A' || bonus.wagering === '0x' ? 'text-green-400' : 'text-gray-300'} font-semibold`}>
+                        {bonus.wagering || 'N/A'}
+                    </span>
                 </div>
                 <div className="flex justify-between text-sm">
                     <span className="text-gray-500">Conditions:</span>

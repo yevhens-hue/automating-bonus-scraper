@@ -59,9 +59,15 @@ def init_db():
             rating      REAL,
             is_active   INTEGER DEFAULT 1,
             scraped_at  TEXT,
-            expires_at  TEXT
+            expires_at  TEXT,
+            featured_providers TEXT
         )
     """)
+    # Add column if it doesn't exist (for existing databases)
+    try:
+        c.execute("ALTER TABLE bonuses ADD COLUMN featured_providers TEXT")
+    except sqlite3.OperationalError:
+        pass
     conn.commit()
     conn.close()
     print("✅ Database initialized.")
@@ -90,14 +96,15 @@ def save_bonuses(bonuses: list):
         c.execute("""
             INSERT INTO bonuses
             (geo, type, brand_id, brand_name, bonus_title, bonus_amount, bonus_type,
-             wagering, conditions, affiliate_url, logo_url, rating, is_active, scraped_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?)
+             wagering, conditions, affiliate_url, logo_url, rating, is_active, scraped_at, featured_providers)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?)
         """, (
             b["geo"], b["type"], b["brand_id"], b["brand_name"],
             b.get("bonus_title"), b.get("bonus_amount"), b.get("bonus_type", "welcome"),
             b.get("wagering"), b.get("conditions"),
             b.get("affiliate_url"), b.get("logo_url"), b.get("rating"),
-            datetime.datetime.utcnow().isoformat()
+            datetime.datetime.utcnow().isoformat(),
+            b.get("featured_providers")
         ))
     conn.commit()
     conn.close()
@@ -176,6 +183,7 @@ Extract ALL bonus offers you can find. Return ONLY a valid JSON array. Each item
 - "wagering": string (wagering requirements, e.g. "30x" or "N/A")
 - "conditions": string (brief conditions summary, max 100 chars)
 - "expires_at": string (expiry date if mentioned, else null)
+- "featured_providers": string (comma-separated list of game providers mentioned, e.g. "Pragmatic Play, Evolution", or null)
 
 HTML Snippet:
 {html_snippet}
