@@ -326,7 +326,7 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
                 b.get("bonus_title"),
                 b.get("bonus_amount"),
                 b.get("wagering"),
-                b.get("conditions")[:100], # Keep it brief
+                str(b.get("conditions") or "")[:100], # Keep it brief
                 b.get("affiliate_url"),
                 b.get("rating"),
                 b.get("scraped_at")
@@ -334,7 +334,7 @@ def export_to_sheets(geo: str = None, bonus_type: str = None):
             
         # Clear and update the sheet
         worksheet.clear()
-        worksheet.update("A1", rows)
+        worksheet.update(rows, "A1")
         print(f"✅ Exported {len(bonuses)} bonuses to Google Sheet (Tab: {tab_name}).")
         
     except Exception as e:
