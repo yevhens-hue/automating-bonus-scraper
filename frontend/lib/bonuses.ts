@@ -17,6 +17,7 @@ export interface Bonus {
   is_expired?: boolean;
   is_active?: number;
   featured_providers?: string;
+  extra_data?: string;
 }
 
 import bonusesData from '../data/bonuses.json';
