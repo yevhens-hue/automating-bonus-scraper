@@ -38,6 +38,7 @@ jobs:
           vercel-args: '--yes'
           working-directory: ./frontend
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-comment: false
           scope: ${{ secrets.VERCEL_ORG_ID }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
