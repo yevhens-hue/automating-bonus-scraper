@@ -14,8 +14,35 @@ BASE_DIR = Path(__file__).parent
 DB_PATH = BASE_DIR / "bonuses.db"
 OUTPUT_DIR = BASE_DIR.parent / "frontend" / "data" / "blog"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+TOPICS_PATH = BASE_DIR / "config" / "topics.json"
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+def check_duplicate_slug(slug):
+    """Check if a blog post with the given slug already exists."""
+    # Check current directory files
+    for file in OUTPUT_DIR.glob("*.json"):
+        if slug in file.name:
+            return True
+    return False
+
+def build_seo_title(topic):
+    """Returns a randomized SEO-optimized H1 title for the topic."""
+    templates = [
+      f"{topic}: Ultimate Guide & Strategies 2026",
+      f"{topic}: Expert Tips and Insider Secrets 2026",
+      f"{topic}: Tested Methods for Big Wins in 2026",
+      f"The Complete Guide to {topic} (2026 Edition)",
+      f"Winning Big with {topic}: A 2026 Pro Player's Manual",
+      f"Top {topic} Hacks & Strategies for 2026",
+      f"Everything You Need to Know About {topic} in 2026",
+      f"{topic} 2026: Insights, Reviews, and Success Tips",
+      f"Mastering {topic} in 2026: The Definitive Roadmap",
+      f"Is {topic} Worth It in 2026? Expert Analysis",
+      f"Pro Secrets: {topic} and How to Succeed in 2026",
+      f"2026 iGaming Report: Focus on {topic}"
+    ]
+    return random.choice(templates)
 
 def get_db_data(geo=None):
     conn = sqlite3.connect(DB_PATH)
@@ -41,24 +68,27 @@ def generate_article(topic, geo_context, bonus_data):
         for b in bonus_data[:5]
     ])
 
+    seo_title = build_seo_title(topic)
+
     prompt = f"""
     Write a high-quality SEO-optimized blog article in English for an iGaming affiliate site called 'games-income.com'.
-    Topic: {topic}
+    Primary Topic/H1: {seo_title}
     Market Context: {geo_context}
     Latest Bonuses to include in a table:
     {bonus_summary}
 
     Structure requirements (Similar to luckybetvip.com):
-    1. Catchy H1 Title (include '2026').
-    2. Introduction: engaging and keyword-rich.
-    3. H2 Heading: Industry Insights (mention Pragmatic Play or Aviator as popular choices based on @igaming_inside findings).
-    4. H2 Heading: Comparative Bonus Table. (Represented as Markdown table).
-    5. H2 Heading: Expert Guide on how to claim and use these bonuses.
-    6. H3 Heading: Legality and Safety (mention specific {geo_context} context).
-    7. Conclusion: Strong CTA.
+    1. Introduction: engaging, keyword-rich, and tailored to the market.
+    2. H2 Heading: Industry Insights (mention Pragmatic Play or Aviator as popular choices based on @igaming_inside findings).
+    3. H2 Heading: Comparative Bonus Table. (Represented as Markdown table).
+    4. H2 Heading: Expert Guide on how to claim and use these bonuses effectively.
+    5. H3 Heading: Legality and Safety (mention specific {geo_context} context and licensing).
+    6. H3 Heading: Frequently Asked Questions.
+    7. Conclusion: Strong Call-to-Action.
 
     Tone: Professional, expert, data-driven.
     Output should be valid JSON with 'title', 'slug', 'content' (Markdown), and 'date' fields.
+    Crucial: The 'slug' should be concise and SEO-friendly (lowercase, no special chars).
     """
 
     url = "https://api.groq.com/openai/v1/chat/completions"
@@ -81,20 +111,31 @@ def generate_article(topic, geo_context, bonus_data):
         return None
 
 def main():
-    topics = [
-        {"title": "Best Casino Bonuses in India 2026: Ultimate Guide", "geo": "IN"},
-        {"title": "Top Betting Offers in Turkey: Legit Sites and Promos 2026", "geo": "TR"},
-        {"title": "Brazil iGaming Boom 2026: Leading Crypto and Casino Bonuses", "geo": "BR"},
-        {"title": "No Wager Bonuses: The Future of iGaming in 2026", "geo": "all"},
-        {"title": "How to Maximize Your Wins with Aviator Strategies 2026", "geo": "IN"},
-        {"name": "Pragmatic Play Slots: Where to Find the Best Free Spins in 2026", "geo": "all"}
-    ]
+    if not TOPICS_PATH.exists():
+        print(f"Error: {TOPICS_PATH} not found.")
+        return
+
+    with open(TOPICS_PATH, "r") as f:
+        topics_data = json.load(f)
     
-    # Pick 2 random topics for today (or rotate)
-    selected = random.sample(topics, 2)
+    all_topics = topics_data.get("topics", [])
+    if not all_topics:
+        print("No topics found in config.")
+        return
+
+    # Pick 2 random topics for today
+    selected = random.sample(all_topics, 2)
     
     for item in selected:
+        topic_name = item['title']
         geo = item.get('geo', 'all')
+        
+        # Pre-slug check
+        temp_slug = topic_name.lower().replace(" ", "-").replace(":", "").replace("?", "")
+        if check_duplicate_slug(temp_slug):
+            print(f"⏩ Skipping duplicate: {topic_name}")
+            continue
+
         if geo == 'all':
             geo_name = "Global"
             bonus_data = get_db_data()
@@ -102,12 +143,17 @@ def main():
             geo_name = geo
             bonus_data = get_db_data(geo)
             
-        print(f"Generating article: {item['title']}...")
-        result = generate_article(item['title'], geo_name, bonus_data)
+        print(f"Generating article: {topic_name}...")
+        result = generate_article(topic_name, geo_name, bonus_data)
         
         if result:
             date_str = datetime.datetime.now().strftime("%Y-%m-%d")
-            slug = result.get('slug', item['title'].lower().replace(" ", "-").replace(":", ""))
+            # Final slug check from AI result
+            slug = result.get('slug', temp_slug)
+            if check_duplicate_slug(slug):
+                 print(f"⏩ Skipping duplicate AI-slug: {slug}")
+                 continue
+
             filename = f"{date_str}-{slug}.json"
             
             with open(OUTPUT_DIR / filename, "w") as f:

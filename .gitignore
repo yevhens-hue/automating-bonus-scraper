@@ -10,3 +10,4 @@ bot_package.zip
 *.db
 .vercel
 # .env*.local
+scraper/.env
