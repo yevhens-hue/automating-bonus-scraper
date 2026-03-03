@@ -60,14 +60,20 @@ def init_db():
             is_active   INTEGER DEFAULT 1,
             scraped_at  TEXT,
             expires_at  TEXT,
-            featured_providers TEXT
+            featured_providers TEXT,
+            extra_data  TEXT                -- JSON with VIP tiers, requirements, or event details
         )
     """)
-    # Add column if it doesn't exist (for existing databases)
-    try:
-        c.execute("ALTER TABLE bonuses ADD COLUMN featured_providers TEXT")
-    except sqlite3.OperationalError:
-        pass
+    # Add columns if they don't exist
+    columns = [
+        ("featured_providers", "TEXT"),
+        ("extra_data", "TEXT")
+    ]
+    for col_name, col_type in columns:
+        try:
+            c.execute(f"ALTER TABLE bonuses ADD COLUMN {col_name} {col_type}")
+        except sqlite3.OperationalError:
+            pass
     conn.commit()
     conn.close()
     print("✅ Database initialized.")
@@ -96,15 +102,16 @@ def save_bonuses(bonuses: list):
         c.execute("""
             INSERT INTO bonuses
             (geo, type, brand_id, brand_name, bonus_title, bonus_amount, bonus_type,
-             wagering, conditions, affiliate_url, logo_url, rating, is_active, scraped_at, featured_providers)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?)
+             wagering, conditions, affiliate_url, logo_url, rating, is_active, scraped_at, featured_providers, extra_data)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, ?, ?, ?)
         """, (
             b["geo"], b["type"], b["brand_id"], b["brand_name"],
             b.get("bonus_title"), b.get("bonus_amount"), b.get("bonus_type", "welcome"),
             b.get("wagering"), b.get("conditions"),
             b.get("affiliate_url"), b.get("logo_url"), b.get("rating"),
             datetime.datetime.utcnow().isoformat(),
-            b.get("featured_providers")
+            b.get("featured_providers"),
+            json.dumps(b.get("extra_data")) if b.get("extra_data") else None
         ))
     conn.commit()
     conn.close()
@@ -176,14 +183,15 @@ def extract_bonuses_with_ai(html: str, brand_name: str, geo: str) -> list:
 
     prompt = f"""You are a data extraction assistant. I will give you an HTML snippet from the promotions/bonuses page of "{brand_name}" casino/betting platform (region: {geo}).
 
-Extract ALL bonus offers you can find. Return ONLY a valid JSON array. Each item must have these fields:
-- "bonus_title": string (name of the bonus)
-- "bonus_amount": string (e.g., "100% up to ₹10,000", "50 Free Spins", "₹500 Cashback")
-- "bonus_type": one of ["welcome", "reload", "cashback", "free_spins", "vip", "sports", "other"]
-- "wagering": string (wagering requirements, e.g. "30x" or "N/A")
+Extract ALL bonus offers, VIP/loyalty programs, and special event/holiday promotions you can find. Return ONLY a valid JSON array. Each item must have these fields:
+- "bonus_title": string (name of the bonus or VIP Tier name)
+- "bonus_amount": string (e.g., "100% up to ₹10,000", "50 Free Spins", "VIP Level 1 Perks")
+- "bonus_type": one of ["welcome", "reload", "cashback", "free_spins", "vip", "sports", "holiday", "other"]
+- "wagering": string (wagering requirements, or "N/A")
 - "conditions": string (brief conditions summary, max 100 chars)
-- "expires_at": string (expiry date if mentioned, else null)
-- "featured_providers": string (comma-separated list of game providers mentioned, e.g. "Pragmatic Play, Evolution", or null)
+- "expires_at": string (expiry date for holiday/limited offers, else null)
+- "featured_providers": string (comma-separated list of game providers mentioned, or null)
+- "extra_data": object (For "vip": list tiers, for "holiday": mention the event or deadline, else null)
 
 HTML Snippet:
 {html_snippet}
@@ -249,6 +257,7 @@ def scrape_site(site: dict, geo: str, bonus_type: str) -> list:
             "affiliate_url": site.get("affiliate_url"),
             "logo_url": site.get("logo"),
             "rating": site.get("rating", 4.0),
+            "extra_data": b.get("extra_data")
         })
     print(f"  ✅ Found {len(result)} bonuses for {site['name']}")
     return result
@@ -333,7 +342,7 @@ def export_to_sheets(geo: str = None, bonus_type: str = None, clear_sheets: bool
         # Desired header structure
         headers = [
             "Scraped At", "Status", "ID", "GEO", "Type", "Brand", "Bonus Title", 
-            "Amount", "Wagering", "Providers", "Conditions", "Affiliate URL", "Rating"
+            "Amount", "Wagering", "Providers", "Conditions", "Affiliate URL", "Rating", "Extra Data"
         ]
 
         # Get existing data to avoid duplicates (if not cleared)
@@ -381,7 +390,8 @@ def export_to_sheets(geo: str = None, bonus_type: str = None, clear_sheets: bool
                     b.get("featured_providers", ""),
                     str(b.get("conditions") or "")[:100],
                     b.get("affiliate_url", ""),
-                    b.get("rating", 4.0)
+                    b.get("rating", 4.0),
+                    str(b.get("extra_data") or "")[:200]
                 ]
                 new_rows.append(row)
                 existing_keys.add(key)

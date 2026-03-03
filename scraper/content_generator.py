@@ -70,25 +70,33 @@ def generate_article(topic, geo_context, bonus_data):
 
     seo_title = build_seo_title(topic)
 
+    # Include extra_data if available (VIP tiers, specific events)
+    extra_details = ""
+    for b in bonus_data[:5]:
+        if b.get('extra_data'):
+            extra_details += f"\n- Additional detail for {b['brand_name']}: {b['extra_data']}"
+
     prompt = f"""
     Write a high-quality SEO-optimized blog article in English for an iGaming affiliate site called 'games-income.com'.
     Primary Topic/H1: {seo_title}
     Market Context: {geo_context}
-    Latest Bonuses to include in a table:
+    
+    Latest Data to Include:
     {bonus_summary}
+    {extra_details}
 
-    Structure requirements (Similar to luckybetvip.com):
-    1. Introduction: engaging, keyword-rich, and tailored to the market.
-    2. H2 Heading: Industry Insights (mention Pragmatic Play or Aviator as popular choices based on @igaming_inside findings).
-    3. H2 Heading: Comparative Bonus Table. (Represented as Markdown table).
-    4. H2 Heading: Expert Guide on how to claim and use these bonuses effectively.
-    5. H3 Heading: Legality and Safety (mention specific {geo_context} context and licensing).
+    Structure requirements:
+    1. Introduction: engaging and tailored to the market.
+    2. H2 Heading: Industry Insights (mention specific trends, Pragmatic Play, or Aviator).
+    3. H2 Heading: Detailed Comparison Table / Tier List.
+    4. H2 Heading: Expert Guide on how to maximize value (specific to {topic}).
+    5. H3 Heading: Legality and Safety in {geo_context}.
     6. H3 Heading: Frequently Asked Questions.
     7. Conclusion: Strong Call-to-Action.
 
-    Tone: Professional, expert, data-driven.
+    Crucial: If the topic is about VIP/Loyalty, focus on the tier requirements and perks. 
+    If it's a Holiday/Festival topic, highlight the limited-time nature and deadlines.
     Output should be valid JSON with 'title', 'slug', 'content' (Markdown), and 'date' fields.
-    Crucial: The 'slug' should be concise and SEO-friendly (lowercase, no special chars).
     """
 
     url = "https://api.groq.com/openai/v1/chat/completions"
