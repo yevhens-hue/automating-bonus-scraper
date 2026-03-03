@@ -91,6 +91,7 @@ export default function BonusesRatingPage() {
                 <footer className="mt-20 border-t border-white/5 pt-12 flex flex-col items-center">
                     <div className="flex gap-8 mb-8">
                         <Link href="/all-bonuses" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">Grid View</Link>
+                        <Link href="/bonuses-by-country" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">By Country</Link>
                         <Link href="/casino-bonuses" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">Casino</Link>
                         <Link href="/betting-bonuses" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">Betting</Link>
                     </div>

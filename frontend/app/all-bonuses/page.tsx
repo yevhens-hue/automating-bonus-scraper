@@ -63,10 +63,16 @@ export default function AllBonusesPage() {
                 ))}
 
                 <footer className="mt-20 border-t border-gray-800 pt-12 flex flex-col items-center">
+                    <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm font-bold uppercase tracking-widest">
+                        <Link href="/bonuses-rating" className="text-gray-400 hover:text-white transition-colors">Top Rated</Link>
+                        <Link href="/bonuses-by-country" className="text-gray-400 hover:text-white transition-colors">By Country</Link>
+                        <Link href="/casino-bonuses" className="text-gray-400 hover:text-white transition-colors">Casino</Link>
+                        <Link href="/betting-bonuses" className="text-gray-400 hover:text-white transition-colors">Betting</Link>
+                    </div>
                     <div className="text-gray-500 text-sm mb-4">
                         © 2026 games-income.com — Data-Driven iGaming Insights
                     </div>
-                    <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors">
+                    <Link href="/" className="text-blue-400 hover:text-blue-300 transition-colors font-bold">
                         ← Back to Home
                     </Link>
                 </footer>
