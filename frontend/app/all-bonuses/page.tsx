@@ -1,5 +1,7 @@
 'use client';
-import React, { useState } from 'react';
+
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import bonusesData from '@/data/bonuses.json';
 import { Bonus } from '@/lib/bonuses';
 import BonusCard from '@/components/BonusCard';
@@ -7,8 +9,18 @@ import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
-export default function AllBonusesPage() {
+function AllBonusesContent() {
+    const searchParams = useSearchParams();
+    const typeParam = searchParams.get('type');
     const [activeTab, setActiveTab] = useState<'all' | 'casino' | 'betting'>('all');
+
+    useEffect(() => {
+        if (typeParam === 'casino' || typeParam === 'betting') {
+            setActiveTab(typeParam);
+        } else {
+            setActiveTab('all');
+        }
+    }, [typeParam]);
 
     const bonuses = (bonusesData.bonuses as unknown as Bonus[]).filter(
         b => {
@@ -114,5 +126,17 @@ export default function AllBonusesPage() {
                 </footer>
             </div>
         </div>
+    );
+}
+
+export default function AllBonusesPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+                <div className="w-12 h-12 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin"></div>
+            </div>
+        }>
+            <AllBonusesContent />
+        </Suspense>
     );
 }

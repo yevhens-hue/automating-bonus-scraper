@@ -146,7 +146,7 @@ export default async function HomePage() {
                             </span>
                         </Link>
 
-                        <Link href="/casino-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-purple-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
+                        <Link href="/all-bonuses?type=casino" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-purple-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
                             <div className="absolute top-0 right-0 p-8 text-7xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🎰</div>
                             <div>
                                 <h3 className="text-3xl font-black text-white mb-4 tracking-tighter uppercase">Casino<br />Portal</h3>
@@ -157,7 +157,7 @@ export default async function HomePage() {
                             </span>
                         </Link>
 
-                        <Link href="/betting-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-blue-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
+                        <Link href="/all-bonuses?type=betting" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-blue-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
                             <div className="absolute top-0 right-0 p-8 text-7xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🏏</div>
                             <div>
                                 <h3 className="text-3xl font-black text-white mb-4 tracking-tighter uppercase">Sports<br />Betting</h3>
@@ -178,8 +178,8 @@ export default async function HomePage() {
                     <div className="flex justify-center gap-8 mb-12 text-gray-500 font-bold uppercase tracking-widest text-[10px]">
                         <Link href="/all-bonuses" className="hover:text-white transition-colors">Database</Link>
                         <a href="#blog" className="hover:text-white transition-colors">Blog</a>
-                        <Link href="/casino-bonuses" className="hover:text-white transition-colors">Casino</Link>
-                        <Link href="/betting-bonuses" className="hover:text-white transition-colors">Betting</Link>
+                        <Link href="/all-bonuses?type=casino" className="hover:text-white transition-colors">Casino</Link>
+                        <Link href="/all-bonuses?type=betting" className="hover:text-white transition-colors">Betting</Link>
                     </div>
                     <p className="text-gray-600 text-[10px] leading-loose max-w-2xl mx-auto">
                         © 2026 Games Income. For adults 18+ only. Gambling can be addictive — please play responsibly.
