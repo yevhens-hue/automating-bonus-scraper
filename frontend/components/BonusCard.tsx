@@ -61,9 +61,9 @@ export default function BonusCard({ bonus, rank }: { bonus: Bonus; rank?: number
                     <h3 className="text-white font-bold text-sm truncate">{bonus.brand_name}</h3>
                     <div className="flex items-center gap-1 mt-0.5">
                         {[...Array(5)].map((_, i) => (
-                            <span key={i} className={`text-xs ${i < Math.round(bonus.rating) ? 'text-yellow-400' : 'text-gray-600'}`}>★</span>
+                            <span key={i} className={`text-xs ${i < Math.round(bonus.rating || 0) ? 'text-yellow-400' : 'text-gray-600'}`}>★</span>
                         ))}
-                        <span className="text-gray-500 text-xs ml-1">{bonus.rating.toFixed(1)}</span>
+                        <span className="text-gray-500 text-xs ml-1">{(bonus.rating || 0).toFixed(1)}</span>
                     </div>
                 </div>
                 <span className={`text-xs ${isExpired ? 'bg-gray-800 text-gray-400' : 'bg-purple-900/50 text-purple-300'} px-2 py-0.5 rounded-full flex-shrink-0`}>

@@ -54,7 +54,7 @@ export default function VipBonusCard({ bonus, rank }: { bonus: Bonus; rank?: num
                         </h3>
                         <div className="flex items-center gap-1 mt-1">
                             {[...Array(5)].map((_, i) => (
-                                <span key={i} className={`text-sm ${i < Math.round(bonus.rating) ? 'text-yellow-400 drop-shadow-[0_0_2px_rgba(250,204,21,0.5)]' : 'text-gray-700'}`}>★</span>
+                                <span key={i} className={`text-sm ${i < Math.round(bonus.rating || 0) ? 'text-yellow-400 drop-shadow-[0_0_2px_rgba(250,204,21,0.5)]' : 'text-gray-700'}`}>★</span>
                             ))}
                         </div>
                     </div>
@@ -89,9 +89,9 @@ export default function VipBonusCard({ bonus, rank }: { bonus: Bonus; rank?: num
                         {parsedTiers.slice(0, 4).map((tier, idx) => (
                             <li key={idx} className="flex items-start gap-2 text-sm text-gray-300 bg-white/5 rounded-lg p-2 border border-white/5">
                                 <span className={`flex-shrink-0 mt-0.5 ${idx === 0 ? 'text-amber-700' :
-                                        idx === 1 ? 'text-gray-300' :
-                                            idx === 2 ? 'text-yellow-400' :
-                                                'text-blue-300'
+                                    idx === 1 ? 'text-gray-300' :
+                                        idx === 2 ? 'text-yellow-400' :
+                                            'text-blue-300'
                                     }`}>◆</span>
                                 <span className="leading-snug">{tier}</span>
                             </li>
