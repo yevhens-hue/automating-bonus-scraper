@@ -1,26 +1,22 @@
 import React from 'react';
 import bonusesData from '@/data/bonuses.json';
 import { Bonus } from '@/lib/bonuses';
+import { groupByGeo, GEO_NAMES } from '@/lib/geo';
 import GeoBonusTable from '@/components/GeoBonusTable';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
+export const metadata = {
+    title: 'Casino & Betting Bonuses by Country 2026 — Games Income',
+    description:
+        'Explore the best casino and betting offers tailored for India, Turkey, and Brazil. Filter top-rated bonuses by your region and claim verified promotions.',
+};
 
 export default function BonusesByCountryPage() {
-    // Filter active bonuses
-    const bonuses = (bonusesData.bonuses as unknown as Bonus[])
-        .filter(b => (b as any).is_active !== 0);
+    const activeBonuses = (bonusesData.bonuses as unknown as Bonus[]).filter(
+        (b) => (b as any).is_active !== 0
+    );
 
-    // Group by GEO
-    const geoGroups: Record<string, Bonus[]> = bonuses.reduce((acc: Record<string, Bonus[]>, bonus) => {
-        const geo = bonus.geo || 'Other';
-        if (!acc[geo]) acc[geo] = [];
-        acc[geo].push(bonus);
-        return acc;
-    }, {});
-
-    const geos = Object.keys(geoGroups).sort();
-    const geoNames: Record<string, string> = { IN: 'India', TR: 'Turkey', BR: 'Brazil' };
+    const { geos, geoGroups } = groupByGeo(activeBonuses);
 
     return (
         <div className="min-h-screen bg-[#050505] text-white py-12 px-4 sm:px-6 lg:px-8 font-sans">
@@ -49,7 +45,7 @@ export default function BonusesByCountryPage() {
                         <GeoBonusTable
                             key={geo}
                             geo={geo}
-                            geoName={geoNames[geo] || geo}
+                            geoName={GEO_NAMES[geo] || geo}
                             bonuses={geoGroups[geo]}
                         />
                     ))}
@@ -59,8 +55,8 @@ export default function BonusesByCountryPage() {
                     <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm font-bold uppercase tracking-widest">
                         <Link href="/all-bonuses" className="text-gray-400 hover:text-white transition-colors">Grid View</Link>
                         <Link href="/bonuses-rating" className="text-gray-400 hover:text-white transition-colors">Top Rated</Link>
-                        <Link href="/casino-bonuses" className="text-gray-400 hover:text-white transition-colors">Casino</Link>
-                        <Link href="/betting-bonuses" className="text-gray-400 hover:text-white transition-colors">Betting</Link>
+                        <Link href="/all-bonuses?type=casino" className="text-gray-400 hover:text-white transition-colors">Casino</Link>
+                        <Link href="/all-bonuses?type=betting" className="text-gray-400 hover:text-white transition-colors">Betting</Link>
                     </div>
                     <div className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em] mb-4">
                         © 2026 games-income.com — All Rights Reserved

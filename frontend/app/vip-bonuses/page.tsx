@@ -1,7 +1,8 @@
 import React from 'react';
 import bonusesData from '@/data/bonuses.json';
 import { Bonus } from '@/lib/bonuses';
-import BonusCard from '@/components/BonusCard';
+import { groupByGeo, GEO_NAMES, GEO_FLAGS } from '@/lib/geo';
+import VipBonusCard from '@/components/VipBonusCard';
 import Link from 'next/link';
 
 export const metadata = {
@@ -11,24 +12,14 @@ export const metadata = {
 
 export default function VipBonusesPage() {
     const bonuses = (bonusesData.bonuses as unknown as Bonus[]).filter(
-        b => {
+        (b) => {
             const isActive = (b as any).is_active !== 0;
             if (!isActive) return false;
             return b.bonus_type === 'vip' || (b.extra_data && b.extra_data.toLowerCase().includes('vip'));
         }
     );
 
-    // Group by GEO
-    const geoGroups: Record<string, Bonus[]> = bonuses.reduce((acc: Record<string, Bonus[]>, bonus) => {
-        const geo = bonus.geo || 'Other';
-        if (!acc[geo]) acc[geo] = [];
-        acc[geo].push(bonus);
-        return acc;
-    }, {});
-
-    const geos = Object.keys(geoGroups).sort();
-    const geoNames: Record<string, string> = { IN: 'India', TR: 'Turkey', BR: 'Brazil' };
-    const geoFlags: Record<string, string> = { IN: '🇮🇳', TR: '🇹🇷', BR: '🇧🇷' };
+    const { geos, geoGroups } = groupByGeo(bonuses);
 
     return (
         <div className="min-h-screen bg-[#0a0d1a] text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -60,15 +51,15 @@ export default function VipBonusesPage() {
                     geos.map((geo) => (
                         <section key={geo} className="mb-16">
                             <div className="flex items-center gap-4 mb-8">
-                                <span className="text-3xl">{geoFlags[geo] || '🌐'}</span>
+                                <span className="text-3xl">{GEO_FLAGS[geo] || '🌐'}</span>
                                 <h2 className="text-2xl font-bold text-white border-l-4 border-yellow-500 pl-4 uppercase tracking-tight">
-                                    {geoNames[geo] || geo} <span className="text-gray-500 font-normal">VIP Sector</span>
+                                    {GEO_NAMES[geo] || geo} <span className="text-gray-500 font-normal">VIP Sector</span>
                                 </h2>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {geoGroups[geo].map((bonus) => (
-                                    <BonusCard key={`${bonus.brand_name}-${bonus.id}`} bonus={bonus} />
+                                {geoGroups[geo].map((bonus, index) => (
+                                    <VipBonusCard key={`${bonus.brand_name}-${bonus.id}`} bonus={bonus} rank={index + 1} />
                                 ))}
                             </div>
                         </section>

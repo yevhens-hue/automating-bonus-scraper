@@ -4,12 +4,15 @@ import { Bonus } from '@/lib/bonuses';
 import BonusTableRow from '@/components/BonusTableRow';
 import Link from 'next/link';
 
-export const dynamic = 'force-dynamic';
+export const metadata = {
+    title: 'Top Rated Bonuses 2026 — Games Income',
+    description:
+        'Our algorithm ranks 50+ iGaming bonuses by wagering requirements, max cashout, and player feedback. Find the best verified deals for India, Turkey, and Brazil.',
+};
 
 export default function BonusesRatingPage() {
-    // Filter active bonuses and sort by rating (descending)
     const bonuses = (bonusesData.bonuses as unknown as Bonus[])
-        .filter(b => (b as any).is_active !== 0)
+        .filter((b) => (b as any).is_active !== 0)
         .sort((a, b) => b.rating - a.rating);
 
     return (
@@ -92,8 +95,8 @@ export default function BonusesRatingPage() {
                     <div className="flex gap-8 mb-8">
                         <Link href="/all-bonuses" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">Grid View</Link>
                         <Link href="/bonuses-by-country" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">By Country</Link>
-                        <Link href="/casino-bonuses" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">Casino</Link>
-                        <Link href="/betting-bonuses" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">Betting</Link>
+                        <Link href="/all-bonuses?type=casino" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">Casino</Link>
+                        <Link href="/all-bonuses?type=betting" className="text-gray-400 hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">Betting</Link>
                     </div>
                     <div className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em] mb-4">
                         © 2026 games-income.com — All Rights Reserved

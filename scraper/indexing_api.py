@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Google Indexing API — submits new blog article URLs to Google for immediate indexing.
-Uses the service account credentials already configured for Google Sheets.
+Google Indexing API — submits all pages (static + blog) to Google for immediate indexing.
 
 Usage:
-    python indexing_api.py --url https://games-income.com/blog/some-slug
-    python indexing_api.py --all       # indexes all blog posts found in data/blog/
+    python indexing_api.py --all          # indexes all pages (static + blog)
+    python indexing_api.py --url URL      # index a single URL
+    python indexing_api.py --blog         # blog posts only
 """
 import os
 import json
@@ -18,6 +18,17 @@ load_dotenv()
 BASE_DIR = Path(__file__).parent
 BLOG_DIR = BASE_DIR.parent / "frontend" / "data" / "blog"
 SITE_URL = os.getenv("SITE_URL", "https://games-income.com")
+
+STATIC_PAGES = [
+    "",
+    "/all-bonuses",
+    "/all-bonuses/table",
+    "/vip-bonuses",
+    "/holiday-bonuses",
+    "/blog",
+    "/bonuses-by-country",
+    "/bonuses-rating",
+]
 
 def get_credentials():
     """Load Google service account credentials."""
@@ -44,18 +55,15 @@ def index_url(url: str, creds) -> bool:
     """Submit a single URL to the Google Indexing API."""
     import urllib.request
     import urllib.error
+    from google.auth.transport.requests import Request
 
     endpoint = "https://indexing.googleapis.com/v3/urlNotifications:publish"
     payload = json.dumps({"url": url, "type": "URL_UPDATED"}).encode("utf-8")
 
     try:
-        # Build authorized request
-        token = creds.token
-        if not token:
-            creds.refresh(None)
-            from google.auth.transport.requests import Request
+        if not creds.valid:
             creds.refresh(Request())
-        
+
         req = urllib.request.Request(
             endpoint,
             data=payload,
@@ -66,7 +74,7 @@ def index_url(url: str, creds) -> bool:
             method="POST"
         )
         with urllib.request.urlopen(req) as resp:
-            body = resp.read()
+            resp.read()
             print(f"  ✅  Indexed: {url}")
             return True
     except urllib.error.HTTPError as e:
@@ -77,7 +85,7 @@ def index_url(url: str, creds) -> bool:
         print(f"  ❌  Error indexing {url}: {e}")
         return False
 
-def get_all_blog_urls() -> list[str]:
+def get_all_blog_urls() -> list:
     """Scan the blog output directory and collect all post URLs."""
     if not BLOG_DIR.exists():
         print(f"⚠️  Blog directory not found: {BLOG_DIR}")
@@ -94,25 +102,45 @@ def get_all_blog_urls() -> list[str]:
             pass
     return urls
 
+def get_all_static_urls() -> list:
+    """Return all static page URLs."""
+    return [f"{SITE_URL}{page}" for page in STATIC_PAGES]
+
 def main():
     parser = argparse.ArgumentParser(description="Submit URLs to Google Indexing API")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--url", help="Single URL to index")
-    group.add_argument("--all", action="store_true", help="Index all blog posts")
+    group.add_argument("--all", action="store_true", help="Index all pages (static + blog)")
+    group.add_argument("--blog", action="store_true", help="Index blog posts only")
+    group.add_argument("--static", action="store_true", help="Index static pages only")
     args = parser.parse_args()
 
     creds = get_credentials()
     if not creds:
         return
 
-    urls = [args.url] if args.url else get_all_blog_urls()
+    if args.url:
+        urls = [args.url]
+    elif args.all:
+        urls = get_all_static_urls() + get_all_blog_urls()
+    elif args.blog:
+        urls = get_all_blog_urls()
+    elif args.static:
+        urls = get_all_static_urls()
+    else:
+        urls = []
+
     if not urls:
         print("No URLs to index.")
         return
 
     print(f"\n🔍  Submitting {len(urls)} URL(s) to Google Indexing API...")
-    success = sum(1 for url in urls if index_url(url, creds))
-    print(f"\n✨  Done: {success}/{len(urls)} URLs submitted successfully.")
+    print(f"    Site: {SITE_URL}\n")
+
+    for url in urls:
+        index_url(url, creds)
+
+    print(f"\n✨  Done! Submitted {len(urls)} URLs.")
 
 if __name__ == "__main__":
     main()

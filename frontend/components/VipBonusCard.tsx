@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import type { Bonus } from '@/lib/bonuses';
 
 export default function VipBonusCard({ bonus, rank }: { bonus: Bonus; rank?: number }) {
@@ -39,11 +40,13 @@ export default function VipBonusCard({ bonus, rank }: { bonus: Bonus; rank?: num
             <div className="flex justify-between items-start mb-6">
                 <div className="flex items-center gap-3">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-amber-500/20 p-2 flex items-center justify-center flex-shrink-0 shadow-inner">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src={bonus.logo_url}
+                        <Image
+                            src={bonus.logo_url || '/logos/default.png'}
                             alt={bonus.brand_name}
+                            width={48}
+                            height={48}
                             className="w-full h-full object-contain drop-shadow-md"
+                            unoptimized
                             onError={(e) => { (e.target as HTMLImageElement).src = '/logos/default.png'; }}
                         />
                     </div>

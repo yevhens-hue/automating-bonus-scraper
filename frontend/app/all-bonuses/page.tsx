@@ -1,58 +1,53 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import bonusesData from '@/data/bonuses.json';
 import { Bonus } from '@/lib/bonuses';
+import { groupByGeo, GEO_NAMES, GEO_FLAGS } from '@/lib/geo';
 import BonusCard from '@/components/BonusCard';
 import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
+type TabType = 'all' | 'casino' | 'betting' | 'holiday' | 'vip';
+const VALID_TABS: TabType[] = ['casino', 'betting', 'holiday', 'vip'];
+
 function AllBonusesContent() {
     const searchParams = useSearchParams();
     const typeParam = searchParams.get('type');
-    const [activeTab, setActiveTab] = useState<'all' | 'casino' | 'betting' | 'holiday' | 'vip'>('all');
+    const [activeTab, setActiveTab] = useState<TabType>('all');
 
     useEffect(() => {
-        if (['casino', 'betting'].includes(typeParam as string)) {
-            setActiveTab(typeParam as any);
+        if (VALID_TABS.includes(typeParam as TabType)) {
+            setActiveTab(typeParam as TabType);
         } else {
             setActiveTab('all');
         }
     }, [typeParam]);
 
-    const bonuses = (bonusesData.bonuses as unknown as Bonus[]).filter(
-        b => {
+    const bonuses = useMemo(() =>
+        (bonusesData.bonuses as unknown as Bonus[]).filter((b) => {
             const isActive = (b as any).is_active !== 0;
             if (!isActive) return false;
-
             if (activeTab === 'all') return true;
             if (activeTab === 'casino' || activeTab === 'betting') return b.type === activeTab;
-
             if (activeTab === 'holiday') {
-                return b.bonus_type === 'holiday' || (b.extra_data && (b.extra_data.toLowerCase().includes('holiday') || b.extra_data.toLowerCase().includes('event') || b.extra_data.toLowerCase().includes('festival')));
+                return b.bonus_type === 'holiday' || (b.extra_data && (
+                    b.extra_data.toLowerCase().includes('holiday') ||
+                    b.extra_data.toLowerCase().includes('event') ||
+                    b.extra_data.toLowerCase().includes('festival')
+                ));
             }
-
             if (activeTab === 'vip') {
                 return b.bonus_type === 'vip' || (b.extra_data && b.extra_data.toLowerCase().includes('vip'));
             }
-
             return false;
-        }
+        }),
+        [activeTab]
     );
 
-    // Group by GEO
-    const geoGroups: Record<string, Bonus[]> = bonuses.reduce((acc: Record<string, Bonus[]>, bonus) => {
-        const geo = bonus.geo || 'Other';
-        if (!acc[geo]) acc[geo] = [];
-        acc[geo].push(bonus);
-        return acc;
-    }, {});
-
-    const geos = Object.keys(geoGroups).sort();
-    const geoNames: Record<string, string> = { IN: 'India', TR: 'Turkey', BR: 'Brazil' };
-    const geoFlags: Record<string, string> = { IN: '🇮🇳', TR: '🇹🇷', BR: '🇧🇷' };
+    const { geos, geoGroups } = groupByGeo(bonuses);
 
     return (
         <div className="min-h-screen bg-[#0a0a0a] text-white py-12 px-4 sm:px-6 lg:px-8">
@@ -86,10 +81,25 @@ function AllBonusesContent() {
                             >
                                 🏏 Betting
                             </button>
+                            <button
+                                onClick={() => setActiveTab('holiday')}
+                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'holiday' ? 'bg-red-600 text-white shadow-lg shadow-red-900/40' : 'text-gray-500 hover:text-white'}`}
+                            >
+                                🎁 Holiday
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('vip')}
+                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'vip' ? 'bg-yellow-500 text-black shadow-lg shadow-yellow-900/40' : 'text-gray-500 hover:text-white'}`}
+                            >
+                                👑 VIP
+                            </button>
                         </div>
 
                         <div className="flex justify-center gap-4">
-                            <Link href={`/all-bonuses/table${activeTab !== 'all' ? `?type=${activeTab}` : ''}`} className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600/10 hover:bg-purple-600/20 text-purple-400 border border-purple-500/20 rounded-xl font-bold transition-all active:scale-95 text-xs uppercase tracking-widest">
+                            <Link
+                                href={`/all-bonuses/table${activeTab !== 'all' ? `?type=${activeTab}` : ''}`}
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600/10 hover:bg-purple-600/20 text-purple-400 border border-purple-500/20 rounded-xl font-bold transition-all active:scale-95 text-xs uppercase tracking-widest"
+                            >
                                 📊 View Detailed Table
                             </Link>
                         </div>
@@ -105,9 +115,9 @@ function AllBonusesContent() {
                 {geos.map((geo) => (
                     <section key={geo} className="mb-16">
                         <div className="flex items-center gap-4 mb-8">
-                            <span className="text-3xl">{geoFlags[geo] || '🌐'}</span>
+                            <span className="text-3xl">{GEO_FLAGS[geo] || '🌐'}</span>
                             <h2 className="text-2xl font-bold text-white border-l-4 border-blue-500 pl-4">
-                                {geoNames[geo] || geo} Market
+                                {GEO_NAMES[geo] || geo} Market
                             </h2>
                             <span className="text-xs text-gray-500 uppercase tracking-widest bg-gray-900 px-3 py-1 rounded-full">
                                 {geoGroups[geo].length} Brands Tracked

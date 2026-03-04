@@ -24,9 +24,3 @@ import bonusesData from '../data/bonuses.json';
 
 export const STATIC_BONUSES: Bonus[] = bonusesData.bonuses as unknown as Bonus[];
 
-export function getBonuses(type?: 'casino' | 'betting', geo: string = 'IN'): Bonus[] {
-  const bonuses = bonusesData.bonuses as unknown as Bonus[];
-  return bonuses.filter(
-    b => (!type || b.type === type) && b.geo === geo.toUpperCase()
-  );
-}

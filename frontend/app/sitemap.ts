@@ -2,20 +2,22 @@ import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/posts';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://games-income.com'; // Replace with actual domain
+  const baseUrl = 'https://games-income.com';
   
   // Static routes
   const staticRoutes = [
     '',
-    '/casino-bonuses',
-    '/betting-bonuses',
     '/all-bonuses',
-    '/blog',
+    '/all-bonuses/table',
+    '/vip-bonuses',
+    '/holiday-bonuses',
+    '/bonuses-by-country',
+    '/bonuses-rating',
   ].map(route => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
-    priority: 1.0,
+    priority: route === '' || route === '/all-bonuses' ? 1.0 : 0.9,
   }));
 
   // Blog posts

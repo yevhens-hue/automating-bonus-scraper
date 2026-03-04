@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import type { Bonus } from '@/lib/bonuses';
 
 const BONUS_TYPE_LABELS: Record<string, string> = {
@@ -49,11 +50,13 @@ export default function BonusCard({ bonus, rank }: { bonus: Bonus; rank?: number
             {/* Header */}
             <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                        src={bonus.logo_url}
+                    <Image
+                        src={bonus.logo_url || '/logos/default.png'}
                         alt={bonus.brand_name}
+                        width={24}
+                        height={24}
                         className="w-6 h-6 object-contain"
+                        unoptimized
                         onError={(e) => { (e.target as HTMLImageElement).src = '/logos/default.png'; }}
                     />
                 </div>

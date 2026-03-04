@@ -19,19 +19,23 @@ export const metadata: Metadata = {
         apple: '/favicon.svg',
     },
     verification: {
-        // Add your Google Search Console verification token here
         google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || '',
     },
     openGraph: {
         siteName: 'Games Income',
         type: 'website',
+        url: 'https://games-income.com',
+        title: 'Games Income — Best Casino & Betting Bonuses 2026',
+        description: 'Compare casino and sports betting bonuses across India, Turkey, and Brazil. Auto-updated every 6 hours.',
+        images: [{ url: 'https://games-income.com/og-image.png', width: 1200, height: 630, alt: 'Games Income' }],
+        locale: 'en_IN',
     },
 };
 
 import bonusesData from '../data/bonuses.json';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    const lastUpdate = new Date(bonusesData.updated_at).toLocaleString('ru-RU', {
+    const lastUpdate = new Date(bonusesData.updated_at).toLocaleString('en-IN', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric',

@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import type { Bonus } from '@/lib/bonuses';
 
 const BONUS_TYPE_LABELS: Record<string, string> = {
@@ -13,26 +14,28 @@ const BONUS_TYPE_LABELS: Record<string, string> = {
 };
 
 export default function BonusTableRow({ bonus, rank }: { bonus: Bonus; rank: number }) {
+    const rating = bonus.rating ?? 0;
     const isNew = bonus.is_new;
-    const isHot = bonus.rating >= 4.7;
+    const isHot = rating >= 4.7;
     const isBest = rank <= 3;
 
     return (
         <tr className="group border-b border-white/5 hover:bg-white/[0.03] transition-colors">
             <td className="py-4 pl-4 text-center">
-                <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm ${isBest ? 'bg-gradient-to-br from-yellow-500 to-amber-600 text-white shadow-lg shadow-yellow-900/20' : 'bg-white/10 text-gray-400'
-                    }`}>
+                <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full font-bold text-sm ${isBest ? 'bg-gradient-to-br from-yellow-500 to-amber-600 text-white shadow-lg shadow-yellow-900/20' : 'bg-white/10 text-gray-400'}`}>
                     {rank}
                 </span>
             </td>
             <td className="py-4 px-4">
                 <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center overflow-hidden flex-shrink-0 border border-white/5 group-hover:border-purple-500/30 transition-colors">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src={bonus.logo_url}
+                        <Image
+                            src={bonus.logo_url || '/logos/default.png'}
                             alt={bonus.brand_name}
+                            width={28}
+                            height={28}
                             className="w-7 h-7 object-contain"
+                            unoptimized
                             onError={(e) => { (e.target as HTMLImageElement).src = '/logos/default.png'; }}
                         />
                     </div>
@@ -63,10 +66,10 @@ export default function BonusTableRow({ bonus, rank }: { bonus: Bonus; rank: num
                 <div className="flex flex-col items-center">
                     <div className="flex items-center gap-1">
                         {[...Array(5)].map((_, i) => (
-                            <span key={i} className={`text-sm ${i < Math.round(bonus.rating) ? 'text-yellow-400' : 'text-gray-700'}`}>★</span>
+                            <span key={i} className={`text-sm ${i < Math.round(rating) ? 'text-yellow-400' : 'text-gray-700'}`}>★</span>
                         ))}
                     </div>
-                    <span className="text-gray-400 font-bold text-xs mt-1">{bonus.rating.toFixed(1)}</span>
+                    <span className="text-gray-400 font-bold text-xs mt-1">{rating.toFixed(1)}</span>
                 </div>
             </td>
             <td className="py-4 px-4 pr-4 text-right">
