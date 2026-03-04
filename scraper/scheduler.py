@@ -68,6 +68,12 @@ def run_all(export: bool = False, sheets: bool = False, clear_sheets: bool = Fal
         export_json_api(output_file=str(frontend_data_path))
         print(f"✨ Consolidated data exported to {frontend_data_path}")
 
+        # Update Top Odds
+        print("\n📈 Fetching Live Odds from The-Odds-API...")
+        odds_cmd = [sys.executable, str(Path(__file__).parent / "odds_scraper.py")]
+        subprocess.run(odds_cmd, capture_output=False)
+        print("✨ Odds updated.")
+
         # Run SEO content generator
         print("\n✍️ Generating AI Blog Content...")
         gen_cmd = [sys.executable, str(Path(__file__).parent / "content_generator.py")]
@@ -102,6 +108,10 @@ def main():
                 run_for_geo(args.geo.upper(), export=args.export, sheets=args.sheets, clear_sheets=args.clear_sheets)
             else:
                 run_all(export=args.export, sheets=args.sheets, clear_sheets=args.clear_sheets)
+                
+            # Run odds scraper in the background loop too
+            print("\n📈 Fetching Live Odds...")
+            subprocess.run([sys.executable, str(Path(__file__).parent / "odds_scraper.py")], capture_output=False)
             print(f"\n💤 Next run in {INTERVAL_HOURS} hours...")
             time.sleep(INTERVAL_HOURS * 3600)
     else:
