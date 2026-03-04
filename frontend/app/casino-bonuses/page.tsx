@@ -1,5 +1,6 @@
 import { getBonuses } from '@/lib/bonuses';
 import BonusCard from '@/components/BonusCard';
+import Link from 'next/link';
 
 export const metadata = {
     title: 'Best Casino Bonuses in India 2026 | Games Income',
@@ -23,10 +24,16 @@ export default function CasinoBonusesPage() {
                             for Indian Players
                         </span>
                     </h1>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-400 max-w-2xl mx-auto mb-8">
                         All bonuses verified for INR deposits via UPI, Paytm & PhonePe.
                         Updated every 6 hours by our automated tracker.
                     </p>
+
+                    <div className="flex justify-center">
+                        <Link href="/casino-bonuses/table" className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-purple-900/20 active:scale-95">
+                            📊 Switch to Table View
+                        </Link>
+                    </div>
                 </div>
 
                 {/* Filter bar */}

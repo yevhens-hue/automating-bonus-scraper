@@ -41,9 +41,15 @@ export default function HolidayBonusesPage() {
                             🎁 Holiday Offers 2026
                         </span>
                     </h1>
-                    <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+                    <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-8 font-medium leading-relaxed">
                         Exclusive, time-sensitive promotions for major festivals and holidays. Don't miss these limited-time casino and betting rewards!
                     </p>
+
+                    <div className="flex justify-center">
+                        <Link href="/holiday-bonuses/table" className="inline-flex items-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-red-900/20 active:scale-95">
+                            📊 Switch to Table View
+                        </Link>
+                    </div>
                 </header>
 
                 {geos.length === 0 && (

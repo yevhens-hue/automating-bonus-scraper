@@ -44,9 +44,15 @@ export default function VipProgramsPage() {
                             VIP Loyalty Clubs
                         </span>
                     </h1>
-                    <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto font-medium leading-relaxed">
+                    <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto mb-8 font-medium leading-relaxed">
                         Compare top-tier VIP programs, uncover hidden loyalty perks, and see exactly what it takes to reach Diamond status in 2026.
                     </p>
+
+                    <div className="flex justify-center">
+                        <Link href="/vip-programs/table" className="inline-flex items-center gap-2 px-6 py-3 bg-yellow-600 hover:bg-yellow-500 text-black font-bold rounded-xl transition-all shadow-lg shadow-yellow-900/20 active:scale-95">
+                            📊 Switch to Table View
+                        </Link>
+                    </div>
                 </header>
 
                 {geos.length === 0 && (

@@ -19,7 +19,7 @@
       "static/chunks/4bd1b696-c3f339bc29afdab9.js",
       "static/chunks/517-4a800b12dd86e65a.js",
       "static/chunks/main-app-0acee982b419c752.js",
-      "static/css/106e7fd0d794b99b.css",
+      "static/css/a21e49592c4fc604.css",
       "static/chunks/173-bab409bfb4109981.js",
       "static/chunks/app/layout-7deccf100c9883c8.js"
     ],
@@ -30,20 +30,21 @@
       "static/chunks/main-app-0acee982b419c752.js",
       "static/chunks/app/blog/page-61b975a633d8b78a.js"
     ],
-    "/betting-bonuses/page": [
-      "static/chunks/webpack-d6abbf1fcfdef890.js",
-      "static/chunks/4bd1b696-c3f339bc29afdab9.js",
-      "static/chunks/517-4a800b12dd86e65a.js",
-      "static/chunks/main-app-0acee982b419c752.js",
-      "static/chunks/app/betting-bonuses/page-a0ed7126fbe960c3.js"
-    ],
-    "/all-bonuses/page": [
+    "/all-bonuses/table/page": [
       "static/chunks/webpack-d6abbf1fcfdef890.js",
       "static/chunks/4bd1b696-c3f339bc29afdab9.js",
       "static/chunks/517-4a800b12dd86e65a.js",
       "static/chunks/main-app-0acee982b419c752.js",
       "static/chunks/173-bab409bfb4109981.js",
-      "static/chunks/app/all-bonuses/page-d63fcb44e366588f.js"
+      "static/chunks/app/all-bonuses/table/page-d9423ee15d1616ca.js"
+    ],
+    "/betting-bonuses/page": [
+      "static/chunks/webpack-d6abbf1fcfdef890.js",
+      "static/chunks/4bd1b696-c3f339bc29afdab9.js",
+      "static/chunks/517-4a800b12dd86e65a.js",
+      "static/chunks/main-app-0acee982b419c752.js",
+      "static/chunks/173-bab409bfb4109981.js",
+      "static/chunks/app/betting-bonuses/page-d8480be394945dc0.js"
     ],
     "/blog/[slug]/page": [
       "static/chunks/webpack-d6abbf1fcfdef890.js",
@@ -53,13 +54,29 @@
       "static/chunks/173-bab409bfb4109981.js",
       "static/chunks/app/blog/[slug]/page-7a73deb382fa93de.js"
     ],
-    "/bonuses-rating/page": [
+    "/all-bonuses/page": [
       "static/chunks/webpack-d6abbf1fcfdef890.js",
       "static/chunks/4bd1b696-c3f339bc29afdab9.js",
       "static/chunks/517-4a800b12dd86e65a.js",
       "static/chunks/main-app-0acee982b419c752.js",
       "static/chunks/173-bab409bfb4109981.js",
-      "static/chunks/app/bonuses-rating/page-6f86a8a94a5a72bd.js"
+      "static/chunks/app/all-bonuses/page-e20609206faa79de.js"
+    ],
+    "/casino-bonuses/table/page": [
+      "static/chunks/webpack-d6abbf1fcfdef890.js",
+      "static/chunks/4bd1b696-c3f339bc29afdab9.js",
+      "static/chunks/517-4a800b12dd86e65a.js",
+      "static/chunks/main-app-0acee982b419c752.js",
+      "static/chunks/173-bab409bfb4109981.js",
+      "static/chunks/app/casino-bonuses/table/page-a853671979cb20b4.js"
+    ],
+    "/betting-bonuses/table/page": [
+      "static/chunks/webpack-d6abbf1fcfdef890.js",
+      "static/chunks/4bd1b696-c3f339bc29afdab9.js",
+      "static/chunks/517-4a800b12dd86e65a.js",
+      "static/chunks/main-app-0acee982b419c752.js",
+      "static/chunks/173-bab409bfb4109981.js",
+      "static/chunks/app/betting-bonuses/table/page-2bf7e4555ba928b9.js"
     ],
     "/bonuses-by-country/page": [
       "static/chunks/webpack-d6abbf1fcfdef890.js",
@@ -74,15 +91,32 @@
       "static/chunks/4bd1b696-c3f339bc29afdab9.js",
       "static/chunks/517-4a800b12dd86e65a.js",
       "static/chunks/main-app-0acee982b419c752.js",
-      "static/chunks/app/casino-bonuses/page-b14c37407e0fea1b.js"
+      "static/chunks/173-bab409bfb4109981.js",
+      "static/chunks/app/casino-bonuses/page-cdf2e1077f117b4b.js"
     ],
-    "/holiday-bonuses/page": [
+    "/holiday-bonuses/table/page": [
       "static/chunks/webpack-d6abbf1fcfdef890.js",
       "static/chunks/4bd1b696-c3f339bc29afdab9.js",
       "static/chunks/517-4a800b12dd86e65a.js",
       "static/chunks/main-app-0acee982b419c752.js",
       "static/chunks/173-bab409bfb4109981.js",
-      "static/chunks/app/holiday-bonuses/page-a847921774d4409f.js"
+      "static/chunks/app/holiday-bonuses/table/page-6a131e25580d1fa4.js"
+    ],
+    "/vip-programs/table/page": [
+      "static/chunks/webpack-d6abbf1fcfdef890.js",
+      "static/chunks/4bd1b696-c3f339bc29afdab9.js",
+      "static/chunks/517-4a800b12dd86e65a.js",
+      "static/chunks/main-app-0acee982b419c752.js",
+      "static/chunks/173-bab409bfb4109981.js",
+      "static/chunks/app/vip-programs/table/page-3e4a36d613fe4c6e.js"
+    ],
+    "/bonuses-rating/page": [
+      "static/chunks/webpack-d6abbf1fcfdef890.js",
+      "static/chunks/4bd1b696-c3f339bc29afdab9.js",
+      "static/chunks/517-4a800b12dd86e65a.js",
+      "static/chunks/main-app-0acee982b419c752.js",
+      "static/chunks/173-bab409bfb4109981.js",
+      "static/chunks/app/bonuses-rating/page-6f86a8a94a5a72bd.js"
     ],
     "/vip-programs/page": [
       "static/chunks/webpack-d6abbf1fcfdef890.js",
@@ -91,6 +125,14 @@
       "static/chunks/main-app-0acee982b419c752.js",
       "static/chunks/173-bab409bfb4109981.js",
       "static/chunks/app/vip-programs/page-fa0ac583eb831f50.js"
+    ],
+    "/holiday-bonuses/page": [
+      "static/chunks/webpack-d6abbf1fcfdef890.js",
+      "static/chunks/4bd1b696-c3f339bc29afdab9.js",
+      "static/chunks/517-4a800b12dd86e65a.js",
+      "static/chunks/main-app-0acee982b419c752.js",
+      "static/chunks/173-bab409bfb4109981.js",
+      "static/chunks/app/holiday-bonuses/page-ab3031d41074a81c.js"
     ],
     "/page": [
       "static/chunks/webpack-d6abbf1fcfdef890.js",

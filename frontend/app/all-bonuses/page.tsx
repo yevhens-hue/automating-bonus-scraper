@@ -30,10 +30,16 @@ export default function AllBonusesPage() {
                     <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 mb-4 uppercase tracking-tighter">
                         Live Bonus Database 2026
                     </h1>
-                    <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                    <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
                         Real-time tracking of 30+ brands across India, Turkey, and Brazil.
                         Updated every 6 hours with verified wagering requirements and bonus amounts.
                     </p>
+
+                    <div className="flex justify-center gap-4">
+                        <Link href="/all-bonuses/table" className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-purple-900/20 active:scale-95">
+                            📊 Switch to Table View
+                        </Link>
+                    </div>
                 </header>
 
                 {geos.length === 0 && (

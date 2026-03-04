@@ -1,5 +1,6 @@
 import { getBonuses } from '@/lib/bonuses';
 import BonusCard from '@/components/BonusCard';
+import Link from 'next/link';
 
 export const metadata = {
     title: 'Best Sports Betting Bonuses in India 2026 | Games Income',
@@ -23,10 +24,16 @@ export default function BettingBonusesPage() {
                             for Cricket & IPL 2026
                         </span>
                     </h1>
-                    <p className="text-gray-400 max-w-2xl mx-auto">
+                    <p className="text-gray-400 max-w-2xl mx-auto mb-8">
                         Exclusively curated sportsbook bonuses for IPL, cricket, kabaddi, and football betting.
                         Supports INR via UPI and Paytm.
                     </p>
+
+                    <div className="flex justify-center">
+                        <Link href="/betting-bonuses/table" className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-indigo-900/20 active:scale-95">
+                            📊 Switch to Table View
+                        </Link>
+                    </div>
                 </div>
 
                 {/* Sports filter bar */}
