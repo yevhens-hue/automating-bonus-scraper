@@ -11,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/all-bonuses/table',
     '/vip-bonuses',
     '/holiday-bonuses',
+    '/top-odds',
     '/bonuses-by-country',
     '/bonuses-rating',
   ].map(route => ({

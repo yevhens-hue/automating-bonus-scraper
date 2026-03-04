@@ -1,0 +1,106 @@
+{
+    "updated_at": "2026-03-05T00:00:00Z",
+    "events": [
+        {
+            "id": "ucl-real-madrid-man-city",
+            "sport": "Football",
+            "tournament": "UEFA Champions League",
+            "team_home": "Real Madrid",
+            "team_away": "Manchester City",
+            "team_home_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png",
+            "team_away_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png",
+            "start_time": "2026-04-15T19:00:00Z",
+            "is_live": false,
+            "markets": [
+                {
+                    "type": "1X2",
+                    "outcomes": [
+                        {
+                            "label": "1",
+                            "best_odd": 2.85,
+                            "brand_id": 1,
+                            "brand_name": "Pin-Up",
+                            "affiliate_url": "https://games-income.com/api/go?brand=pinup"
+                        },
+                        {
+                            "label": "X",
+                            "best_odd": 3.40,
+                            "brand_id": 2,
+                            "brand_name": "Mostbet",
+                            "affiliate_url": "https://games-income.com/api/go?brand=mostbet"
+                        },
+                        {
+                            "label": "2",
+                            "best_odd": 2.45,
+                            "brand_id": 3,
+                            "brand_name": "1Win",
+                            "affiliate_url": "https://games-income.com/api/go?brand=1win"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ipl-chennai-mumbai",
+            "sport": "Cricket",
+            "tournament": "Indian Premier League (IPL)",
+            "team_home": "Chennai Super Kings",
+            "team_away": "Mumbai Indians",
+            "team_home_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
+            "team_away_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Mumbai_Indians_Logo.svg/1200px-Mumbai_Indians_Logo.svg.png",
+            "start_time": "2026-04-20T14:30:00Z",
+            "is_live": false,
+            "markets": [
+                {
+                    "type": "Match Winner",
+                    "outcomes": [
+                        {
+                            "label": "CSK",
+                            "best_odd": 1.95,
+                            "brand_id": 2,
+                            "brand_name": "Mostbet",
+                            "affiliate_url": "https://games-income.com/api/go?brand=mostbet"
+                        },
+                        {
+                            "label": "MI",
+                            "best_odd": 1.90,
+                            "brand_id": 4,
+                            "brand_name": "GloryCasino",
+                            "affiliate_url": "https://games-income.com/api/go?brand=glorycasino"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "esports-navi-faze",
+            "sport": "Esports CS2",
+            "tournament": "PGL Major 2026",
+            "team_home": "Natus Vincere",
+            "team_away": "FaZe Clan",
+            "start_time": "2026-03-25T18:00:00Z",
+            "is_live": true,
+            "markets": [
+                {
+                    "type": "Match Winner",
+                    "outcomes": [
+                        {
+                            "label": "NaVi",
+                            "best_odd": 1.75,
+                            "brand_id": 5,
+                            "brand_name": "IviBet",
+                            "affiliate_url": "https://games-income.com/api/go?brand=ivibet"
+                        },
+                        {
+                            "label": "FaZe",
+                            "best_odd": 2.10,
+                            "brand_id": 3,
+                            "brand_name": "1Win",
+                            "affiliate_url": "https://games-income.com/api/go?brand=1win"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

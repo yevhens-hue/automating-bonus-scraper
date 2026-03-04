@@ -83,6 +83,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <Link href="/vip-bonuses" className="text-yellow-500 hover:text-yellow-400 hover:bg-yellow-500/10 transition-all font-bold px-3 py-2 rounded-lg border border-yellow-500/20 ml-2">
                                 👑 VIP
                             </Link>
+                            <Link href="/top-odds" className="text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 transition-all font-bold px-3 py-2 rounded-lg border border-cyan-500/20 ml-2 animate-pulse">
+                                📈 Top Odds
+                            </Link>
                             <a href="/#blog" className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-all px-3 py-2 rounded-lg border border-blue-500/20 ml-2">
                                 ✍️ Blog
                             </a>

@@ -4,11 +4,12 @@
   "/sitemap.xml/route": "app/sitemap.xml/route.js",
   "/blog/page": "app/blog/page.js",
   "/all-bonuses/table/page": "app/all-bonuses/table/page.js",
-  "/bonuses-by-country/page": "app/bonuses-by-country/page.js",
-  "/all-bonuses/page": "app/all-bonuses/page.js",
   "/blog/[slug]/page": "app/blog/[slug]/page.js",
-  "/vip-bonuses/page": "app/vip-bonuses/page.js",
-  "/holiday-bonuses/page": "app/holiday-bonuses/page.js",
   "/bonuses-rating/page": "app/bonuses-rating/page.js",
-  "/page": "app/page.js"
+  "/all-bonuses/page": "app/all-bonuses/page.js",
+  "/bonuses-by-country/page": "app/bonuses-by-country/page.js",
+  "/top-odds/page": "app/top-odds/page.js",
+  "/holiday-bonuses/page": "app/holiday-bonuses/page.js",
+  "/page": "app/page.js",
+  "/vip-bonuses/page": "app/vip-bonuses/page.js"
 }
