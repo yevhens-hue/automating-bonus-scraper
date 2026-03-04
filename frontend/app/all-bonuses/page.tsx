@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import bonusesData from '@/data/bonuses.json';
 import { Bonus } from '@/lib/bonuses';
 import BonusCard from '@/components/BonusCard';
@@ -7,8 +8,14 @@ import Link from 'next/link';
 export const dynamic = 'force-dynamic';
 
 export default function AllBonusesPage() {
+    const [activeTab, setActiveTab] = useState<'all' | 'casino' | 'betting'>('all');
+
     const bonuses = (bonusesData.bonuses as unknown as Bonus[]).filter(
-        b => (b as any).is_active !== 0
+        b => {
+            const isActive = (b as any).is_active !== 0;
+            const matchesTab = activeTab === 'all' || b.type === activeTab;
+            return isActive && matchesTab;
+        }
     );
 
     // Group by GEO
@@ -35,10 +42,33 @@ export default function AllBonusesPage() {
                         Updated every 6 hours with verified wagering requirements and bonus amounts.
                     </p>
 
-                    <div className="flex justify-center gap-4">
-                        <Link href="/all-bonuses/table" className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-purple-900/20 active:scale-95">
-                            📊 Switch to Table View
-                        </Link>
+                    <div className="flex flex-col items-center gap-6">
+                        <div className="bg-white/5 border border-white/10 p-1.5 rounded-2xl flex gap-1 backdrop-blur-md">
+                            <button
+                                onClick={() => setActiveTab('all')}
+                                className={`px-6 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${activeTab === 'all' ? 'bg-white text-black shadow-lg shadow-white/10' : 'text-gray-500 hover:text-white'}`}
+                            >
+                                🌐 All
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('casino')}
+                                className={`px-6 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${activeTab === 'casino' ? 'bg-purple-600 text-white shadow-lg shadow-purple-900/40' : 'text-gray-500 hover:text-white'}`}
+                            >
+                                🎰 Casino
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('betting')}
+                                className={`px-6 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${activeTab === 'betting' ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/40' : 'text-gray-500 hover:text-white'}`}
+                            >
+                                🏏 Betting
+                            </button>
+                        </div>
+
+                        <div className="flex justify-center gap-4">
+                            <Link href={`/${activeTab === 'all' ? 'all' : activeTab}-bonuses/table`} className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600/10 hover:bg-purple-600/20 text-purple-400 border border-purple-500/20 rounded-xl font-bold transition-all active:scale-95 text-xs uppercase tracking-widest">
+                                📊 View Detailed Table
+                            </Link>
+                        </div>
                     </div>
                 </header>
 

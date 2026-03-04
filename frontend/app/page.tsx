@@ -121,25 +121,54 @@ export default async function HomePage() {
                 </div>
             </section>
 
-            {/* Market Sections Link Cards */}
-            <section className="py-24 px-4 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                <Link href="/casino-bonuses" className="group relative overflow-hidden bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-white/5 p-12 rounded-[2rem] hover:border-purple-500/50 transition-all duration-500">
-                    <div className="absolute top-0 right-0 p-8 text-6xl opacity-20 group-hover:scale-110 transition-transform duration-500">🎰</div>
-                    <h2 className="text-4xl font-black text-white mb-4 tracking-tighter uppercase">Casino<br />Bonuses</h2>
-                    <p className="text-gray-500 max-w-xs mb-8">Direct access to welcome packages, free spins, and crypto deals.</p>
-                    <span className="text-purple-400 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
-                        Explore Database <span className="group-hover:translate-x-2 transition-transform">→</span>
-                    </span>
-                </Link>
+            {/* Unified Bonus Database Section */}
+            <section className="py-24 px-4">
+                <div className="max-w-6xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-5xl font-black text-white mb-6 tracking-tighter uppercase italic">
+                            The Master <span className="text-purple-500">Database</span>
+                        </h2>
+                        <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                            One unified portal for every verified iGaming offer.
+                            Switch between casino rewards and sports betting promos in a single click.
+                        </p>
+                    </div>
 
-                <Link href="/betting-bonuses" className="group relative overflow-hidden bg-gradient-to-br from-[#111] to-[#0a0a0a] border border-white/5 p-12 rounded-[2rem] hover:border-blue-500/50 transition-all duration-500">
-                    <div className="absolute top-0 right-0 p-8 text-6xl opacity-20 group-hover:scale-110 transition-transform duration-500">🏏</div>
-                    <h2 className="text-4xl font-black text-white mb-4 tracking-tighter uppercase">Sports<br />Betting</h2>
-                    <p className="text-gray-500 max-w-xs mb-8">IPL, Cricket, and Football offers verified for Indian and global players.</p>
-                    <span className="text-blue-400 font-bold uppercase tracking-widest text-xs flex items-center gap-2">
-                        Explore Database <span className="group-hover:translate-x-2 transition-transform">→</span>
-                    </span>
-                </Link>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <Link href="/all-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-purple-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
+                            <div className="absolute top-0 right-0 p-8 text-7xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">📊</div>
+                            <div>
+                                <h3 className="text-3xl font-black text-white mb-4 tracking-tighter uppercase">All<br />Bonuses</h3>
+                                <p className="text-gray-500 text-sm leading-relaxed">The complete 2026 collection from India, Turkey, and Brazil.</p>
+                            </div>
+                            <span className="text-white font-bold uppercase tracking-widest text-[10px] flex items-center gap-2 mt-8">
+                                Enter Database <span className="group-hover:translate-x-2 transition-transform">→</span>
+                            </span>
+                        </Link>
+
+                        <Link href="/casino-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-purple-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
+                            <div className="absolute top-0 right-0 p-8 text-7xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🎰</div>
+                            <div>
+                                <h3 className="text-3xl font-black text-white mb-4 tracking-tighter uppercase">Casino<br />Portal</h3>
+                                <p className="text-gray-500 text-sm leading-relaxed">Welcome packs, free spins, and high-roller rewards.</p>
+                            </div>
+                            <span className="text-purple-400 font-bold uppercase tracking-widest text-[10px] flex items-center gap-2 mt-8">
+                                View Casino <span className="group-hover:translate-x-2 transition-transform">→</span>
+                            </span>
+                        </Link>
+
+                        <Link href="/betting-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-blue-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
+                            <div className="absolute top-0 right-0 p-8 text-7xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🏏</div>
+                            <div>
+                                <h3 className="text-3xl font-black text-white mb-4 tracking-tighter uppercase">Sports<br />Betting</h3>
+                                <p className="text-gray-500 text-sm leading-relaxed">IPL boosts, cricket free bets, and football promos.</p>
+                            </div>
+                            <span className="text-blue-400 font-bold uppercase tracking-widest text-[10px] flex items-center gap-2 mt-8">
+                                View Betting <span className="group-hover:translate-x-2 transition-transform">→</span>
+                            </span>
+                        </Link>
+                    </div>
+                </div>
             </section>
 
             {/* Footer */}
