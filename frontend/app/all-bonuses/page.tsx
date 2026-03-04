@@ -12,11 +12,11 @@ export const dynamic = 'force-dynamic';
 function AllBonusesContent() {
     const searchParams = useSearchParams();
     const typeParam = searchParams.get('type');
-    const [activeTab, setActiveTab] = useState<'all' | 'casino' | 'betting'>('all');
+    const [activeTab, setActiveTab] = useState<'all' | 'casino' | 'betting' | 'holiday' | 'vip'>('all');
 
     useEffect(() => {
-        if (typeParam === 'casino' || typeParam === 'betting') {
-            setActiveTab(typeParam);
+        if (['casino', 'betting', 'holiday', 'vip'].includes(typeParam as string)) {
+            setActiveTab(typeParam as any);
         } else {
             setActiveTab('all');
         }
@@ -25,8 +25,20 @@ function AllBonusesContent() {
     const bonuses = (bonusesData.bonuses as unknown as Bonus[]).filter(
         b => {
             const isActive = (b as any).is_active !== 0;
-            const matchesTab = activeTab === 'all' || b.type === activeTab;
-            return isActive && matchesTab;
+            if (!isActive) return false;
+
+            if (activeTab === 'all') return true;
+            if (activeTab === 'casino' || activeTab === 'betting') return b.type === activeTab;
+
+            if (activeTab === 'holiday') {
+                return b.bonus_type === 'holiday' || (b.extra_data && (b.extra_data.toLowerCase().includes('holiday') || b.extra_data.toLowerCase().includes('event') || b.extra_data.toLowerCase().includes('festival')));
+            }
+
+            if (activeTab === 'vip') {
+                return b.bonus_type === 'vip' || (b.extra_data && b.extra_data.toLowerCase().includes('vip'));
+            }
+
+            return false;
         }
     );
 
@@ -55,29 +67,41 @@ function AllBonusesContent() {
                     </p>
 
                     <div className="flex flex-col items-center gap-6">
-                        <div className="bg-white/5 border border-white/10 p-1.5 rounded-2xl flex gap-1 backdrop-blur-md">
+                        <div className="bg-white/5 border border-white/10 p-1.5 rounded-2xl flex flex-wrap justify-center gap-1 backdrop-blur-md">
                             <button
                                 onClick={() => setActiveTab('all')}
-                                className={`px-6 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${activeTab === 'all' ? 'bg-white text-black shadow-lg shadow-white/10' : 'text-gray-500 hover:text-white'}`}
+                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'all' ? 'bg-white text-black shadow-lg shadow-white/10' : 'text-gray-500 hover:text-white'}`}
                             >
                                 🌐 All
                             </button>
                             <button
                                 onClick={() => setActiveTab('casino')}
-                                className={`px-6 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${activeTab === 'casino' ? 'bg-purple-600 text-white shadow-lg shadow-purple-900/40' : 'text-gray-500 hover:text-white'}`}
+                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'casino' ? 'bg-purple-600 text-white shadow-lg shadow-purple-900/40' : 'text-gray-500 hover:text-white'}`}
                             >
                                 🎰 Casino
                             </button>
                             <button
                                 onClick={() => setActiveTab('betting')}
-                                className={`px-6 py-2.5 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${activeTab === 'betting' ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/40' : 'text-gray-500 hover:text-white'}`}
+                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'betting' ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/40' : 'text-gray-500 hover:text-white'}`}
                             >
                                 🏏 Betting
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('holiday')}
+                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'holiday' ? 'bg-red-600 text-white shadow-lg shadow-red-900/40' : 'text-gray-500 hover:text-white'}`}
+                            >
+                                🎁 Holiday
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('vip')}
+                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'vip' ? 'bg-yellow-600 text-white shadow-lg shadow-yellow-900/40' : 'text-gray-500 hover:text-white'}`}
+                            >
+                                👑 VIP
                             </button>
                         </div>
 
                         <div className="flex justify-center gap-4">
-                            <Link href={`/${activeTab === 'all' ? 'all' : activeTab}-bonuses/table`} className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600/10 hover:bg-purple-600/20 text-purple-400 border border-purple-500/20 rounded-xl font-bold transition-all active:scale-95 text-xs uppercase tracking-widest">
+                            <Link href={`/all-bonuses/table${activeTab !== 'all' ? `?type=${activeTab}` : ''}`} className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600/10 hover:bg-purple-600/20 text-purple-400 border border-purple-500/20 rounded-xl font-bold transition-all active:scale-95 text-xs uppercase tracking-widest">
                                 📊 View Detailed Table
                             </Link>
                         </div>

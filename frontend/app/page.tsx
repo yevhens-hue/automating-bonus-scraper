@@ -134,37 +134,59 @@ export default async function HomePage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <Link href="/all-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-purple-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
-                            <div className="absolute top-0 right-0 p-8 text-7xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">📊</div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <Link href="/all-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-white/30 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
+                            <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">📊</div>
                             <div>
-                                <h3 className="text-3xl font-black text-white mb-4 tracking-tighter uppercase">All<br />Bonuses</h3>
-                                <p className="text-gray-500 text-sm leading-relaxed">The complete 2026 collection from India, Turkey, and Brazil.</p>
+                                <h3 className="text-xl font-black text-white mb-2 tracking-tighter uppercase leading-tight">All<br />Bonuses</h3>
+                                <p className="text-gray-500 text-[10px] leading-tight">Master 2026 Collection</p>
                             </div>
-                            <span className="text-white font-bold uppercase tracking-widest text-[10px] flex items-center gap-2 mt-8">
-                                Enter Database <span className="group-hover:translate-x-2 transition-transform">→</span>
+                            <span className="text-white font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
+                                Explore <span className="group-hover:translate-x-1 transition-transform">→</span>
                             </span>
                         </Link>
 
-                        <Link href="/all-bonuses?type=casino" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-purple-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
-                            <div className="absolute top-0 right-0 p-8 text-7xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🎰</div>
+                        <Link href="/all-bonuses?type=casino" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-purple-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
+                            <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🎰</div>
                             <div>
-                                <h3 className="text-3xl font-black text-white mb-4 tracking-tighter uppercase">Casino<br />Portal</h3>
-                                <p className="text-gray-500 text-sm leading-relaxed">Welcome packs, free spins, and high-roller rewards.</p>
+                                <h3 className="text-xl font-black text-white mb-2 tracking-tighter uppercase leading-tight">Casino<br />Portal</h3>
+                                <p className="text-gray-500 text-[10px] leading-tight">Welcome & Spins</p>
                             </div>
-                            <span className="text-purple-400 font-bold uppercase tracking-widest text-[10px] flex items-center gap-2 mt-8">
-                                View Casino <span className="group-hover:translate-x-2 transition-transform">→</span>
+                            <span className="text-purple-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
+                                View <span className="group-hover:translate-x-1 transition-transform">→</span>
                             </span>
                         </Link>
 
-                        <Link href="/all-bonuses?type=betting" className="group relative overflow-hidden bg-white/5 border border-white/10 p-10 rounded-[2.5rem] hover:border-blue-500/50 transition-all duration-500 flex flex-col justify-between min-h-[320px]">
-                            <div className="absolute top-0 right-0 p-8 text-7xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🏏</div>
+                        <Link href="/all-bonuses?type=betting" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-blue-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
+                            <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🏏</div>
                             <div>
-                                <h3 className="text-3xl font-black text-white mb-4 tracking-tighter uppercase">Sports<br />Betting</h3>
-                                <p className="text-gray-500 text-sm leading-relaxed">IPL boosts, cricket free bets, and football promos.</p>
+                                <h3 className="text-xl font-black text-white mb-2 tracking-tighter uppercase leading-tight">Sports<br />Betting</h3>
+                                <p className="text-gray-500 text-[10px] leading-tight">Cricket & IPL Pro</p>
                             </div>
-                            <span className="text-blue-400 font-bold uppercase tracking-widest text-[10px] flex items-center gap-2 mt-8">
-                                View Betting <span className="group-hover:translate-x-2 transition-transform">→</span>
+                            <span className="text-blue-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
+                                View <span className="group-hover:translate-x-1 transition-transform">→</span>
+                            </span>
+                        </Link>
+
+                        <Link href="/all-bonuses?type=holiday" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-red-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
+                            <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🎁</div>
+                            <div>
+                                <h3 className="text-xl font-black text-white mb-2 tracking-tighter uppercase leading-tight">Holiday<br />Specials</h3>
+                                <p className="text-gray-500 text-[10px] leading-tight">Festive & Limited</p>
+                            </div>
+                            <span className="text-red-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
+                                View <span className="group-hover:translate-x-1 transition-transform">→</span>
+                            </span>
+                        </Link>
+
+                        <Link href="/all-bonuses?type=vip" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-yellow-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
+                            <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">👑</div>
+                            <div>
+                                <h3 className="text-xl font-black text-white mb-2 tracking-tighter uppercase leading-tight">VIP<br />Programs</h3>
+                                <p className="text-gray-500 text-[10px] leading-tight">Elite Rewards</p>
+                            </div>
+                            <span className="text-yellow-500 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
+                                View <span className="group-hover:translate-x-1 transition-transform">→</span>
                             </span>
                         </Link>
                     </div>

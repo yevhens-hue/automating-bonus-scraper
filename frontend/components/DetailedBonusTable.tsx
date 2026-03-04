@@ -1,5 +1,6 @@
 'use client';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import type { Bonus } from '@/lib/bonuses';
 
 const GEO_FLAGS: Record<string, string> = {
@@ -13,12 +14,21 @@ type SortField = 'scraped_at' | 'id' | 'brand_name' | 'rating' | 'bonus_amount';
 type SortOrder = 'asc' | 'desc';
 
 export default function DetailedBonusTable({ bonuses, title }: { bonuses: Bonus[]; title: string }) {
+    const searchParams = useSearchParams();
+    const typeParam = searchParams.get('type');
+
     const [searchTerm, setSearchTerm] = useState('');
     const [filterGeo, setFilterGeo] = useState<string>('all');
     const [filterType, setFilterType] = useState<string>('all');
     const [filterStatus, setFilterStatus] = useState<string>('all');
     const [sortField, setSortField] = useState<SortField>('scraped_at');
     const [sortOrder, setSortOrder] = useState<SortOrder>('desc');
+
+    useEffect(() => {
+        if (typeParam === 'casino' || typeParam === 'betting') {
+            setFilterType(typeParam);
+        }
+    }, [typeParam]);
 
     // Extract unique values for filters
     const availableGeos = useMemo(() => Array.from(new Set(bonuses.map(b => b.geo))).sort(), [bonuses]);

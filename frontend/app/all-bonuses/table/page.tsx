@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import bonusesData from '@/data/bonuses.json';
 import { Bonus } from '@/lib/bonuses';
 import DetailedBonusTable from '@/components/DetailedBonusTable';
@@ -21,7 +21,9 @@ export default function AllBonusesTablePage() {
                     </h1>
                 </header>
 
-                <DetailedBonusTable bonuses={bonuses} title="Master" />
+                <Suspense fallback={<div className="py-20 text-center text-gray-500 italic">Loading table...</div>}>
+                    <DetailedBonusTable bonuses={bonuses} title="Master" />
+                </Suspense>
             </div>
         </div>
     );
