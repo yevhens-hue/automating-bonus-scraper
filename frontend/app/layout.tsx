@@ -70,13 +70,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         </Link>
 
                         <div className="hidden md:flex items-center gap-1 text-xs font-bold">
-                            <Link href="/all-bonuses" className="text-gray-400 hover:text-white hover:bg-white/5 transition-all px-3 py-2 rounded-lg">
-                                📊 All Bonuses
-                            </Link>
-                            <Link href="/all-bonuses?type=holiday" className="text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all font-bold px-3 py-2 rounded-lg border border-red-500/20">
+                            <Link href="/holiday-bonuses" className="text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all font-bold px-3 py-2 rounded-lg border border-red-500/20">
                                 🎁 Holiday
                             </Link>
-                            <Link href="/all-bonuses?type=vip" className="text-yellow-500 hover:text-yellow-400 hover:bg-yellow-500/10 transition-all font-bold px-3 py-2 rounded-lg border border-yellow-500/20 ml-2">
+                            <Link href="/vip-bonuses" className="text-yellow-500 hover:text-yellow-400 hover:bg-yellow-500/10 transition-all font-bold px-3 py-2 rounded-lg border border-yellow-500/20 ml-2">
                                 👑 VIP
                             </Link>
                             <a href="/#blog" className="text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 transition-all px-3 py-2 rounded-lg border border-blue-500/20 ml-2">

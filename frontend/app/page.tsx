@@ -134,7 +134,7 @@ export default async function HomePage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         <Link href="/all-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-white/30 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
                             <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">📊</div>
                             <div>
@@ -146,29 +146,7 @@ export default async function HomePage() {
                             </span>
                         </Link>
 
-                        <Link href="/all-bonuses?type=casino" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-purple-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
-                            <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🎰</div>
-                            <div>
-                                <h3 className="text-xl font-black text-white mb-2 tracking-tighter uppercase leading-tight">Casino<br />Portal</h3>
-                                <p className="text-gray-500 text-[10px] leading-tight">Welcome & Spins</p>
-                            </div>
-                            <span className="text-purple-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
-                                View <span className="group-hover:translate-x-1 transition-transform">→</span>
-                            </span>
-                        </Link>
-
-                        <Link href="/all-bonuses?type=betting" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-blue-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
-                            <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🏏</div>
-                            <div>
-                                <h3 className="text-xl font-black text-white mb-2 tracking-tighter uppercase leading-tight">Sports<br />Betting</h3>
-                                <p className="text-gray-500 text-[10px] leading-tight">Cricket & IPL Pro</p>
-                            </div>
-                            <span className="text-blue-400 font-bold uppercase tracking-widest text-[9px] flex items-center gap-2">
-                                View <span className="group-hover:translate-x-1 transition-transform">→</span>
-                            </span>
-                        </Link>
-
-                        <Link href="/all-bonuses?type=holiday" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-red-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
+                        <Link href="/holiday-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-red-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
                             <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">🎁</div>
                             <div>
                                 <h3 className="text-xl font-black text-white mb-2 tracking-tighter uppercase leading-tight">Holiday<br />Specials</h3>
@@ -179,7 +157,7 @@ export default async function HomePage() {
                             </span>
                         </Link>
 
-                        <Link href="/all-bonuses?type=vip" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-yellow-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
+                        <Link href="/vip-bonuses" className="group relative overflow-hidden bg-white/5 border border-white/10 p-6 rounded-[2rem] hover:border-yellow-500/50 transition-all duration-500 flex flex-col justify-between min-h-[240px]">
                             <div className="absolute top-0 right-0 p-4 text-5xl opacity-10 group-hover:opacity-30 group-hover:scale-110 transition-all duration-500">👑</div>
                             <div>
                                 <h3 className="text-xl font-black text-white mb-2 tracking-tighter uppercase leading-tight">VIP<br />Programs</h3>
@@ -200,8 +178,8 @@ export default async function HomePage() {
                     <div className="flex justify-center gap-8 mb-12 text-gray-500 font-bold uppercase tracking-widest text-[10px]">
                         <Link href="/all-bonuses" className="hover:text-white transition-colors">Database</Link>
                         <a href="#blog" className="hover:text-white transition-colors">Blog</a>
-                        <Link href="/all-bonuses?type=casino" className="hover:text-white transition-colors">Casino</Link>
-                        <Link href="/all-bonuses?type=betting" className="hover:text-white transition-colors">Betting</Link>
+                        <Link href="/holiday-bonuses" className="hover:text-white transition-colors">Holiday</Link>
+                        <Link href="/vip-bonuses" className="hover:text-white transition-colors">VIP</Link>
                     </div>
                     <p className="text-gray-600 text-[10px] leading-loose max-w-2xl mx-auto">
                         © 2026 Games Income. For adults 18+ only. Gambling can be addictive — please play responsibly.

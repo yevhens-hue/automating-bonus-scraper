@@ -15,7 +15,7 @@ function AllBonusesContent() {
     const [activeTab, setActiveTab] = useState<'all' | 'casino' | 'betting' | 'holiday' | 'vip'>('all');
 
     useEffect(() => {
-        if (['casino', 'betting', 'holiday', 'vip'].includes(typeParam as string)) {
+        if (['casino', 'betting'].includes(typeParam as string)) {
             setActiveTab(typeParam as any);
         } else {
             setActiveTab('all');
@@ -86,18 +86,6 @@ function AllBonusesContent() {
                             >
                                 🏏 Betting
                             </button>
-                            <button
-                                onClick={() => setActiveTab('holiday')}
-                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'holiday' ? 'bg-red-600 text-white shadow-lg shadow-red-900/40' : 'text-gray-500 hover:text-white'}`}
-                            >
-                                🎁 Holiday
-                            </button>
-                            <button
-                                onClick={() => setActiveTab('vip')}
-                                className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'vip' ? 'bg-yellow-600 text-white shadow-lg shadow-yellow-900/40' : 'text-gray-500 hover:text-white'}`}
-                            >
-                                👑 VIP
-                            </button>
                         </div>
 
                         <div className="flex justify-center gap-4">
@@ -138,8 +126,8 @@ function AllBonusesContent() {
                     <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm font-bold uppercase tracking-widest">
                         <Link href="/bonuses-rating" className="text-gray-400 hover:text-white transition-colors">Top Rated</Link>
                         <Link href="/bonuses-by-country" className="text-gray-400 hover:text-white transition-colors">By Country</Link>
-                        <Link href="/casino-bonuses" className="text-gray-400 hover:text-white transition-colors">Casino</Link>
-                        <Link href="/betting-bonuses" className="text-gray-400 hover:text-white transition-colors">Betting</Link>
+                        <Link href="/holiday-bonuses" className="text-gray-400 hover:text-white transition-colors">Holiday</Link>
+                        <Link href="/vip-bonuses" className="text-gray-400 hover:text-white transition-colors">VIP</Link>
                     </div>
                     <div className="text-gray-500 text-sm mb-4">
                         © 2026 games-income.com — Data-Driven iGaming Insights
