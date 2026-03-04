@@ -1,15 +1,15 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/api/bonuses/route": "app/api/bonuses/route.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/blog/page": "app/blog/page.js",
   "/blog/[slug]/page": "app/blog/[slug]/page.js",
+  "/bonuses-rating/page": "app/bonuses-rating/page.js",
   "/bonuses-by-country/page": "app/bonuses-by-country/page.js",
   "/casino-bonuses/page": "app/casino-bonuses/page.js",
-  "/betting-bonuses/page": "app/betting-bonuses/page.js",
   "/all-bonuses/page": "app/all-bonuses/page.js",
+  "/betting-bonuses/page": "app/betting-bonuses/page.js",
   "/holiday-bonuses/page": "app/holiday-bonuses/page.js",
-  "/vip-programs/page": "app/vip-programs/page.js",
-  "/bonuses-rating/page": "app/bonuses-rating/page.js",
-  "/page": "app/page.js"
+  "/blog/page": "app/blog/page.js",
+  "/page": "app/page.js",
+  "/vip-programs/page": "app/vip-programs/page.js"
 }

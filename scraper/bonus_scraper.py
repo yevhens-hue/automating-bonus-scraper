@@ -265,41 +265,58 @@ def scrape_site(site: dict, geo: str, bonus_type: str) -> list:
 
 def get_fallback_bonuses(site: dict, geo: str, bonus_type: str) -> list:
     """Returns hardcoded fallback bonuses when scraping fails."""
-    # Use site-specific or geo-specific defaults
     curr = "₹" if geo == "IN" else "₺" if geo == "TR" else "R$" if geo == "BR" else "$"
     
     FALLBACKS = {
-        "1win": {
-            "bonus_title": "Welcome Package",
-            "bonus_amount": f"500% up to {curr}75,000" if geo == "IN" else f"500% up to {curr}25,000",
-            "bonus_type": "welcome"
-        },
-        "1xbet": {
-            "bonus_title": "First Deposit Bonus",
-            "bonus_amount": f"100% up to {curr}10,000" if geo == "IN" else f"100% up to {curr}3,500",
-            "bonus_type": "welcome"
-        },
-        "default": {
-            "bonus_title": "Welcome Bonus",
-            "bonus_amount": f"100% up to {curr}10,000",
-            "bonus_type": "welcome",
-            "wagering": "30x",
-            "conditions": "Refer to website for full terms."
-        }
+        "1win": {"bonus_title": "Welcome Package", "bonus_amount": f"500% up to {curr}75,000" if geo == "IN" else f"500% up to {curr}25,000", "bonus_type": "welcome"},
+        "1xbet": {"bonus_title": "First Deposit Bonus", "bonus_amount": f"100% up to {curr}10,000" if geo == "IN" else f"100% up to {curr}3,500", "bonus_type": "welcome"},
+        "default": {"bonus_title": "Welcome Bonus", "bonus_amount": f"100% up to {curr}10,000", "bonus_type": "welcome", "wagering": "30x", "conditions": "Refer to website for full terms."}
     }
     
-    brand_data = FALLBACKS.get(site["brand_id"], FALLBACKS["default"])
-    return [{
-        "geo": geo,
-        "type": bonus_type,
-        "brand_id": site["brand_id"],
-        "brand_name": site["name"],
-        **brand_data,
+    brand_id = site["brand_id"]
+    base_bonus = FALLBACKS.get(brand_id, FALLBACKS["default"])
+    
+    results = []
+    
+    # 1. Main Bonus
+    results.append({
+        "geo": geo, "type": "casino" if site.get("bonus_url") and "casino" in site["bonus_url"].lower() else "betting", 
+        "brand_id": brand_id, "brand_name": site["name"],
+        **base_bonus, "expires_at": None, "affiliate_url": site.get("affiliate_url"),
+        "logo_url": site.get("logo"), "rating": site.get("rating", 4.0), "extra_data": None
+    })
+    
+    # 2. VIP Fallback
+    results.append({
+        "geo": geo, "type": results[0]["type"], "brand_id": brand_id, "brand_name": site["name"],
+        "bonus_title": "Elite VIP Club",
+        "bonus_amount": "Tiered Rewards",
+        "bonus_type": "vip",
+        "wagering": "10x-30x",
+        "conditions": "Invitation only or based on play volume.",
         "expires_at": None,
         "affiliate_url": site.get("affiliate_url"),
         "logo_url": site.get("logo"),
         "rating": site.get("rating", 4.0),
-    }]
+        "extra_data": {"tiers": ["Bronze: 5% Cashback", "Silver: Personal Manager", "Gold: Higher Limits", "Diamond: Luxury Rewards"]}
+    })
+    
+    # 3. Holiday Fallback
+    results.append({
+        "geo": geo, "type": results[0]["type"], "brand_id": brand_id, "brand_name": site["name"],
+        "bonus_title": "Festival Season Special" if geo != "IN" else "Diwali Bonus Blast",
+        "bonus_amount": f"Extra {curr}5,000 Free",
+        "bonus_type": "holiday",
+        "wagering": "20x",
+        "conditions": "Valid during festival week only.",
+        "expires_at": "2026-03-31",
+        "affiliate_url": site.get("affiliate_url"),
+        "logo_url": site.get("logo"),
+        "rating": site.get("rating", 4.0),
+        "extra_data": {"event": "Spring Festival 2026", "deadline": "March 31"}
+    })
+    
+    return results
 
 
 # ─── Google Sheets Export ─────────────────────────────────────────────────────
