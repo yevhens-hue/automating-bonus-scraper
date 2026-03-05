@@ -150,10 +150,15 @@ export default function EventMatchCard({ event }: { event: OddsEvent }) {
             {event.markets.map((market, marketIdx) => (
                 <div key={marketIdx} className="border-t border-white/10 pt-6 relative z-10">
                     <div className="flex justify-between items-center mb-4">
-                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
-                            Global Best Odds
-                        </span>
-                        <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded">
+                        <div className="flex flex-col gap-1">
+                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] flex items-center gap-2">
+                                <span className="text-[#ffe100]">⚡</span> Highest Market Odds
+                            </span>
+                            <span className="text-[8px] text-[#ffe100]/70 font-bold uppercase tracking-widest pl-5">
+                                Maximum Player Return
+                            </span>
+                        </div>
+                        <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded border border-white/5">
                             {market.type}
                         </span>
                     </div>
