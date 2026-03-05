@@ -105,6 +105,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </nav>
 
                 {children}
+
+                {/* JSON-LD Schema */}
+                <Script id="schema-org" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "Games Income",
+                        "url": "https://games-income.com",
+                        "logo": "https://games-income.com/favicon.svg",
+                        "sameAs": []
+                    })
+                }} />
+                <Script id="schema-website" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "WebSite",
+                        "name": "Games Income",
+                        "url": "https://games-income.com"
+                    })
+                }} />
             </body>
         </html>
     );

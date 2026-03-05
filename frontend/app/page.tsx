@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Script from 'next/script';
 // Deployment Trigger: Blog to Root Movement
 import { STATIC_BONUSES } from '@/lib/bonuses';
 import { getAllPosts } from '@/lib/posts';
@@ -187,6 +188,17 @@ export default async function HomePage() {
                     </p>
                 </div>
             </footer>
+
+            {/* JSON-LD Schema */}
+            <Script id="schema-webpage" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "WebPage",
+                    "name": "Games Income — Best Casino & Betting Bonuses in India 2026",
+                    "description": "Compare the latest casino bonuses and sports betting offers for Indian players. Verified, up-to-date deals from top platforms.",
+                    "url": "https://games-income.com"
+                })
+            }} />
         </main>
     );
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { getPostBySlug } from '@/lib/posts';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Script from 'next/script';
 
 export const dynamic = 'force-dynamic';
 
@@ -84,6 +85,28 @@ export default async function BlogPostPage({ params }: PageProps) {
                     </div>
                 </footer>
             </article>
+
+            {/* JSON-LD Schema */}
+            <Script id="schema-article" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": post!.title,
+                    "datePublished": post!.date,
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Games Income"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Games Income",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://games-income.com/favicon.svg"
+                        }
+                    }
+                })
+            }} />
         </div>
     );
 }
