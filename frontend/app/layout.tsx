@@ -45,6 +45,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
     return (
         <html lang="en">
+            <head>
+                <meta name="google-site-verification" content="bP5mZLLCJchnCQ97hGnI5TM1KBrEgaqaYnWYkwRR8mE" />
+            </head>
             <body className={`${inter.className} bg-[#0a0d1a] text-white`}>
                 {/* Google Analytics */}
                 <Script
