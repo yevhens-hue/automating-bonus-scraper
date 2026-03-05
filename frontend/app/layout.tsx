@@ -19,7 +19,7 @@ export const metadata: Metadata = {
         apple: '/favicon.svg',
     },
     verification: {
-        google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || '',
+        google: 'bP5mZLLCJchnCQ97hGnI5TM1KBrEgaqaYnWYkwRR8mE',
     },
     openGraph: {
         siteName: 'Games Income',
