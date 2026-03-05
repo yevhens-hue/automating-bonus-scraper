@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     verification: {
         google: 'bP5mZLLCJchnCQ97hGnI5TM1KBrEgaqaYnWYkwRR8mE',
     },
+    other: {
+        'google-site-verification': 'bP5mZLLCJchnCQ97hGnI5TM1KBrEgaqaYnWYkwRR8mE',
+    },
     openGraph: {
         siteName: 'Games Income',
         type: 'website',
@@ -45,9 +48,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
     return (
         <html lang="en">
-            <head>
-                <meta name="google-site-verification" content="bP5mZLLCJchnCQ97hGnI5TM1KBrEgaqaYnWYkwRR8mE" />
-            </head>
             <body className={`${inter.className} bg-[#0a0d1a] text-white`}>
                 {/* Google Analytics */}
                 <Script
