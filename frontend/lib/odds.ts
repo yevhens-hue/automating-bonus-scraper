@@ -1,7 +1,7 @@
 export interface OddsOutcome {
   label: string;
   best_odd: number;
-  brand_id: number;
+  brand_id: string;
   brand_name: string;
   affiliate_url: string;
 }
