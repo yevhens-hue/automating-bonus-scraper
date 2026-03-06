@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import type { OddsEvent } from '@/lib/odds';
+import ProfitCalculator from './ProfitCalculator';
 
 function getSportColor(sport: string) {
     const s = sport.toLowerCase();
@@ -27,6 +28,7 @@ export default function EventMatchCard({ event }: { event: OddsEvent }) {
     const isLive = event.is_live;
     const matchDate = new Date(event.start_time);
     const [timeLeft, setTimeLeft] = useState<string>('');
+    const [activeCalc, setActiveCalc] = useState<{ outcomeLabel: string, odds: number, brandName: string } | null>(null);
     const sportGlow = getSportColor(event.sport);
     const borderHover = getSportBorderHover(event.sport);
 
@@ -147,45 +149,79 @@ export default function EventMatchCard({ event }: { event: OddsEvent }) {
             <div className="mt-auto"></div>
 
             {/* Odds Markets */}
-            {event.markets.map((market, marketIdx) => (
-                <div key={marketIdx} className="border-t border-white/10 pt-6 relative z-10">
-                    <div className="flex justify-between items-center mb-4">
-                        <div className="flex flex-col gap-1">
-                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] flex items-center gap-2">
-                                <span className="text-[#ffe100]">⚡</span> Highest Market Odds
-                            </span>
-                            <span className="text-[8px] text-[#ffe100]/70 font-bold uppercase tracking-widest pl-5">
-                                Maximum Player Return
+            {event.markets.map((market, marketIdx) => {
+                const impliedProb = market.outcomes.reduce((acc, curr) => acc + (1 / curr.best_odd), 0);
+                const isSurebet = impliedProb > 0 && impliedProb < 1;
+                const profitMargin = isSurebet ? ((1 / impliedProb) - 1) * 100 : 0;
+
+                return (
+                    <div key={marketIdx} className="border-t border-white/10 pt-6 relative z-10">
+                        <div className="flex justify-between items-center mb-4">
+                            <div className="flex flex-col gap-1">
+                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] flex items-center gap-2">
+                                    <span className="text-[#ffe100]">⚡</span> Highest Market Odds
+                                </span>
+                                <span className="text-[8px] text-[#ffe100]/70 font-bold uppercase tracking-widest pl-5">
+                                    Maximum Player Return
+                                </span>
+                            </div>
+                            <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest bg-white/5 px-2 py-1 rounded border border-white/5 flex flex-col items-end gap-1">
+                                <span>{market.type}</span>
+                                {isSurebet && (
+                                    <span className="text-[#00ff88] animate-pulse whitespace-nowrap shadow-[0_0_10px_rgba(0,255,136,0.3)] bg-[#00ff88]/10 px-1.5 rounded">🔥 SUREBET: +{profitMargin.toFixed(2)}%</span>
+                                )}
                             </span>
                         </div>
-                        <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded border border-white/5">
-                            {market.type}
-                        </span>
-                    </div>
 
-                    <div className="flex justify-center gap-3">
-                        {market.outcomes.map((outcome, outcomeIdx) => (
-                            <a
-                                key={outcomeIdx}
-                                href={outcome.affiliate_url}
-                                target="_blank"
-                                rel="nofollow sponsored noopener noreferrer"
-                                className="flex-1 flex flex-col items-center justify-center bg-gradient-to-b from-white/5 to-transparent border border-white/10 hover:border-[#ffe100]/50 hover:from-[#ffe100]/10 hover:to-transparent rounded-2xl p-3 transition-all duration-300 group/odd hover:-translate-y-1 hover:shadow-[0_10px_20px_-10px_rgba(255,225,0,0.3)] active:scale-95"
-                            >
-                                <span className="text-xs text-gray-400 font-bold mb-1 truncate w-full text-center">
-                                    {outcome.label}
-                                </span>
-                                <span className="text-xl font-black text-white group-hover/odd:text-[#ffe100] leading-none mb-1.5 drop-shadow-md group-hover/odd:scale-110 transition-transform duration-300">
-                                    {outcome.best_odd.toFixed(2)}
-                                </span>
-                                <span className="text-[9px] uppercase tracking-widest font-black text-gray-500 group-hover/odd:text-[#ffe100]/80 truncate w-full text-center transition-colors">
-                                    {outcome.brand_name}
-                                </span>
-                            </a>
-                        ))}
+                        <div className="flex justify-center gap-3">
+                            {market.outcomes.map((outcome, outcomeIdx) => (
+                                <div key={outcomeIdx} className="relative flex-1 group/odd">
+                                    <a
+                                        href={outcome.affiliate_url}
+                                        target="_blank"
+                                        rel="nofollow sponsored noopener noreferrer"
+                                        className="flex flex-col items-center justify-center bg-gradient-to-b from-white/5 to-transparent border border-white/10 hover:border-[#ffe100]/50 hover:from-[#ffe100]/10 hover:to-transparent rounded-2xl p-3 h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_-10px_rgba(255,225,0,0.3)] active:scale-95"
+                                    >
+                                        <span className="text-xs text-gray-400 font-bold mb-1 truncate w-full text-center pr-3">
+                                            {outcome.label}
+                                        </span>
+                                        <span className="text-xl font-black text-white group-hover/odd:text-[#ffe100] leading-none mb-1.5 drop-shadow-md group-hover/odd:scale-110 transition-transform duration-300">
+                                            {outcome.best_odd.toFixed(2)}
+                                        </span>
+                                        <span className="text-[9px] uppercase tracking-widest font-black text-gray-500 group-hover/odd:text-[#ffe100]/80 truncate w-full text-center transition-colors">
+                                            {outcome.brand_name}
+                                        </span>
+                                    </a>
+                                    <button
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setActiveCalc({
+                                                outcomeLabel: outcome.label,
+                                                odds: outcome.best_odd,
+                                                brandName: outcome.brand_name
+                                            });
+                                        }}
+                                        className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center bg-black/40 hover:bg-[#ffe100]/20 border border-white/10 hover:border-[#ffe100]/50 rounded-full text-gray-400 hover:text-[#ffe100] transition-colors shadow-md z-20"
+                                        title="Open Profit Calculator"
+                                    >
+                                        <span className="text-[9px]">💵</span>
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ))}
+                );
+            })}
+
+            {/* Active Calculator Overlay */}
+            {activeCalc && (
+                <ProfitCalculator
+                    outcomeLabel={activeCalc.outcomeLabel}
+                    odds={activeCalc.odds}
+                    brandName={activeCalc.brandName}
+                    onClose={() => setActiveCalc(null)}
+                />
+            )}
         </div>
     );
 }
