@@ -185,38 +185,52 @@ def fetch_odds_for_sport(sport_key, config):
 
 def map_our_brands_to_odds(events, our_brands):
     """
-    Takes the real odds data, and replaces the bookmaker names 
-    with OUR tracked affiliate brands to monetize the traffic.
+    Preserves REAL bookmaker names and odds, but attaches our affiliate links 
+    so the traffic can be monetized. If a direct match is found, uses it. 
+    Otherwise uses a fallback affiliate link from our active db.
     """
     if not our_brands:
         print("⚠️ No brands found in database. Using placeholder brands.")
         our_brands = [
-            {"brand_id": "1", "brand_name": "DemoCasino", "affiliate_url": "#"},
-            {"brand_id": "2", "brand_name": "TestBet", "affiliate_url": "#"}
+            {"brand_id": "1", "brand_name": "DemoCasino", "affiliate_url": "/"}
         ]
+        
+    # Create a lookup dictionary for explicit matched brands
+    brand_lookup = {b["brand_name"].lower(): b["affiliate_url"] for b in our_brands}
+    
+    # Create a list of generic fallback links from active brands
+    fallback_links = [b["affiliate_url"] for b in our_brands if b["affiliate_url"]]
+    if not fallback_links:
+        fallback_links = ["/"]
         
     for event in events:
         for market in event.get("markets", []):
-            available_brands = list(our_brands)
-            random.shuffle(available_brands)
             
             # Map top outcomes (for the summary card)
             for outcome in market.get("outcomes", []):
-                selected_brand = available_brands.pop(0) if available_brands else random.choice(our_brands)
-                outcome["brand_id"] = selected_brand["brand_id"]
-                outcome["brand_name"] = selected_brand["brand_name"]
-                outcome["affiliate_url"] = selected_brand["affiliate_url"]
+                original_name = outcome.get("brand_name", "")
+                if not original_name:
+                    original_name = outcome.get("label", "Bookmaker")
+                    
+                match_url = brand_lookup.get(original_name.lower())
+                if not match_url:
+                    match_url = random.choice(fallback_links)
+                    
+                # WE KEEP THE REAL NAME
+                outcome["brand_name"] = original_name
+                outcome["affiliate_url"] = match_url
             
-            # Re-shuffle for the full bookmaker list so it looks varied
-            available_brands = list(our_brands)
-            random.shuffle(available_brands)
-
             # Map the comprehensive bookmaker list (for the tables)
             for bm in market.get("bookmakers", []):
-                selected_brand = available_brands.pop(0) if available_brands else random.choice(our_brands)
-                bm["brand_id"] = selected_brand["brand_id"]
-                bm["brand_name"] = selected_brand["brand_name"]
-                bm["affiliate_url"] = selected_brand["affiliate_url"]
+                original_name = bm.get("brand_name", "")
+                
+                match_url = brand_lookup.get(original_name.lower())
+                if not match_url:
+                    match_url = random.choice(fallback_links)
+                
+                # WE KEEP THE REAL NAME
+                bm["brand_name"] = original_name
+                bm["affiliate_url"] = match_url
                 
     return events
 
