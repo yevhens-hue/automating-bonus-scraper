@@ -17,6 +17,7 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).parent
 BLOG_DIR = BASE_DIR.parent / "frontend" / "data" / "blog"
+ODDS_FILE = BASE_DIR.parent / "frontend" / "data" / "odds.json"
 SITE_URL = os.getenv("SITE_URL", "https://games-income.com")
 
 STATIC_PAGES = [
@@ -106,29 +107,48 @@ def get_all_static_urls() -> list:
     """Return all static page URLs."""
     return [f"{SITE_URL}{page}" for page in STATIC_PAGES]
 
+def get_all_match_urls() -> list:
+    """Scan the odds data and collect all match URLs."""
+    if not ODDS_FILE.exists():
+        print(f"⚠️  Odds file not found: {ODDS_FILE}")
+        return []
+
+    urls = []
+    try:
+        data = json.loads(ODDS_FILE.read_text())
+        for event in data.get("events", []):
+            slug = event.get("slug")
+            if slug:
+                urls.append(f"{SITE_URL}/match/{slug}")
+    except Exception as e:
+        print(f"❌  Error reading odds file: {e}")
+    return urls
+
 def main():
     parser = argparse.ArgumentParser(description="Submit URLs to Google Indexing API")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--url", help="Single URL to index")
-    group.add_argument("--all", action="store_true", help="Index all pages (static + blog)")
+    group.add_argument("--all", action="store_true", help="Index all pages (static + blog + matches)")
     group.add_argument("--blog", action="store_true", help="Index blog posts only")
     group.add_argument("--static", action="store_true", help="Index static pages only")
+    group.add_argument("--match", action="store_true", help="Index match pages only")
     args = parser.parse_args()
 
     creds = get_credentials()
     if not creds:
         return
 
+    urls = []
     if args.url:
         urls = [args.url]
     elif args.all:
-        urls = get_all_static_urls() + get_all_blog_urls()
+        urls = get_all_static_urls() + get_all_blog_urls() + get_all_match_urls()
     elif args.blog:
         urls = get_all_blog_urls()
     elif args.static:
         urls = get_all_static_urls()
-    else:
-        urls = []
+    elif args.match:
+        urls = get_all_match_urls()
 
     if not urls:
         print("No URLs to index.")
