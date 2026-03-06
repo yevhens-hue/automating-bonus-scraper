@@ -1,13 +1,13 @@
 export interface OddsOutcome {
   label: string;
   best_odd: number;
-  brand_id: string;
+  brand_id?: string;
   brand_name: string;
   affiliate_url: string;
 }
 
 export interface BookmakerOdd {
-  brand_id: string;
+  brand_id?: string;
   brand_name: string;
   affiliate_url: string;
   odds: {

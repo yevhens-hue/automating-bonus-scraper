@@ -36,9 +36,14 @@ export const metadata: Metadata = {
 };
 
 import bonusesData from '../data/bonuses.json';
+import oddsData from '../data/odds.json';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    const lastUpdate = new Date(bonusesData.updated_at).toLocaleString('en-IN', {
+    const bonusDate = new Date(bonusesData.updated_at).getTime();
+    const oddsDate = oddsData?.updated_at ? new Date(oddsData.updated_at).getTime() : 0;
+    const latestDate = new Date(Math.max(bonusDate, oddsDate) || bonusDate);
+
+    const lastUpdate = latestDate.toLocaleString('en-IN', {
         day: '2-digit',
         month: '2-digit',
         year: 'numeric',
