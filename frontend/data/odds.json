@@ -1,106 +1,4393 @@
 {
-    "updated_at": "2026-03-05T00:00:00Z",
-    "events": [
+  "updated_at": "2026-03-06T12:13:47.164523+00:00",
+  "events": [
+    {
+      "id": "8bcd511fa99657b524e125548ccbe09f",
+      "slug": "galatasaray-vs-liverpool-football",
+      "sport": "Football",
+      "tournament": "UEFA Champions League",
+      "team_home": "Galatasaray",
+      "team_away": "Liverpool",
+      "start_time": "2026-03-10T17:45:00Z",
+      "is_live": false,
+      "markets": [
         {
-            "id": "ucl-real-madrid-man-city",
-            "sport": "Football",
-            "tournament": "UEFA Champions League",
-            "team_home": "Real Madrid",
-            "team_away": "Manchester City",
-            "team_home_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/5/56/Real_Madrid_CF.svg/1200px-Real_Madrid_CF.svg.png",
-            "team_away_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Manchester_City_FC_badge.svg/1200px-Manchester_City_FC_badge.svg.png",
-            "start_time": "2026-04-15T19:00:00Z",
-            "is_live": false,
-            "markets": [
-                {
-                    "type": "1X2",
-                    "outcomes": [
-                        {
-                            "label": "1",
-                            "best_odd": 2.85,
-                            "brand_id": 1,
-                            "brand_name": "Pin-Up",
-                            "affiliate_url": "https://games-income.com/api/go?brand=pinup"
-                        },
-                        {
-                            "label": "X",
-                            "best_odd": 3.40,
-                            "brand_id": 2,
-                            "brand_name": "Mostbet",
-                            "affiliate_url": "https://games-income.com/api/go?brand=mostbet"
-                        },
-                        {
-                            "label": "2",
-                            "best_odd": 2.45,
-                            "brand_id": 3,
-                            "brand_name": "1Win",
-                            "affiliate_url": "https://games-income.com/api/go?brand=1win"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "ipl-chennai-mumbai",
-            "sport": "Cricket",
-            "tournament": "Indian Premier League (IPL)",
-            "team_home": "Chennai Super Kings",
-            "team_away": "Mumbai Indians",
-            "team_home_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2b/Chennai_Super_Kings_Logo.svg/1200px-Chennai_Super_Kings_Logo.svg.png",
-            "team_away_logo": "https://upload.wikimedia.org/wikipedia/en/thumb/c/cd/Mumbai_Indians_Logo.svg/1200px-Mumbai_Indians_Logo.svg.png",
-            "start_time": "2026-04-20T14:30:00Z",
-            "is_live": false,
-            "markets": [
-                {
-                    "type": "Match Winner",
-                    "outcomes": [
-                        {
-                            "label": "CSK",
-                            "best_odd": 1.95,
-                            "brand_id": 2,
-                            "brand_name": "Mostbet",
-                            "affiliate_url": "https://games-income.com/api/go?brand=mostbet"
-                        },
-                        {
-                            "label": "MI",
-                            "best_odd": 1.90,
-                            "brand_id": 4,
-                            "brand_name": "GloryCasino",
-                            "affiliate_url": "https://games-income.com/api/go?brand=glorycasino"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "id": "esports-navi-faze",
-            "sport": "Esports CS2",
-            "tournament": "PGL Major 2026",
-            "team_home": "Natus Vincere",
-            "team_away": "FaZe Clan",
-            "start_time": "2026-03-25T18:00:00Z",
-            "is_live": true,
-            "markets": [
-                {
-                    "type": "Match Winner",
-                    "outcomes": [
-                        {
-                            "label": "NaVi",
-                            "best_odd": 1.75,
-                            "brand_id": 5,
-                            "brand_name": "IviBet",
-                            "affiliate_url": "https://games-income.com/api/go?brand=ivibet"
-                        },
-                        {
-                            "label": "FaZe",
-                            "best_odd": 2.10,
-                            "brand_id": 3,
-                            "brand_name": "1Win",
-                            "affiliate_url": "https://games-income.com/api/go?brand=1win"
-                        }
-                    ]
-                }
-            ]
+          "type": "Match Winner (1X2)",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 4.4,
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF"
+            },
+            {
+              "label": "X",
+              "best_odd": 4.3,
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF"
+            },
+            {
+              "label": "2",
+              "best_odd": 1.86,
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.66,
+                "X": 3.95
+              },
+              "implied_probability": 1.1055741955162421
+            },
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 4.0,
+                "2": 1.66,
+                "X": 3.95
+              },
+              "implied_probability": 1.1055741955162421
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.35,
+                "2": 1.77,
+                "X": 4.3
+              },
+              "implied_probability": 1.0274149484185775
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.1,
+                "2": 1.67,
+                "X": 4.0
+              },
+              "implied_probability": 1.0927048342339711
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.2,
+                "2": 1.7,
+                "X": 4.1
+              },
+              "implied_probability": 1.0702329712372753
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.3,
+                "2": 1.74,
+                "X": 4.2
+              },
+              "implied_probability": 1.0453660213082827
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.25,
+                "2": 1.73,
+                "X": 4.2
+              },
+              "implied_probability": 1.0514240378232218
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.35,
+                "2": 1.77,
+                "X": 4.3
+              },
+              "implied_probability": 1.0274149484185775
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.32,
+                "2": 1.84,
+                "X": 4.17
+              },
+              "implied_probability": 1.0147678958282649
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.1,
+                "2": 1.82,
+                "X": 3.9
+              },
+              "implied_probability": 1.0497632448851961
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.9,
+                "2": 1.75,
+                "X": 4.0
+              },
+              "implied_probability": 1.0778388278388278
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.6,
+                "2": 1.73,
+                "X": 3.3
+              },
+              "implied_probability": 1.1588427628890057
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.75,
+                "X": 4.0
+              },
+              "implied_probability": 1.0714285714285714
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.76,
+                "X": 4.0
+              },
+              "implied_probability": 1.0681818181818183
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.2,
+                "2": 1.86,
+                "X": 4.1
+              },
+              "implied_probability": 1.0196320857217789
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.2,
+                "2": 1.86,
+                "X": 4.1
+              },
+              "implied_probability": 1.0196320857217789
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 4.0,
+                "2": 1.75,
+                "X": 3.8
+              },
+              "implied_probability": 1.0845864661654134
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.9,
+                "2": 1.75,
+                "X": 3.8
+              },
+              "implied_probability": 1.0909967225756698
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.8,
+                "X": 3.9
+              },
+              "implied_probability": 1.061965811965812
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.95,
+                "2": 1.75,
+                "X": 3.9
+              },
+              "implied_probability": 1.0810033848008531
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.82,
+                "X": 4.0
+              },
+              "implied_probability": 1.0494505494505493
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.75,
+                "X": 3.8
+              },
+              "implied_probability": 1.0845864661654134
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.75,
+                "X": 3.75
+              },
+              "implied_probability": 1.088095238095238
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.95,
+                "2": 1.72,
+                "X": 3.92
+              },
+              "implied_probability": 1.089661946615561
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.95,
+                "2": 1.78,
+                "X": 4.0
+              },
+              "implied_probability": 1.0649623097710141
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.85,
+                "2": 1.74,
+                "X": 3.9
+              },
+              "implied_probability": 1.090863159828677
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.8,
+                "2": 1.75,
+                "X": 3.7
+              },
+              "implied_probability": 1.1048567364356836
+            },
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.8,
+                "2": 1.75,
+                "X": 3.7
+              },
+              "implied_probability": 1.1048567364356836
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.4,
+                "2": 1.85,
+                "X": 4.0
+              },
+              "implied_probability": 1.0178132678132679
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.09,
+                "2": 1.81,
+                "X": 3.91
+              },
+              "implied_probability": 1.0527394410547413
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.8,
+                "X": 3.85
+              },
+              "implied_probability": 1.0652958152958152
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.79,
+                "X": 3.84
+              },
+              "implied_probability": 1.0690758845437616
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.1,
+                "2": 1.85,
+                "X": 3.95
+              },
+              "implied_probability": 1.037607536526956
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.1,
+                "2": 1.85,
+                "X": 3.95
+              },
+              "implied_probability": 1.037607536526956
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.0,
+                "2": 1.85,
+                "X": 4.2
+              },
+              "implied_probability": 1.0286357786357785
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.11,
+                "2": 1.81,
+                "X": 3.93
+              },
+              "implied_probability": 1.0502481164870454
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 3.8,
+                "2": 1.8,
+                "X": 4.0
+              },
+              "implied_probability": 1.0687134502923976
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.25,
+                "2": 1.81,
+                "X": 4.1
+              },
+              "implied_probability": 1.031682744516753
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.3,
+                "2": 1.86,
+                "X": 4.2
+              },
+              "implied_probability": 1.0082877862322723
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "id": "2a50d2be5757e39b9a4c8ff4ff272920",
+      "slug": "atalanta-bc-vs-bayern-munich-football",
+      "sport": "Football",
+      "tournament": "UEFA Champions League",
+      "team_home": "Atalanta BC",
+      "team_away": "Bayern Munich",
+      "start_time": "2026-03-10T20:00:00Z",
+      "is_live": false,
+      "markets": [
+        {
+          "type": "Match Winner (1X2)",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 5.1,
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF"
+            },
+            {
+              "label": "X",
+              "best_odd": 4.85,
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF"
+            },
+            {
+              "label": "2",
+              "best_odd": 1.68,
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.6,
+                "2": 1.5,
+                "X": 4.3
+              },
+              "implied_probability": 1.1166161105493764
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.9,
+                "2": 1.54,
+                "X": 4.35
+              },
+              "implied_probability": 1.0833173394749749
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 5.1,
+                "2": 1.63,
+                "X": 4.6
+              },
+              "implied_probability": 1.0269666682357126
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.7,
+                "2": 1.68,
+                "X": 4.85
+              },
+              "implied_probability": 1.014189619695213
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 5.1,
+                "2": 1.63,
+                "X": 4.6
+              },
+              "implied_probability": 1.0269666682357126
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 5.0,
+                "2": 1.57,
+                "X": 4.5
+              },
+              "implied_probability": 1.059164897381458
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.9,
+                "2": 1.55,
+                "X": 4.4
+              },
+              "implied_probability": 1.076515650248369
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.6,
+                "2": 1.5,
+                "X": 4.3
+              },
+              "implied_probability": 1.1166161105493764
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 5.0,
+                "2": 1.6,
+                "X": 4.5
+              },
+              "implied_probability": 1.047222222222222
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.48,
+                "2": 1.66,
+                "X": 4.47
+              },
+              "implied_probability": 1.0493375708009411
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.5,
+                "2": 1.62,
+                "X": 4.33
+              },
+              "implied_probability": 1.0704530550565963
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.2,
+                "2": 1.57,
+                "X": 3.6
+              },
+              "implied_probability": 1.1528156910322513
+            },
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.4,
+                "2": 1.58,
+                "X": 4.3
+              },
+              "implied_probability": 1.0927422592126743
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 4.6,
+                "2": 1.62,
+                "X": 4.4
+              },
+              "implied_probability": 1.0619479822378373
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.5,
+                "2": 1.6,
+                "X": 4.3
+              },
+              "implied_probability": 1.079780361757106
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.5,
+                "2": 1.62,
+                "X": 4.33
+              },
+              "implied_probability": 1.0704530550565963
+            },
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 4.6,
+                "2": 1.62,
+                "X": 4.4
+              },
+              "implied_probability": 1.0619479822378373
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.6,
+                "2": 1.64,
+                "X": 4.5
+              },
+              "implied_probability": 1.0493696241310237
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.8,
+                "2": 1.63,
+                "X": 4.7
+              },
+              "implied_probability": 1.0345962232954793
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.8,
+                "2": 1.63,
+                "X": 4.7
+              },
+              "implied_probability": 1.0345962232954793
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.4,
+                "2": 1.61,
+                "X": 4.4
+              },
+              "implied_probability": 1.0756634669678147
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.55,
+                "2": 1.56,
+                "X": 4.4
+              },
+              "implied_probability": 1.088078588078588
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.5,
+                "2": 1.6,
+                "X": 4.33
+              },
+              "implied_probability": 1.0781691044393122
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.4,
+                "2": 1.62,
+                "X": 4.4
+              },
+              "implied_probability": 1.0718294051627384
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.3,
+                "2": 1.62,
+                "X": 4.6
+              },
+              "implied_probability": 1.0672333944999937
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.42,
+                "2": 1.62,
+                "X": 4.7
+              },
+              "implied_probability": 1.0562942519554952
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.2,
+                "2": 1.58,
+                "X": 4.5
+              },
+              "implied_probability": 1.0932288527225236
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.4,
+                "2": 1.65,
+                "X": 4.33
+              },
+              "implied_probability": 1.0642802155504234
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.5,
+                "2": 1.67,
+                "X": 4.33
+              },
+              "implied_probability": 1.0519714996488931
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.7,
+                "2": 1.65,
+                "X": 4.6
+              },
+              "implied_probability": 1.0362178678552407
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.33,
+                "2": 1.61,
+                "X": 4.6
+              },
+              "implied_probability": 1.0694561989872764
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.8,
+                "2": 1.62,
+                "X": 4.65
+              },
+              "implied_probability": 1.0406710473914775
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.8,
+                "2": 1.62,
+                "X": 4.65
+              },
+              "implied_probability": 1.0406710473914775
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.75,
+                "2": 1.67,
+                "X": 4.5
+              },
+              "implied_probability": 1.0315509332212769
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.48,
+                "2": 1.62,
+                "X": 4.69
+              },
+              "implied_probability": 1.0537178525362605
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 4.33,
+                "2": 1.61,
+                "X": 4.5
+              },
+              "implied_probability": 1.0742871168616723
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 4.65,
+                "2": 1.66,
+                "X": 4.8
+              },
+              "implied_probability": 1.0257967353284103
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 4.9,
+                "2": 1.63,
+                "X": 4.8
+              },
+              "implied_probability": 1.025911898501732
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5e256c6ee31e77cef2c88df9556b9dcf",
+      "slug": "atl-tico-madrid-vs-tottenham-hotspur-football",
+      "sport": "Football",
+      "tournament": "UEFA Champions League",
+      "team_home": "Atlético Madrid",
+      "team_away": "Tottenham Hotspur",
+      "start_time": "2026-03-10T20:00:00Z",
+      "is_live": false,
+      "markets": [
+        {
+          "type": "Match Winner (1X2)",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 1.61,
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF"
+            },
+            {
+              "label": "X",
+              "best_odd": 4.58,
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF"
+            },
+            {
+              "label": "2",
+              "best_odd": 6.0,
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.49,
+                "2": 5.1,
+                "X": 4.1
+              },
+              "implied_probability": 1.1111218099942548
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 1.51,
+                "2": 5.3,
+                "X": 4.1
+              },
+              "implied_probability": 1.0948333399365482
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.61,
+                "2": 5.6,
+                "X": 4.4
+              },
+              "implied_probability": 1.026962168266516
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.61,
+                "2": 5.74,
+                "X": 4.58
+              },
+              "implied_probability": 1.0136746516506365
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.61,
+                "2": 5.6,
+                "X": 4.4
+              },
+              "implied_probability": 1.026962168266516
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.56,
+                "2": 5.5,
+                "X": 4.3
+              },
+              "implied_probability": 1.0554019623787065
+            },
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.54,
+                "2": 5.4,
+                "X": 4.2
+              },
+              "implied_probability": 1.0726310726310726
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.49,
+                "2": 5.1,
+                "X": 4.1
+              },
+              "implied_probability": 1.1111218099942548
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.56,
+                "2": 5.1,
+                "X": 4.1
+              },
+              "implied_probability": 1.0810065114225802
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.57,
+                "2": 5.5,
+                "X": 4.3
+              },
+              "implied_probability": 1.051318996512301
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.59,
+                "2": 5.35,
+                "X": 4.27
+              },
+              "implied_probability": 1.050038742931256
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.59,
+                "2": 5.4,
+                "X": 4.2
+              },
+              "implied_probability": 1.0522112408904862
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.58,
+                "2": 5.25,
+                "X": 4.2
+              },
+              "implied_probability": 1.0614828209764917
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.51,
+                "2": 5.3,
+                "X": 4.15
+              },
+              "implied_probability": 1.0918947563338446
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.53,
+                "2": 5.5,
+                "X": 4.2
+              },
+              "implied_probability": 1.07350819115525
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.5,
+                "2": 5.5,
+                "X": 4.2
+              },
+              "implied_probability": 1.0865800865800865
+            },
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 1.52,
+                "2": 5.7,
+                "X": 4.2
+              },
+              "implied_probability": 1.0714285714285714
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.56,
+                "2": 5.9,
+                "X": 4.3
+              },
+              "implied_probability": 1.0430753059842535
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.56,
+                "2": 5.9,
+                "X": 4.3
+              },
+              "implied_probability": 1.0430753059842535
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.57,
+                "2": 5.0,
+                "X": 4.2
+              },
+              "implied_probability": 1.0750379132544738
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.53,
+                "2": 5.5,
+                "X": 4.2
+              },
+              "implied_probability": 1.07350819115525
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.57,
+                "2": 5.0,
+                "X": 4.2
+              },
+              "implied_probability": 1.0750379132544738
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.56,
+                "2": 5.1,
+                "X": 4.3
+              },
+              "implied_probability": 1.0696622119330736
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.55,
+                "2": 5.39,
+                "X": 4.44
+              },
+              "implied_probability": 1.0559152725051342
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.54,
+                "2": 4.9,
+                "X": 4.2
+              },
+              "implied_probability": 1.0915275200989487
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.6,
+                "2": 5.25,
+                "X": 4.0
+              },
+              "implied_probability": 1.0654761904761905
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.6,
+                "2": 5.25,
+                "X": 4.2
+              },
+              "implied_probability": 1.0535714285714286
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.44,
+                "2": 5.0,
+                "X": 3.5
+              },
+              "implied_probability": 1.18015873015873
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.55,
+                "2": 5.9,
+                "X": 4.3
+              },
+              "implied_probability": 1.0472109552811932
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.53,
+                "2": 5.25,
+                "X": 4.33
+              },
+              "implied_probability": 1.0750178439351106
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.54,
+                "2": 5.3,
+                "X": 4.33
+              },
+              "implied_probability": 1.0689767768507583
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.55,
+                "2": 5.85,
+                "X": 4.4
+              },
+              "implied_probability": 1.0433741885354788
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 1.55,
+                "2": 5.85,
+                "X": 4.4
+              },
+              "implied_probability": 1.0433741885354788
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.58,
+                "2": 6.0,
+                "X": 4.4
+              },
+              "implied_probability": 1.0268507863444571
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.55,
+                "2": 5.38,
+                "X": 4.55
+              },
+              "implied_probability": 1.0508151160507557
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.57,
+                "2": 5.25,
+                "X": 4.2
+              },
+              "implied_probability": 1.0655141037306641
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.58,
+                "2": 5.65,
+                "X": 4.5
+              },
+              "implied_probability": 1.0321247650697631
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.56,
+                "2": 6.0,
+                "X": 4.3
+              },
+              "implied_probability": 1.0402504472271914
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1129cf840f0de50325d4a46fd25efcff",
+      "slug": "newcastle-united-vs-barcelona-football",
+      "sport": "Football",
+      "tournament": "UEFA Champions League",
+      "team_home": "Newcastle United",
+      "team_away": "Barcelona",
+      "start_time": "2026-03-10T20:00:00Z",
+      "is_live": false,
+      "markets": [
+        {
+          "type": "Match Winner (1X2)",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 3.1,
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF"
+            },
+            {
+              "label": "X",
+              "best_odd": 4.0,
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF"
+            },
+            {
+              "label": "2",
+              "best_odd": 2.4,
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.06,
+                "1": 2.85,
+                "X": 3.6
+              },
+              "implied_probability": 1.1140918639641173
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.12,
+                "1": 2.9,
+                "X": 3.65
+              },
+              "implied_probability": 1.0904983021541697
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.23,
+                "1": 3.1,
+                "X": 3.85
+              },
+              "implied_probability": 1.0307513981750926
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.34,
+                "1": 2.96,
+                "X": 4.0
+              },
+              "implied_probability": 1.0151882651882653
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.23,
+                "1": 3.1,
+                "X": 3.85
+              },
+              "implied_probability": 1.0307513981750926
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.18,
+                "1": 3.0,
+                "X": 3.75
+              },
+              "implied_probability": 1.0587155963302752
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.14,
+                "1": 2.95,
+                "X": 3.7
+              },
+              "implied_probability": 1.076543040743896
+            },
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.06,
+                "1": 2.85,
+                "X": 3.6
+              },
+              "implied_probability": 1.1140918639641173
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.2,
+                "1": 3.05,
+                "X": 3.8
+              },
+              "implied_probability": 1.045572201741313
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.8,
+                "X": 3.75
+              },
+              "implied_probability": 1.0682539682539682
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "2": 2.15,
+                "1": 2.8,
+                "X": 3.7
+              },
+              "implied_probability": 1.0925294064828948
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.85,
+                "X": 3.75
+              },
+              "implied_probability": 1.0619883040935671
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.2,
+                "1": 2.8,
+                "X": 3.73
+              },
+              "implied_probability": 1.07978482643362
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.8,
+                "X": 3.75
+              },
+              "implied_probability": 1.0682539682539682
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.75,
+                "X": 3.75
+              },
+              "implied_probability": 1.0747474747474748
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.27,
+                "1": 2.9,
+                "X": 3.8
+              },
+              "implied_probability": 1.0485141153049722
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.12,
+                "1": 2.85,
+                "X": 3.75
+              },
+              "implied_probability": 1.0892419728566698
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.8,
+                "X": 3.7
+              },
+              "implied_probability": 1.0718575718575718
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.2,
+                "1": 2.8,
+                "X": 3.85
+              },
+              "implied_probability": 1.0714285714285714
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.8,
+                "X": 3.6
+              },
+              "implied_probability": 1.0793650793650795
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.8,
+                "X": 3.7
+              },
+              "implied_probability": 1.0718575718575718
+            },
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "2": 2.25,
+                "1": 2.84,
+                "X": 3.95
+              },
+              "implied_probability": 1.0497216774628078
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.15,
+                "1": 2.75,
+                "X": 3.8
+              },
+              "implied_probability": 1.0919105374429732
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.8,
+                "X": 3.7
+              },
+              "implied_probability": 1.0718575718575718
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.87,
+                "X": 3.75
+              },
+              "implied_probability": 1.05954316686024
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.1,
+                "1": 2.63,
+                "X": 3.2
+              },
+              "implied_probability": 1.1689186130726055
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.4,
+                "1": 2.96,
+                "X": 3.95
+              },
+              "implied_probability": 1.0076690614665298
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.4,
+                "1": 2.96,
+                "X": 3.95
+              },
+              "implied_probability": 1.0076690614665298
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.27,
+                "1": 2.85,
+                "X": 3.85
+              },
+              "implied_probability": 1.0511460870839493
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.2,
+                "1": 2.75,
+                "X": 3.85
+              },
+              "implied_probability": 1.0779220779220777
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.22,
+                "1": 2.77,
+                "X": 3.85
+              },
+              "implied_probability": 1.0712015405156199
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.34,
+                "1": 2.92,
+                "X": 3.95
+              },
+              "implied_probability": 1.0229807377371103
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.28,
+                "1": 2.88,
+                "X": 3.95
+              },
+              "implied_probability": 1.0389832704123176
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.28,
+                "1": 2.88,
+                "X": 3.95
+              },
+              "implied_probability": 1.0389832704123176
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.3,
+                "1": 2.9,
+                "X": 4.0
+              },
+              "implied_probability": 1.0296101949025487
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.84,
+                "X": 3.95
+              },
+              "implied_probability": 1.0497216774628078
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.25,
+                "1": 2.75,
+                "X": 3.75
+              },
+              "implied_probability": 1.0747474747474748
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.3,
+                "1": 2.91,
+                "X": 3.94
+              },
+              "implied_probability": 1.0322323269784857
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.38,
+                "1": 2.96,
+                "X": 3.95
+              },
+              "implied_probability": 1.0111704620267539
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "963a779ed5805946e8621a6aea80ab10",
+      "slug": "bayer-leverkusen-vs-arsenal-football",
+      "sport": "Football",
+      "tournament": "UEFA Champions League",
+      "team_home": "Bayer Leverkusen",
+      "team_away": "Arsenal",
+      "start_time": "2026-03-11T17:45:00Z",
+      "is_live": false,
+      "markets": [
+        {
+          "type": "Match Winner (1X2)",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 6.5,
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF"
+            },
+            {
+              "label": "X",
+              "best_odd": 4.5,
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF"
+            },
+            {
+              "label": "2",
+              "best_odd": 1.59,
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "2": 1.55,
+                "1": 5.5,
+                "X": 4.2
+              },
+              "implied_probability": 1.0650747102360005
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.55,
+                "1": 5.5,
+                "X": 4.0
+              },
+              "implied_probability": 1.0769794721407624
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.52,
+                "1": 5.5,
+                "X": 4.4
+              },
+              "implied_probability": 1.0669856459330145
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.57,
+                "1": 6.25,
+                "X": 4.3
+              },
+              "implied_probability": 1.0295008146941194
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.57,
+                "1": 5.8,
+                "X": 4.2
+              },
+              "implied_probability": 1.047451706357922
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.57,
+                "1": 6.0,
+                "X": 4.2
+              },
+              "implied_probability": 1.0417045799211404
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.49,
+                "1": 5.6,
+                "X": 4.15
+              },
+              "implied_probability": 1.0906762235904308
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.56,
+                "1": 6.1,
+                "X": 4.4
+              },
+              "implied_probability": 1.0322327945278764
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.57,
+                "1": 5.5,
+                "X": 4.0
+              },
+              "implied_probability": 1.0687608569774174
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.52,
+                "1": 5.7,
+                "X": 4.0
+              },
+              "implied_probability": 1.0833333333333335
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.51,
+                "1": 5.5,
+                "X": 4.1
+              },
+              "implied_probability": 1.0879722764717112
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.57,
+                "1": 5.5,
+                "X": 4.0
+              },
+              "implied_probability": 1.0687608569774174
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.58,
+                "1": 6.2,
+                "X": 4.3
+              },
+              "implied_probability": 1.026759854520592
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.5,
+                "1": 5.4,
+                "X": 4.3
+              },
+              "implied_probability": 1.0844099913867356
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.55,
+                "1": 5.75,
+                "X": 4.0
+              },
+              "implied_probability": 1.0690743338008415
+            },
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.51,
+                "1": 5.6,
+                "X": 4.15
+              },
+              "implied_probability": 1.0817869396222544
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.58,
+                "1": 6.2,
+                "X": 4.3
+              },
+              "implied_probability": 1.026759854520592
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.53,
+                "1": 5.5,
+                "X": 4.0
+              },
+              "implied_probability": 1.0854129530600118
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.54,
+                "1": 5.8,
+                "X": 4.35
+              },
+              "implied_probability": 1.051649499925362
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.59,
+                "1": 6.2,
+                "X": 4.47
+              },
+              "implied_probability": 1.0139347867231465
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.58,
+                "1": 5.62,
+                "X": 4.19
+              },
+              "implied_probability": 1.049510819952435
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "2": 1.54,
+                "1": 5.8,
+                "X": 4.24
+              },
+              "implied_probability": 1.0576134990578712
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.53,
+                "1": 5.75,
+                "X": 4.1
+              },
+              "implied_probability": 1.0714102537444812
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.53,
+                "1": 5.8,
+                "X": 4.1
+              },
+              "implied_probability": 1.0699110033696686
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.44,
+                "1": 5.0,
+                "X": 3.5
+              },
+              "implied_probability": 1.18015873015873
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.47,
+                "1": 6.1,
+                "X": 4.25
+              },
+              "implied_probability": 1.0795006527201045
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.42,
+                "1": 6.0,
+                "X": 4.1
+              },
+              "implied_probability": 1.114794457803733
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.51,
+                "1": 6.4,
+                "X": 4.4
+              },
+              "implied_probability": 1.0457743829018664
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.42,
+                "1": 6.0,
+                "X": 4.1
+              },
+              "implied_probability": 1.114794457803733
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.5,
+                "1": 6.25,
+                "X": 4.35
+              },
+              "implied_probability": 1.056551724137931
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.54,
+                "1": 6.5,
+                "X": 4.5
+              },
+              "implied_probability": 1.0254190254190254
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.45,
+                "1": 6.1,
+                "X": 4.2
+              },
+              "implied_probability": 1.0916848367385394
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.54,
+                "1": 6.5,
+                "X": 4.5
+              },
+              "implied_probability": 1.0254190254190254
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.55,
+                "1": 5.25,
+                "X": 4.2
+              },
+              "implied_probability": 1.0737327188940091
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.58,
+                "1": 5.95,
+                "X": 4.25
+              },
+              "implied_probability": 1.0362727369428784
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.58,
+                "1": 5.95,
+                "X": 4.25
+              },
+              "implied_probability": 1.0362727369428784
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.57,
+                "1": 5.5,
+                "X": 4.2
+              },
+              "implied_probability": 1.0568560950726555
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.57,
+                "1": 5.5,
+                "X": 4.2
+              },
+              "implied_probability": 1.0568560950726555
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 1.58,
+                "1": 6.2,
+                "X": 4.2
+              },
+              "implied_probability": 1.0322969530809465
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ab266816a618acf42cd468f0c03d88df",
+      "slug": "boston-celtics-vs-dallas-mavericks-basketball",
+      "sport": "Basketball",
+      "tournament": "NBA",
+      "team_home": "Boston Celtics",
+      "team_away": "Dallas Mavericks",
+      "start_time": "2026-03-07T00:10:00Z",
+      "is_live": false,
+      "markets": [
+        {
+          "type": "Match Winner",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 1.12,
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF"
+            },
+            {
+              "label": "2",
+              "best_odd": 8.8,
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 8.0
+              },
+              "implied_probability": 1.0340909090909092
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 7.0
+              },
+              "implied_probability": 1.051948051948052
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 1.09,
+                "2": 8.0
+              },
+              "implied_probability": 1.0424311926605503
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.1
+              },
+              "implied_probability": 1.0582762630830855
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.08,
+                "2": 7.0
+              },
+              "implied_probability": 1.0687830687830686
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.08,
+                "2": 7.5
+              },
+              "implied_probability": 1.0592592592592591
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.2
+              },
+              "implied_probability": 1.0563200815494393
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.9
+              },
+              "implied_probability": 1.044013471141563
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.07,
+                "2": 7.0
+              },
+              "implied_probability": 1.0774365821094793
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 8.0
+              },
+              "implied_probability": 1.0340909090909092
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.5
+              },
+              "implied_probability": 1.0507645259938838
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.5
+              },
+              "implied_probability": 1.0507645259938838
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 8.0
+              },
+              "implied_probability": 1.0340909090909092
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.5
+              },
+              "implied_probability": 1.0507645259938838
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.0
+              },
+              "implied_probability": 1.0602883355176933
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 7.5
+              },
+              "implied_probability": 1.0424242424242425
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.75
+              },
+              "implied_probability": 1.0464634507250665
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.06,
+                "2": 5.5
+              },
+              "implied_probability": 1.125214408233276
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 7.0
+              },
+              "implied_probability": 1.051948051948052
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 7.0
+              },
+              "implied_probability": 1.051948051948052
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.12,
+                "2": 7.7
+              },
+              "implied_probability": 1.0227272727272727
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.08,
+                "2": 7.5
+              },
+              "implied_probability": 1.0592592592592591
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.12,
+                "2": 8.8
+              },
+              "implied_probability": 1.0064935064935063
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.12,
+                "2": 8.8
+              },
+              "implied_probability": 1.0064935064935063
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.12,
+                "2": 8.8
+              },
+              "implied_probability": 1.0064935064935063
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.11,
+                "2": 8.6
+              },
+              "implied_probability": 1.0171799706683426
+            },
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 7.61
+              },
+              "implied_probability": 1.0404969537689643
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.11,
+                "2": 7.6
+              },
+              "implied_probability": 1.0324798482693218
+            },
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 1.1,
+                "2": 7.5
+              },
+              "implied_probability": 1.0424242424242425
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.08,
+                "2": 7.5
+              },
+              "implied_probability": 1.0592592592592591
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.08,
+                "2": 7.5
+              },
+              "implied_probability": 1.0592592592592591
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.08,
+                "2": 7.5
+              },
+              "implied_probability": 1.0592592592592591
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.08,
+                "2": 7.5
+              },
+              "implied_probability": 1.0592592592592591
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 8.01
+              },
+              "implied_probability": 1.0339348541595732
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.54
+              },
+              "implied_probability": 1.0500571873555107
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.1,
+                "2": 7.5
+              },
+              "implied_probability": 1.0424242424242425
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.09,
+                "2": 7.5
+              },
+              "implied_probability": 1.0507645259938838
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.11,
+                "2": 7.0
+              },
+              "implied_probability": 1.0437580437580436
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d30140ada41fcf347a70f0627144f910",
+      "slug": "charlotte-hornets-vs-miami-heat-basketball",
+      "sport": "Basketball",
+      "tournament": "NBA",
+      "team_home": "Charlotte Hornets",
+      "team_away": "Miami Heat",
+      "start_time": "2026-03-07T00:10:00Z",
+      "is_live": false,
+      "markets": [
+        {
+          "type": "Match Winner",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 1.37,
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF"
+            },
+            {
+              "label": "2",
+              "best_odd": 3.6,
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.34,
+                "2": 3.2
+              },
+              "implied_probability": 1.0587686567164178
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.33,
+                "2": 3.25
+              },
+              "implied_probability": 1.059572006940428
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.35,
+                "2": 3.3
+              },
+              "implied_probability": 1.0437710437710437
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.35,
+                "2": 3.25
+              },
+              "implied_probability": 1.0484330484330484
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.33,
+                "2": 3.25
+              },
+              "implied_probability": 1.059572006940428
+            },
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 1.29,
+                "2": 2.85
+              },
+              "implied_probability": 1.1260709914320683
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 1.35,
+                "2": 3.33
+              },
+              "implied_probability": 1.0410410410410411
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.33,
+                "2": 3.1
+              },
+              "implied_probability": 1.0744603444094105
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.34,
+                "2": 3.2
+              },
+              "implied_probability": 1.0587686567164178
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.35,
+                "2": 3.3
+              },
+              "implied_probability": 1.0437710437710437
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.34,
+                "2": 3.2
+              },
+              "implied_probability": 1.0587686567164178
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.33,
+                "2": 3.3
+              },
+              "implied_probability": 1.0549100022784232
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.35,
+                "2": 3.35
+              },
+              "implied_probability": 1.0392482034273078
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.35,
+                "2": 3.2
+              },
+              "implied_probability": 1.0532407407407407
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.35,
+                "2": 3.2
+              },
+              "implied_probability": 1.0532407407407407
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.37,
+                "2": 3.43
+              },
+              "implied_probability": 1.0214721968036433
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.36,
+                "2": 3.2
+              },
+              "implied_probability": 1.0477941176470589
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.37,
+                "2": 3.6
+              },
+              "implied_probability": 1.0077047850770477
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.36,
+                "2": 3.3
+              },
+              "implied_probability": 1.0383244206773619
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.34,
+                "2": 3.35
+              },
+              "implied_probability": 1.044776119402985
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.36,
+                "2": 3.5
+              },
+              "implied_probability": 1.0210084033613445
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.34,
+                "2": 3.35
+              },
+              "implied_probability": 1.044776119402985
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.3,
+                "2": 3.5
+              },
+              "implied_probability": 1.0549450549450547
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.3,
+                "2": 3.5
+              },
+              "implied_probability": 1.0549450549450547
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.3,
+                "2": 3.5
+              },
+              "implied_probability": 1.0549450549450547
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.32,
+                "2": 3.6
+              },
+              "implied_probability": 1.0353535353535355
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.28,
+                "2": 3.45
+              },
+              "implied_probability": 1.071105072463768
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.32,
+                "2": 3.6
+              },
+              "implied_probability": 1.0353535353535355
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.33,
+                "2": 3.25
+              },
+              "implied_probability": 1.059572006940428
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.33,
+                "2": 3.25
+              },
+              "implied_probability": 1.059572006940428
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.33,
+                "2": 3.2
+              },
+              "implied_probability": 1.0643796992481203
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.37,
+                "2": 3.55
+              },
+              "implied_probability": 1.0116171481443406
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.37,
+                "2": 3.55
+              },
+              "implied_probability": 1.0116171481443406
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.33,
+                "2": 3.25
+              },
+              "implied_probability": 1.059572006940428
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.36,
+                "2": 3.35
+              },
+              "implied_probability": 1.033801580333626
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.36,
+                "2": 3.3
+              },
+              "implied_probability": 1.0383244206773619
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.36,
+                "2": 3.3
+              },
+              "implied_probability": 1.0383244206773619
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.36,
+                "2": 3.4
+              },
+              "implied_probability": 1.0294117647058822
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "5bb88919ee7f5580d891b5f0cb5aef6e",
+      "slug": "houston-rockets-vs-portland-trail-blazers-basketball",
+      "sport": "Basketball",
+      "tournament": "NBA",
+      "team_home": "Houston Rockets",
+      "team_away": "Portland Trail Blazers",
+      "start_time": "2026-03-07T01:10:00Z",
+      "is_live": false,
+      "markets": [
+        {
+          "type": "Match Winner",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 1.47,
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF"
+            },
+            {
+              "label": "2",
+              "best_odd": 3.27,
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.4,
+                "2": 2.88
+              },
+              "implied_probability": 1.0615079365079365
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.44,
+                "2": 2.75
+              },
+              "implied_probability": 1.058080808080808
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 2.98
+              },
+              "implied_probability": 1.039795821911334
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 2.95
+              },
+              "implied_probability": 1.0432084029601336
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.41,
+                "2": 2.85
+              },
+              "implied_probability": 1.0600970511384844
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.4,
+                "2": 2.8
+              },
+              "implied_probability": 1.0714285714285714
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.4,
+                "2": 2.8
+              },
+              "implied_probability": 1.0714285714285714
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.41,
+                "2": 2.95
+              },
+              "implied_probability": 1.0482029090034861
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.38,
+                "2": 2.8
+              },
+              "implied_probability": 1.0817805383022776
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 2.98
+              },
+              "implied_probability": 1.039795821911334
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.35,
+                "2": 2.6
+              },
+              "implied_probability": 1.1253561253561253
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 2.95
+              },
+              "implied_probability": 1.0432084029601336
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.4,
+                "2": 2.9
+              },
+              "implied_probability": 1.0591133004926108
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 2.85
+              },
+              "implied_probability": 1.0551025450951323
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 2.85
+              },
+              "implied_probability": 1.0551025450951323
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.4,
+                "2": 3.27
+              },
+              "implied_probability": 1.020096111839231
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.47,
+                "2": 3.05
+              },
+              "implied_probability": 1.0081409613025538
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.43,
+                "2": 2.95
+              },
+              "implied_probability": 1.038283750148157
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 1.41,
+                "2": 2.98
+              },
+              "implied_probability": 1.0447903279546862
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.41,
+                "2": 2.95
+              },
+              "implied_probability": 1.0482029090034861
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.4,
+                "2": 2.9
+              },
+              "implied_probability": 1.0591133004926108
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.4,
+                "2": 2.87
+              },
+              "implied_probability": 1.0627177700348431
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.4,
+                "2": 2.87
+              },
+              "implied_probability": 1.0627177700348431
+            },
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.46,
+                "2": 3.05
+              },
+              "implied_probability": 1.0128003593083315
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.41,
+                "2": 2.85
+              },
+              "implied_probability": 1.0600970511384844
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 2.88
+              },
+              "implied_probability": 1.0514475743348983
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 2.88
+              },
+              "implied_probability": 1.0514475743348983
+            },
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 1.43,
+                "2": 2.95
+              },
+              "implied_probability": 1.038283750148157
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.43,
+                "2": 2.95
+              },
+              "implied_probability": 1.038283750148157
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.46,
+                "2": 3.05
+              },
+              "implied_probability": 1.0128003593083315
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.38,
+                "2": 2.8
+              },
+              "implied_probability": 1.0817805383022776
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.44,
+                "2": 2.75
+              },
+              "implied_probability": 1.058080808080808
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.45,
+                "2": 3.0
+              },
+              "implied_probability": 1.0229885057471264
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 2.9
+              },
+              "implied_probability": 1.0490529383195728
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.43,
+                "2": 2.95
+              },
+              "implied_probability": 1.038283750148157
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.44,
+                "2": 2.97
+              },
+              "implied_probability": 1.0311447811447811
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.43,
+                "2": 3.0
+              },
+              "implied_probability": 1.0326340326340326
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.42,
+                "2": 3.0
+              },
+              "implied_probability": 1.0375586854460095
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "30131455f152309d83d6dd4173318b47",
+      "slug": "denver-nuggets-vs-new-york-knicks-basketball",
+      "sport": "Basketball",
+      "tournament": "NBA",
+      "team_home": "Denver Nuggets",
+      "team_away": "New York Knicks",
+      "start_time": "2026-03-07T02:10:00Z",
+      "is_live": false,
+      "markets": [
+        {
+          "type": "Match Winner",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 2.08,
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236"
+            },
+            {
+              "label": "2",
+              "best_odd": 1.89,
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.8
+              },
+              "implied_probability": 1.0555555555555556
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.8
+              },
+              "implied_probability": 1.0555555555555556
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.84
+              },
+              "implied_probability": 1.0434782608695652
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.99,
+                "2": 1.83
+              },
+              "implied_probability": 1.0489606502457642
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.03,
+                "2": 1.83
+              },
+              "implied_probability": 1.0390589248701176
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.95,
+                "2": 1.79
+              },
+              "implied_probability": 1.0714797306976078
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.95,
+                "2": 1.8
+              },
+              "implied_probability": 1.0683760683760686
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 2.0,
+                "2": 1.82
+              },
+              "implied_probability": 1.0494505494505493
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.93,
+                "2": 1.77
+              },
+              "implied_probability": 1.0831064664383363
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.84
+              },
+              "implied_probability": 1.0434782608695652
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.84,
+                "2": 1.7
+              },
+              "implied_probability": 1.1317135549872122
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.03,
+                "2": 1.82
+              },
+              "implied_probability": 1.0420613868889732
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.08,
+                "2": 1.89
+              },
+              "implied_probability": 1.00986975986976
+            },
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.08,
+                "2": 1.89
+              },
+              "implied_probability": 1.00986975986976
+            },
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.98,
+                "2": 1.82
+              },
+              "implied_probability": 1.0545010545010545
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.98,
+                "2": 1.82
+              },
+              "implied_probability": 1.0545010545010545
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.05,
+                "2": 1.88
+              },
+              "implied_probability": 1.0197197716658017
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.8
+              },
+              "implied_probability": 1.0555555555555556
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.02,
+                "2": 1.83
+              },
+              "implied_probability": 1.041497592382189
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.02,
+                "2": 1.83
+              },
+              "implied_probability": 1.041497592382189
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.97,
+                "2": 1.81
+              },
+              "implied_probability": 1.0601004010432735
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.82
+              },
+              "implied_probability": 1.0494505494505493
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.94,
+                "2": 1.78
+              },
+              "implied_probability": 1.077261670334762
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.82
+              },
+              "implied_probability": 1.0494505494505493
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.04,
+                "2": 1.88
+              },
+              "implied_probability": 1.0221109720483939
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.03,
+                "2": 1.81
+              },
+              "implied_probability": 1.0450970252837277
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.83
+              },
+              "implied_probability": 1.046448087431694
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.75
+              },
+              "implied_probability": 1.0714285714285714
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.75
+              },
+              "implied_probability": 1.0714285714285714
+            },
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "1": 2.04,
+                "2": 1.81
+              },
+              "implied_probability": 1.0426822662766764
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 1.93,
+                "2": 1.83
+              },
+              "implied_probability": 1.0645828024576007
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.08,
+                "2": 1.89
+              },
+              "implied_probability": 1.00986975986976
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.8
+              },
+              "implied_probability": 1.0555555555555556
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.82
+              },
+              "implied_probability": 1.0494505494505493
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.05,
+                "2": 1.8
+              },
+              "implied_probability": 1.043360433604336
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.83
+              },
+              "implied_probability": 1.046448087431694
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.05,
+                "2": 1.85
+              },
+              "implied_probability": 1.028345418589321
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "1": 2.0,
+                "2": 1.83
+              },
+              "implied_probability": 1.046448087431694
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "54eca7bdce16aefb75a9905bac119cbc",
+      "slug": "phoenix-suns-vs-new-orleans-pelicans-basketball",
+      "sport": "Basketball",
+      "tournament": "NBA",
+      "team_home": "Phoenix Suns",
+      "team_away": "New Orleans Pelicans",
+      "start_time": "2026-03-07T02:10:00Z",
+      "is_live": false,
+      "markets": [
+        {
+          "type": "Match Winner",
+          "outcomes": [
+            {
+              "label": "1",
+              "best_odd": 1.48,
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF"
+            },
+            {
+              "label": "2",
+              "best_odd": 3.0,
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF"
+            }
+          ],
+          "bookmakers": [
+            {
+              "brand_id": "mrjackbet",
+              "brand_name": "MrJack.Bet",
+              "affiliate_url": "https://mrjack.bet/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.88,
+                "1": 1.4
+              },
+              "implied_probability": 1.0615079365079365
+            },
+            {
+              "brand_id": "1xbet_sports",
+              "brand_name": "1xBet Sports",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "2": 2.93,
+                "1": 1.47
+              },
+              "implied_probability": 1.0215690371711825
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.92,
+                "1": 1.43
+              },
+              "implied_probability": 1.041766452725357
+            },
+            {
+              "brand_id": "betboo",
+              "brand_name": "Betboo",
+              "affiliate_url": "https://www.betboo.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.75,
+                "1": 1.44
+              },
+              "implied_probability": 1.058080808080808
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.9,
+                "1": 1.44
+              },
+              "implied_probability": 1.039272030651341
+            },
+            {
+              "brand_id": "leovegas",
+              "brand_name": "LeoVegas",
+              "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.8,
+                "1": 1.42
+              },
+              "implied_probability": 1.0613682092555332
+            },
+            {
+              "brand_id": "parimatch",
+              "brand_name": "Parimatch",
+              "affiliate_url": "https://parimatch.in/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.85,
+                "1": 1.43
+              },
+              "implied_probability": 1.0501778922831555
+            },
+            {
+              "brand_id": "mostbet",
+              "brand_name": "Mostbet",
+              "affiliate_url": "https://mostbet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.75,
+                "1": 1.4
+              },
+              "implied_probability": 1.077922077922078
+            },
+            {
+              "brand_id": "betnacional",
+              "brand_name": "BetNacional",
+              "affiliate_url": "https://betnacional.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.75,
+                "1": 1.41
+              },
+              "implied_probability": 1.072856221792392
+            },
+            {
+              "brand_id": "1xbet",
+              "brand_name": "1xBet",
+              "affiliate_url": "https://refpa14435.com/L?tag=d_5300195m_1236c_&site=5300195&ad=1236",
+              "odds": {
+                "2": 2.88,
+                "1": 1.42
+              },
+              "implied_probability": 1.0514475743348983
+            },
+            {
+              "brand_id": "casinometropol",
+              "brand_name": "Casino Metropol",
+              "affiliate_url": "https://www.casinometropol.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.86,
+                "1": 1.44
+              },
+              "implied_probability": 1.0440947940947942
+            },
+            {
+              "brand_id": "superbahis",
+              "brand_name": "Süperbahis",
+              "affiliate_url": "https://www.superbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.75,
+                "1": 1.4
+              },
+              "implied_probability": 1.077922077922078
+            },
+            {
+              "brand_id": "1win",
+              "brand_name": "1Win",
+              "affiliate_url": "https://1win.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.9,
+                "1": 1.44
+              },
+              "implied_probability": 1.039272030651341
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.8,
+                "1": 1.44
+              },
+              "implied_probability": 1.0515873015873016
+            },
+            {
+              "brand_id": "rivalo",
+              "brand_name": "Rivalo",
+              "affiliate_url": "https://www.rivalo.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.8,
+                "1": 1.44
+              },
+              "implied_probability": 1.0515873015873016
+            },
+            {
+              "brand_id": "bet365",
+              "brand_name": "Bet365",
+              "affiliate_url": "https://www.bet365.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.9,
+                "1": 1.43
+              },
+              "implied_probability": 1.044128285507596
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.88,
+                "1": 1.44
+              },
+              "implied_probability": 1.0416666666666665
+            },
+            {
+              "brand_id": "betway",
+              "brand_name": "Betway",
+              "affiliate_url": "https://betway.in/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.75,
+                "1": 1.41
+              },
+              "implied_probability": 1.072856221792392
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.8,
+                "1": 1.43
+              },
+              "implied_probability": 1.0564435564435566
+            },
+            {
+              "brand_id": "brabet",
+              "brand_name": "Brabet",
+              "affiliate_url": "https://www.brabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.8,
+                "1": 1.44
+              },
+              "implied_probability": 1.0515873015873016
+            },
+            {
+              "brand_id": "rajabets",
+              "brand_name": "Rajabets",
+              "affiliate_url": "https://rajabets.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.8,
+                "1": 1.44
+              },
+              "implied_probability": 1.0515873015873016
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.88,
+                "1": 1.44
+              },
+              "implied_probability": 1.0416666666666665
+            },
+            {
+              "brand_id": "tipobet365",
+              "brand_name": "Tipobet365",
+              "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.9,
+                "1": 1.4
+              },
+              "implied_probability": 1.0591133004926108
+            },
+            {
+              "brand_id": "estrelabet",
+              "brand_name": "Estrela Bet",
+              "affiliate_url": "https://estrelabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.55,
+                "1": 1.36
+              },
+              "implied_probability": 1.1274509803921569
+            },
+            {
+              "brand_id": "blaze",
+              "brand_name": "Blaze",
+              "affiliate_url": "https://blaze.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.85,
+                "1": 1.44
+              },
+              "implied_probability": 1.0453216374269005
+            },
+            {
+              "brand_id": "casinomaxi",
+              "brand_name": "CasinoMaxi",
+              "affiliate_url": "https://www.casinomaxi.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.8,
+                "1": 1.44
+              },
+              "implied_probability": 1.0515873015873016
+            },
+            {
+              "brand_id": "dafabet",
+              "brand_name": "Dafabet",
+              "affiliate_url": "https://www.dafabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.8,
+                "1": 1.44
+              },
+              "implied_probability": 1.0515873015873016
+            },
+            {
+              "brand_id": "melbet",
+              "brand_name": "Melbet",
+              "affiliate_url": "https://melbet.in/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.9,
+                "1": 1.43
+              },
+              "implied_probability": 1.044128285507596
+            },
+            {
+              "brand_id": "22bet",
+              "brand_name": "22Bet",
+              "affiliate_url": "https://22bet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.9,
+                "1": 1.4
+              },
+              "implied_probability": 1.0591133004926108
+            },
+            {
+              "brand_id": "4rabet",
+              "brand_name": "4raBet",
+              "affiliate_url": "https://4rabet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.75,
+                "1": 1.44
+              },
+              "implied_probability": 1.058080808080808
+            },
+            {
+              "brand_id": "10cric",
+              "brand_name": "10CRIC",
+              "affiliate_url": "https://www.10cric.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 3.0,
+                "1": 1.48
+              },
+              "implied_probability": 1.009009009009009
+            },
+            {
+              "brand_id": "bets10",
+              "brand_name": "Bets10",
+              "affiliate_url": "https://www.bets10.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.92,
+                "1": 1.43
+              },
+              "implied_probability": 1.041766452725357
+            },
+            {
+              "brand_id": "leon",
+              "brand_name": "Leon",
+              "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.85,
+                "1": 1.44
+              },
+              "implied_probability": 1.0453216374269005
+            },
+            {
+              "brand_id": "mobilbahis",
+              "brand_name": "Mobilbahis",
+              "affiliate_url": "https://www.mobilbahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 3.0,
+                "1": 1.48
+              },
+              "implied_probability": 1.009009009009009
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 3.0,
+                "1": 1.48
+              },
+              "implied_probability": 1.009009009009009
+            },
+            {
+              "brand_id": "youwin",
+              "brand_name": "Youwin",
+              "affiliate_url": "https://www.hepsibahis.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.93,
+                "1": 1.44
+              },
+              "implied_probability": 1.0357413727720894
+            },
+            {
+              "brand_id": "betano",
+              "brand_name": "Betano",
+              "affiliate_url": "https://br.betano.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.98,
+                "1": 1.48
+              },
+              "implied_probability": 1.0112461454743333
+            },
+            {
+              "brand_id": "tempobet",
+              "brand_name": "Tempobet",
+              "affiliate_url": "https://www.tempobet.com/?ref=YOUR_REF",
+              "odds": {
+                "2": 2.95,
+                "1": 1.43
+              },
+              "implied_probability": 1.038283750148157
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }

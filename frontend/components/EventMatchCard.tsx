@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import type { OddsEvent } from '@/lib/odds';
 import ProfitCalculator from './ProfitCalculator';
 
@@ -80,8 +81,10 @@ export default function EventMatchCard({ event }: { event: OddsEvent }) {
             {/* Dynamic Background Glow */}
             <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-48 h-48 ${sportGlow} rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}></div>
 
+            <Link href={`/match/${event.slug}`} className="absolute inset-0 z-0"></Link>
+
             {/* Header: Tournament & Status */}
-            <div className="flex justify-between items-center mb-6 relative z-10">
+            <div className="flex justify-between items-center mb-6 relative z-10 pointer-events-none">
                 <div className="flex items-center gap-2">
                     <span className="bg-white/10 border border-white/20 px-2.5 py-1 rounded-md text-[9px] font-black uppercase tracking-widest text-gray-300 shadow-sm">
                         {event.sport}

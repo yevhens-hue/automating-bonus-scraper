@@ -4,6 +4,7 @@ import json
 import random
 import sqlite3
 import requests
+import re
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 
@@ -25,15 +26,22 @@ SPORTS_TO_TRACK = {
         "sport_label": "Cricket",
         "tournament_label": "Indian Premier League"
     },
-    "esports_csgo_blast_premier": {
+    "esports_csgo_major": {
         "sport_label": "Esports CS2",
-        "tournament_label": "BLAST Premier"
+        "tournament_label": "CS2 Major"
     },
     "basketball_nba": {
         "sport_label": "Basketball",
         "tournament_label": "NBA"
     }
 }
+
+def generate_slug(home_team, away_team, sport_label):
+    """Generate a clean, URL-friendly slug based on teams and sport."""
+    raw = f"{home_team} vs {away_team} {sport_label}"
+    # Convert to lowercase and replace non-alphanumeric with hyphens
+    slug = re.sub(r'[^a-z0-9]+', '-', raw.lower()).strip('-')
+    return slug
 
 def get_active_affiliate_brands():
     """Fetch all unique active brands and their affiliate URLs from the database."""
@@ -62,7 +70,6 @@ def get_active_affiliate_brands():
 def fetch_odds_for_sport(sport_key, config):
     """Fetch matches and odds for a specific sport from The-Odds-API."""
     print(f"📡 Fetching {sport_key}...")
-    url = f"https://api.api-football.com/v4/odds" # Placeholder, we use the-odds-api
     url = f"https://api.the-odds-api.com/v4/sports/{sport_key}/odds"
     
     params = {
@@ -83,22 +90,24 @@ def fetch_odds_for_sport(sport_key, config):
     
     # Process each match
     for match in data:
-        # We only want matches that haven't started yet, or are live
-        # We'll take the first 3 upcoming matches per sport to not overload the UI
         start_time = match.get("commence_time")
         
-        # We skip if no bookmakers have odds
         if not match.get("bookmakers"):
             continue
             
-        # Get team names
         home_team = match.get("home_team")
         away_team = match.get("away_team")
+        slug = generate_slug(home_team, away_team, config["sport_label"])
         
-        # In h2h, outcomes are usually the team names, and sometimes 'Draw'
-        # Let's aggregate the best odds offered across all bookmakers for each outcome type
+        # Track both the ABSOLUTE best odds (for the main card) 
+        # and ALL bookmakers (for the match page table)
         best_odds_map = {}
+        all_bookmakers = []
+
         for bookmaker in match["bookmakers"]:
+            bookmaker_name = bookmaker.get("title")
+            bm_odds = {}
+
             for market in bookmaker.get("markets", []):
                 if market["key"] == "h2h":
                     for outcome in market.get("outcomes", []):
@@ -114,21 +123,33 @@ def fetch_odds_for_sport(sport_key, config):
                         elif name.lower() == "draw":
                             label = "X"
                         else:
-                            # E.g. cricket has no draw usually, just team names
                             label = "1" if name == home_team else "2"
                             
-                        # Keep the highest price
+                        bm_odds[label] = price
+
+                        # Keep track of the highest price found globally
                         if label not in best_odds_map or price > best_odds_map[label]["best_odd"]:
                             best_odds_map[label] = {
                                 "label": label,
                                 "best_odd": price
                             }
+            
+            # If this bookmaker offered h2h odds, add them to our comprehensive list
+            if bm_odds:
+                implied_prob = sum([1.0/price for price in bm_odds.values()])
+                
+                all_bookmakers.append({
+                    "brand_id": bookmaker_name, # Temporary, replaced later
+                    "brand_name": bookmaker_name,
+                    "affiliate_url": "",
+                    "odds": bm_odds,
+                    "implied_probability": implied_prob
+                })
         
-        # If we didn't find any odds, skip
-        if not best_odds_map:
+        if not best_odds_map or not all_bookmakers:
             continue
             
-        # Compile outcomes
+        # Compile top outcomes
         outcomes = []
         for label, details in best_odds_map.items():
             outcomes.append(details)
@@ -139,22 +160,24 @@ def fetch_odds_for_sport(sport_key, config):
         
         event = {
             "id": match["id"],
+            "slug": slug,
             "sport": config["sport_label"],
             "tournament": config["tournament_label"],
             "team_home": home_team,
             "team_away": away_team,
             "start_time": start_time,
-            "is_live": False,  # The-Odds-API doesn't clearly flag live in this endpoint easily, we default to False
+            "is_live": False, 
             "markets": [
                 {
                     "type": "Match Winner (1X2)" if "X" in best_odds_map else "Match Winner",
-                    "outcomes": outcomes
+                    "outcomes": outcomes,
+                    "bookmakers": all_bookmakers
                 }
             ]
         }
         events.append(event)
         
-        if len(events) >= 3: # Limit to 3 top matches per sport
+        if len(events) >= 5: # Limit to 5 top matches per sport
             break
             
     return events
@@ -162,8 +185,8 @@ def fetch_odds_for_sport(sport_key, config):
 
 def map_our_brands_to_odds(events, our_brands):
     """
-    Takes the real best odds in the market, and replaces the bookmaker name 
-    with one of OUR tracked affiliate brands.
+    Takes the real odds data, and replaces the bookmaker names 
+    with OUR tracked affiliate brands to monetize the traffic.
     """
     if not our_brands:
         print("⚠️ No brands found in database. Using placeholder brands.")
@@ -174,18 +197,26 @@ def map_our_brands_to_odds(events, our_brands):
         
     for event in events:
         for market in event.get("markets", []):
-            # We want to distribute different brands across the outcomes to look natural
-            # Shuffle a copy of our brands
             available_brands = list(our_brands)
             random.shuffle(available_brands)
             
+            # Map top outcomes (for the summary card)
             for outcome in market.get("outcomes", []):
-                # Pick a brand
                 selected_brand = available_brands.pop(0) if available_brands else random.choice(our_brands)
-                
                 outcome["brand_id"] = selected_brand["brand_id"]
                 outcome["brand_name"] = selected_brand["brand_name"]
                 outcome["affiliate_url"] = selected_brand["affiliate_url"]
+            
+            # Re-shuffle for the full bookmaker list so it looks varied
+            available_brands = list(our_brands)
+            random.shuffle(available_brands)
+
+            # Map the comprehensive bookmaker list (for the tables)
+            for bm in market.get("bookmakers", []):
+                selected_brand = available_brands.pop(0) if available_brands else random.choice(our_brands)
+                bm["brand_id"] = selected_brand["brand_id"]
+                bm["brand_name"] = selected_brand["brand_name"]
+                bm["affiliate_url"] = selected_brand["affiliate_url"]
                 
     return events
 

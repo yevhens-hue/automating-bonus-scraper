@@ -6,13 +6,25 @@ export interface OddsOutcome {
   affiliate_url: string;
 }
 
+export interface BookmakerOdd {
+  brand_id: string;
+  brand_name: string;
+  affiliate_url: string;
+  odds: {
+    [label: string]: number; // e.g. "1": 2.50, "X": 3.10, "2": 2.80
+  };
+  implied_probability?: number;
+}
+
 export interface OddsMarket {
   type: string;
-  outcomes: OddsOutcome[];
+  outcomes: OddsOutcome[]; // The best ones to highlight
+  bookmakers: BookmakerOdd[]; // All tracked bookmakers for comparison
 }
 
 export interface OddsEvent {
   id: string;
+  slug: string; // Unique URL slug
   sport: string;
   tournament: string;
   team_home: string;
