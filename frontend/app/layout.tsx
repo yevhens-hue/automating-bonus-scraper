@@ -53,7 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
     return (
         <html lang="en">
-            <body className={`${inter.className} bg-[#0a0d1a] text-white`}>
+            <body className={`${inter.className} bg-[#0a0d1a] text-white flex flex-col min-h-screen`}>
                 {/* Google Analytics */}
                 <Script
                     strategy="afterInteractive"
@@ -109,7 +109,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     </div>
                 </nav>
 
-                {children}
+                <main className="flex-grow">
+                    {children}
+                </main>
+
+                {/* Global Footer */}
+                <footer className="py-16 px-4 border-t border-white/5 text-center bg-[#0a0d1a]">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-white font-black text-2xl mb-8 tracking-widest uppercase">GAMES INCOME</div>
+                        <div className="flex justify-center flex-wrap gap-8 mb-12 text-gray-500 font-bold uppercase tracking-widest text-[10px]">
+                            <Link href="/all-bonuses" className="hover:text-white transition-colors">Database</Link>
+                            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+                            <Link href="/holiday-bonuses" className="hover:text-white transition-colors">Holiday</Link>
+                            <Link href="/vip-bonuses" className="hover:text-white transition-colors">VIP</Link>
+                        </div>
+                        <p className="text-gray-600 text-[10px] leading-loose max-w-2xl mx-auto">
+                            © 2026 Games Income. For adults 18+ only. Gambling can be addictive — please play responsibly.
+                            This site contains affiliate links. We may earn commission when you sign up via our links.
+                        </p>
+                    </div>
+                </footer>
 
                 {/* JSON-LD Schema */}
                 <Script id="schema-org" type="application/ld+json" strategy="afterInteractive" dangerouslySetInnerHTML={{

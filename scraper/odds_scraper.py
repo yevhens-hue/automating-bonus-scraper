@@ -131,7 +131,8 @@ def fetch_odds_for_sport(sport_key, config):
                         if label not in best_odds_map or price > best_odds_map[label]["best_odd"]:
                             best_odds_map[label] = {
                                 "label": label,
-                                "best_odd": price
+                                "best_odd": price,
+                                "brand_name": bookmaker_name
                             }
             
             # If this bookmaker offered h2h odds, add them to our comprehensive list

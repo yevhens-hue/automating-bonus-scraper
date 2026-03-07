@@ -28,6 +28,7 @@ jobs:
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+          ODDS_API_KEY: ${{ secrets.ODDS_API_KEY }}
         run: |
           cd scraper
           python scheduler.py --github-action

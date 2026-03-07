@@ -7,7 +7,7 @@ import fs from 'fs';
 import Image from 'next/image';
 import Script from 'next/script';
 import BookmakerTable from './BookmakerTable';
-import ProfitCalculator from '@/components/ProfitCalculator';
+import ClientCalculator from './ClientCalculator';
 import Link from 'next/link';
 
 // Helper to get odds data
@@ -267,11 +267,10 @@ export default async function MatchPage({ params }: { params: Promise<{ slug: st
                                     Try The Profit Calculator
                                 </h4>
                                 {mainMarket && mainMarket.outcomes[0] && (
-                                    <ProfitCalculator
+                                    <ClientCalculator
                                         outcomeLabel={mainMarket.outcomes[0].label}
                                         odds={mainMarket.outcomes[0].best_odd}
                                         brandName={mainMarket.outcomes[0].brand_name}
-                                        onClose={() => { }} // Always open in sidebar
                                     />
                                 )}
                             </div>
