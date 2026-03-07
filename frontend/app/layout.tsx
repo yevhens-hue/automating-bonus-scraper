@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </Script>
 
                 {/* Navigation */}
-                <nav className="sticky top-0 z-50 bg-[#0a0d1a]/90 backdrop-blur-md border-b border-white/5">
+                <nav className="sticky top-0 z-[100] bg-[#0a0d1a]/95 backdrop-blur-md border-b border-white/5 shadow-2xl">
                     <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
                         <Link href="/" className="flex items-center gap-2 flex-shrink-0">
                             <span className="text-xl font-black tracking-tight">
@@ -114,7 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 </main>
 
                 {/* Global Footer */}
-                <footer className="py-16 px-4 border-t border-white/5 text-center bg-[#0a0d1a]">
+                <footer className="relative z-10 py-16 px-4 border-t border-white/5 text-center bg-[#0a0d1a]">
                     <div className="max-w-4xl mx-auto">
                         <div className="text-white font-black text-2xl mb-8 tracking-widest uppercase">GAMES INCOME</div>
                         <div className="flex justify-center flex-wrap gap-8 mb-12 text-gray-500 font-bold uppercase tracking-widest text-[10px]">
