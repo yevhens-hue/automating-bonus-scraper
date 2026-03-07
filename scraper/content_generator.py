@@ -118,55 +118,123 @@ def generate_article(topic, geo_context, bonus_data):
         print(f"Error generating article: {e}")
         return None
 
+def generate_match_preview(event):
+    """Generate a detailed SEO preview for a specific match."""
+    if not GROQ_API_KEY:
+        return None
+
+    home = event.get('team_home')
+    away = event.get('team_away')
+    sport = event.get('sport')
+    tournament = event.get('tournament')
+    
+    prompt = f"""
+    Write a high-quality 1000-word SEO match preview for 'games-income.com'.
+    Match: {home} vs {away}
+    Sport: {sport}
+    Tournament: {tournament}
+    
+    Requirements:
+    1. H1: {home} vs {away} Betting Preview: Odds, Tips, and Prediction.
+    2. Introduction: Analyze the current form of both teams.
+    3. H2: Head-to-Head and Key Stats.
+    4. H2: Expert Betting Analysis (Analyze the market odds and value).
+    5. H2: Predicted Lineups and Impact Players.
+    6. H3: Final Match Prediction and Best Bets.
+    7. Conclusion: Call to action to check the latest odds.
+    
+    Focus on the Indian audience. If it's Cricket, discuss players like Kohli, Rohit, etc. 
+    If it's Football, focus on tactical depth.
+    Output should be valid JSON with 'title', 'slug', 'content' (Markdown), and 'date' fields.
+    """
+
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {GROQ_API_KEY}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "model": "llama-3.3-70b-versatile",
+        "messages": [{"role": "user", "content": prompt}],
+        "response_format": {"type": "json_object"}
+    }
+
+    try:
+        response = requests.post(url, headers=headers, json=data)
+        res_json = response.json()
+        return json.loads(res_json['choices'][0]['message']['content'])
+    except Exception as e:
+        print(f"Error generating match preview: {e}")
+        return None
+
 def main():
     if not TOPICS_PATH.exists():
         print(f"Error: {TOPICS_PATH} not found.")
         return
 
+    # 1. Generate standard blog posts from topics
     with open(TOPICS_PATH, "r") as f:
         topics_data = json.load(f)
     
     all_topics = topics_data.get("topics", [])
     if not all_topics:
         print("No topics found in config.")
-        return
-
-    # Pick 2 random topics for today
-    selected = random.sample(all_topics, 2)
-    
-    for item in selected:
-        topic_name = item['title']
-        geo = item.get('geo', 'all')
+    else:
+        # Prioritize Indian topics
+        indian_topics = [t for t in all_topics if t.get('geo') == 'IN']
+        other_topics = [t for t in all_topics if t.get('geo') != 'IN']
         
-        # Pre-slug check
-        temp_slug = topic_name.lower().replace(" ", "-").replace(":", "").replace("?", "")
-        if check_duplicate_slug(temp_slug):
-            print(f"⏩ Skipping duplicate: {topic_name}")
-            continue
-
-        if geo == 'all':
-            geo_name = "Global"
-            bonus_data = get_db_data()
-        else:
-            geo_name = geo
-            bonus_data = get_db_data(geo)
-            
-        print(f"Generating article: {topic_name}...")
-        result = generate_article(topic_name, geo_name, bonus_data)
+        # Take 4 from India, 2 from others
+        selected = random.sample(indian_topics, min(4, len(indian_topics))) + \
+                   random.sample(other_topics, min(2, len(other_topics)))
         
-        if result:
-            date_str = datetime.datetime.now().strftime("%Y-%m-%d")
-            # Final slug check from AI result
-            slug = result.get('slug', temp_slug)
-            if check_duplicate_slug(slug):
-                 print(f"⏩ Skipping duplicate AI-slug: {slug}")
-                 continue
-
-            filename = f"{date_str}-{slug}.json"
+        for item in selected:
+            topic_name = item['title']
+            geo = item.get('geo', 'all')
             
-            with open(OUTPUT_DIR / filename, "w") as f:
-                json.dump(result, f, indent=2, ensure_ascii=False)
-            print(f"✅ Article saved: {filename}")
+            temp_slug = topic_name.lower().replace(" ", "-").replace(":", "").replace("?", "")
+            if check_duplicate_slug(temp_slug):
+                continue
+
+            bonus_data = get_db_data(geo if geo != 'all' else None)
+            result = generate_article(topic_name, geo, bonus_data)
+            
+            if result:
+                date_str = datetime.datetime.now().strftime("%Y-%m-%d")
+                slug = result.get('slug', temp_slug)
+                filename = f"{date_str}-{slug}.json"
+                with open(OUTPUT_DIR / filename, "w") as f:
+                    json.dump(result, f, indent=2, ensure_ascii=False)
+                print(f"✅ Blog saved: {filename}")
+
+    # 2. Generate Match Previews from odds.json
+    ODDS_FILE = BASE_DIR.parent / "frontend" / "data" / "odds.json"
+    if ODDS_FILE.exists():
+        try:
+            with open(ODDS_FILE, "r") as f:
+                odds_data = json.load(f)
+            
+            # Select 2 matches for deeper previews (Priority to Cricket and ISL)
+            matches = odds_data.get("events", [])
+            priority_matches = [m for m in matches if m.get('sport') == 'Cricket' or m.get('tournament') == 'Indian Premier League']
+            
+            if not priority_matches:
+                priority_matches = matches
+                
+            selected_matches = random.sample(priority_matches, min(3, len(priority_matches)))
+            
+            for match in selected_matches:
+                print(f"Generating preview: {match['team_home']} vs {match['team_away']}...")
+                preview = generate_match_preview(match)
+                if preview:
+                    date_str = datetime.datetime.now().strftime("%Y-%m-%d")
+                    slug = preview.get('slug', f"preview-{match['slug']}")
+                    filename = f"preview-{date_str}-{slug}.json"
+                    with open(OUTPUT_DIR / filename, "w") as f:
+                        json.dump(preview, f, indent=2, ensure_ascii=False)
+                    print(f"✅ Match preview saved: {filename}")
+        except Exception as e:
+            print(f"Error processing odds for previews: {e}")
 
 if __name__ == "__main__":
     main()

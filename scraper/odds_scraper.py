@@ -18,21 +18,42 @@ OUTPUT_PATH = os.path.join(os.path.dirname(__file__), "..", "frontend", "data", 
 # Define the sports we want to track
 # Format: id from the-odds-api
 SPORTS_TO_TRACK = {
-    "soccer_uefa_champs_league": {
-        "sport_label": "Football",
-        "tournament_label": "UEFA Champions League"
-    },
+    # CRICKET (Priority 1 for India)
     "cricket_ipl": {
         "sport_label": "Cricket",
         "tournament_label": "Indian Premier League"
     },
-    "esports_csgo_major": {
-        "sport_label": "Esports CS2",
-        "tournament_label": "CS2 Major"
+    "cricket_international_t20": {
+        "sport_label": "Cricket",
+        "tournament_label": "International T20"
     },
+    "cricket_big_bash": {
+        "sport_label": "Cricket",
+        "tournament_label": "Big Bash League"
+    },
+    
+    # SOCCER (India Focus)
+    "soccer_india_super_league": {
+        "sport_label": "Football",
+        "tournament_label": "Indian Super League"
+    },
+    "soccer_uefa_champs_league": {
+        "sport_label": "Football",
+        "tournament_label": "UEFA Champions League"
+    },
+    "soccer_epl": {
+        "sport_label": "Football",
+        "tournament_label": "Premier League"
+    },
+
+    # OTHERS (Popular in India)
     "basketball_nba": {
         "sport_label": "Basketball",
         "tournament_label": "NBA"
+    },
+    "esports_csgo_major": {
+        "sport_label": "Esports CS2",
+        "tournament_label": "CS2 Major"
     }
 }
 
@@ -178,7 +199,7 @@ def fetch_odds_for_sport(sport_key, config):
         }
         events.append(event)
         
-        if len(events) >= 5: # Limit to 5 top matches per sport
+        if len(events) >= 15: # Limit to 15 top matches per sport
             break
             
     return events
