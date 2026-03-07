@@ -48,8 +48,8 @@ export default function TopOddsClient({ events }: { events: OddsEvent[] }) {
                                 key={sport}
                                 onClick={() => setSelectedSport(sport)}
                                 className={`px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-widest transition-all duration-300 ${selectedSport === sport
-                                        ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)] border border-transparent scale-105'
-                                        : 'bg-white/5 text-gray-500 border border-white/10 hover:bg-white/10 hover:text-white hover:border-white/20'
+                                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.5)] border border-transparent scale-105'
+                                    : 'bg-white/5 text-gray-500 border border-white/10 hover:bg-white/10 hover:text-white hover:border-white/20'
                                     }`}
                             >
                                 {sport}
@@ -71,7 +71,10 @@ export default function TopOddsClient({ events }: { events: OddsEvent[] }) {
                         <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-tighter">Live Now</h2>
                         <span className="text-xs font-bold text-red-500 bg-red-500/10 px-3 py-1 rounded-full border border-red-500/20 ml-2 tracking-widest">{liveEvents.length} MATCHES</span>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        style={{ contentVisibility: 'auto' } as any}
+                    >
                         {liveEvents.map((event) => (
                             <div key={event.id} className="transform transition-all duration-500 hover:-translate-y-2">
                                 <EventMatchCard event={event} />
@@ -90,7 +93,10 @@ export default function TopOddsClient({ events }: { events: OddsEvent[] }) {
                         <h2 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase tracking-tighter">Upcoming Highlights</h2>
                         <span className="text-xs font-bold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20 ml-2 tracking-widest">{upcomingEvents.length} MATCHES</span>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                        style={{ contentVisibility: 'auto' } as any}
+                    >
                         {upcomingEvents.map((event) => (
                             <div key={event.id} className="transform transition-all duration-500 hover:-translate-y-2">
                                 <EventMatchCard event={event} />

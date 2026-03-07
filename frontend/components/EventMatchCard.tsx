@@ -25,7 +25,7 @@ function getSportBorderHover(sport: string) {
     return 'hover:border-blue-500/50';
 }
 
-export default function EventMatchCard({ event }: { event: OddsEvent }) {
+export default React.memo(function EventMatchCard({ event }: { event: OddsEvent }) {
     const isLive = event.is_live;
     const matchDate = new Date(event.start_time);
     const [timeLeft, setTimeLeft] = useState<string>('');
@@ -227,4 +227,4 @@ export default function EventMatchCard({ event }: { event: OddsEvent }) {
             )}
         </div>
     );
-}
+});
