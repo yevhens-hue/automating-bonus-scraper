@@ -11,7 +11,8 @@ export const metadata = {
 };
 
 export default async function HomePage() {
-    const posts = await getAllPosts();
+    const allPosts = await getAllPosts();
+    const posts = allPosts.slice(0, 9);
     const topCasino = STATIC_BONUSES.filter(b => b.type === 'casino').slice(0, 3);
     const topBetting = STATIC_BONUSES.filter(b => b.type === 'betting').slice(0, 3);
 
@@ -78,13 +79,18 @@ export default async function HomePage() {
             </section>
 
             {/* Main Blog Section */}
-            <section id="blog" className="py-24 px-4 bg-white/[0.02] border-b border-white/5">
+            <section id="blog" className="py-24 px-4 bg-white/[0.02] border-b border-white/5" style={{ contentVisibility: 'auto' } as any}>
                 <div className="max-w-6xl mx-auto">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
                         <div className="max-w-xl">
                             <h2 className="text-5xl font-black text-white mb-6 tracking-tighter uppercase">Latest iGaming<br />Inspiration</h2>
                             <p className="text-gray-400 text-lg">Daily market analysis and bonus strategy guides powered by AI.</p>
                         </div>
+                        {allPosts.length > 9 && (
+                            <Link href="/blog" className="bg-white/5 hover:bg-white/10 border border-white/20 text-white font-bold px-6 py-3 rounded-xl transition-all text-xs uppercase tracking-widest">
+                                View All Insights →
+                            </Link>
+                        )}
                     </div>
 
                     {posts.length === 0 ? (
