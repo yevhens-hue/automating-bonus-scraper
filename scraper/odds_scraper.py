@@ -180,6 +180,11 @@ def fetch_odds_for_sport(sport_key, config):
         sort_order = {"1": 0, "X": 1, "2": 2}
         outcomes.sort(key=lambda x: sort_order.get(x["label"], 99))
         
+        # Determine if live based on time (if API doesn't specify)
+        start_dt = datetime.fromisoformat(start_time.replace('Z', '+00:00'))
+        now_dt = datetime.now(timezone.utc)
+        is_live = start_dt <= now_dt and (now_dt - start_dt).total_seconds() < 4 * 3600
+
         event = {
             "id": match["id"],
             "slug": slug,
@@ -188,7 +193,7 @@ def fetch_odds_for_sport(sport_key, config):
             "team_home": home_team,
             "team_away": away_team,
             "start_time": start_time,
-            "is_live": False, 
+            "is_live": is_live, 
             "markets": [
                 {
                     "type": "Match Winner (1X2)" if "X" in best_odds_map else "Match Winner",

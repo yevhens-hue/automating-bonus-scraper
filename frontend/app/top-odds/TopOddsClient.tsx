@@ -19,8 +19,28 @@ export default function TopOddsClient({ events }: { events: OddsEvent[] }) {
     }, [events, selectedSport]);
 
     // Separate Live and Upcoming events
-    const liveEvents = filteredEvents.filter(e => e.is_live);
-    const upcomingEvents = filteredEvents.filter(e => !e.is_live).sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime());
+    const { liveEvents, upcomingEvents } = useMemo(() => {
+        const now = new Date();
+        const live: OddsEvent[] = [];
+        const upcoming: OddsEvent[] = [];
+
+        filteredEvents.forEach(e => {
+            const startTime = new Date(e.start_time);
+            
+            // If it's explicitly marked as live by the scraper OR it started recently (last 4 hours)
+            // The Odds API usually stops returning odds for finished games.
+            if (e.is_live || (startTime <= now && (now.getTime() - startTime.getTime()) < 4 * 60 * 60 * 1000)) {
+                live.push(e);
+            } else if (startTime > now) {
+                upcoming.push(e);
+            }
+        });
+
+        return {
+            liveEvents: live,
+            upcomingEvents: upcoming.sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime())
+        };
+    }, [filteredEvents]);
 
     return (
         <>
