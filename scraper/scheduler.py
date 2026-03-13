@@ -55,7 +55,10 @@ def run_all(export: bool = False, sheets: bool = False, clear_sheets: bool = Fal
     all_collected = []
     
     for geo in ALL_GEOS:
-        run_for_geo(geo, export=export, sheets=sheets, clear_sheets=clear_sheets)
+        try:
+            run_for_geo(geo, export=export, sheets=sheets, clear_sheets=clear_sheets)
+        except Exception as e:
+            print(f"⚠️ Error processing {geo}: {e}")
         time.sleep(2)  # Brief pause between GEOs
         
     if github_action:
