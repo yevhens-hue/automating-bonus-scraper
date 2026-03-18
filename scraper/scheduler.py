@@ -74,19 +74,19 @@ def run_all(export: bool = False, sheets: bool = False, clear_sheets: bool = Fal
         # Update Top Odds
         print("\n📈 Fetching Live Odds from The-Odds-API...")
         odds_cmd = [sys.executable, str(Path(__file__).parent / "odds_scraper.py")]
-        subprocess.run(odds_cmd, capture_output=False)
+        subprocess.run(odds_cmd, capture_output=False, check=True)
         print("✨ Odds updated.")
 
         # Run SEO content generator
         print("\n✍️ Generating AI Blog Content...")
         gen_cmd = [sys.executable, str(Path(__file__).parent / "content_generator.py")]
-        subprocess.run(gen_cmd, capture_output=False)
+        subprocess.run(gen_cmd, capture_output=False, check=True)
         print("✨ Blog articles generated.")
 
         # Submit new articles to Google Indexing API
         print("\n🔎 Submitting new blog posts to Google Indexing API...")
         idx_cmd = [sys.executable, str(Path(__file__).parent / "indexing_api.py"), "--all"]
-        subprocess.run(idx_cmd, capture_output=False)
+        subprocess.run(idx_cmd, capture_output=False, check=True)
         print("✨ Indexing requests sent.")
 
     print(f"\n🎉 All GEOs scraped successfully!")

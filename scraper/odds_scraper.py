@@ -283,7 +283,7 @@ def main():
             
     if not all_events:
         print("⚠️ No events found across any tracked sports.")
-        sys.exit(0)
+        sys.exit(1)
         
     print(f"✅ Fetched {len(all_events)} total matches.")
     

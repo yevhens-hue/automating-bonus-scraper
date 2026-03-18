@@ -171,12 +171,14 @@ def extract_bonuses_with_ai(html: str, brand_name: str, geo: str) -> list:
     This is the core intelligence of the scraper.
     """
     groq_key = os.getenv("GROQ_API_KEY")
-    if not groq_key:
-        print("  ⚠️  GROQ_API_KEY not set. Cannot use AI extraction.")
+    openrouter_key = os.getenv("OPENROUTER_API_KEY")
+    if not groq_key and not openrouter_key:
+        print("  ⚠️  Neither GROQ_API_KEY nor OPENROUTER_API_KEY is set. Cannot use AI extraction.")
         return []
     
     # Strip whitespace to prevent "Invalid header value" errors from malformed secrets
-    groq_key = groq_key.strip()
+    if groq_key: groq_key = groq_key.strip()
+    if openrouter_key: openrouter_key = openrouter_key.strip()
 
     # Trim HTML to avoid token limits — take first 8000 chars
     html_snippet = html[:8000]
@@ -198,30 +200,69 @@ HTML Snippet:
 
 Return ONLY the JSON array, no explanation, no markdown code blocks."""
 
-    try:
-        resp = requests.post(
-            "https://api.groq.com/openai/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {groq_key}",
-                "Content-Type": "application/json"
-            },
-            json={
-                "model": "llama-3.3-70b-versatile",
-                "messages": [{"role": "user", "content": prompt}],
-                "max_tokens": 2000,
-                "temperature": 0.2
-            },
-            timeout=30
-        )
-        if resp.status_code == 200:
-            raw = resp.json()["choices"][0]["message"]["content"].strip()
-            # Extract JSON array from response
-            start = raw.find("[")
-            end = raw.rfind("]") + 1
-            if start >= 0 and end > start:
-                return json.loads(raw[start:end])
-    except Exception as e:
-        print(f"  ⚠️  AI extraction failed: {e}")
+    def _try_openrouter():
+        if not openrouter_key:
+            return []
+        try:
+            resp = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {openrouter_key}",
+                    "Content-Type": "application/json",
+                    "HTTP-Referer": "https://games-income.com",
+                    "X-Title": "Bonus Scraper"
+                },
+                json={
+                    "model": "meta-llama/llama-3.3-70b-instruct",
+                    "messages": [{"role": "user", "content": prompt}],
+                    "response_format": {"type": "json_object"}
+                },
+                timeout=40
+            )
+            if resp.status_code == 200:
+                raw = resp.json()["choices"][0]["message"]["content"].strip()
+                start = raw.find("[")
+                end = raw.rfind("]") + 1
+                if start >= 0 and end > start:
+                    return json.loads(raw[start:end])
+            else:
+                print(f"  ⚠️  OpenRouter fallback failed with status {resp.status_code}: {resp.text}")
+        except Exception as e:
+            print(f"  ⚠️  OpenRouter fallback exception: {e}")
+        return []
+
+    if groq_key:
+        try:
+            resp = requests.post(
+                "https://api.groq.com/openai/v1/chat/completions",
+                headers={
+                    "Authorization": f"Bearer {groq_key}",
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "model": "llama-3.3-70b-versatile",
+                    "messages": [{"role": "user", "content": prompt}],
+                    "max_tokens": 2000,
+                    "temperature": 0.2
+                },
+                timeout=30
+            )
+            if resp.status_code == 200:
+                raw = resp.json()["choices"][0]["message"]["content"].strip()
+                start = raw.find("[")
+                end = raw.rfind("]") + 1
+                if start >= 0 and end > start:
+                    return json.loads(raw[start:end])
+            else:
+                print(f"  ⚠️  Groq failed, status {resp.status_code}. Using OpenRouter fallback...")
+                return _try_openrouter()
+        except Exception as e:
+            print(f"  ⚠️  Groq exception: {e}. Using OpenRouter fallback...")
+            return _try_openrouter()
+    else:
+        # If Groq is missing but openrouter isn't
+        return _try_openrouter()
+    
     return []
 
 

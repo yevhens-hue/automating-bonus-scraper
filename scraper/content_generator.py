@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 import json
 import sqlite3
 import datetime
@@ -17,6 +18,7 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 TOPICS_PATH = BASE_DIR / "config" / "topics.json"
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 def check_duplicate_slug(slug):
     """Check if a blog post with the given slug already exists."""
@@ -58,8 +60,8 @@ def get_db_data(geo=None):
     return [dict(r) for r in rows]
 
 def generate_article(topic, geo_context, bonus_data):
-    if not GROQ_API_KEY:
-        print("GROQ_API_KEY not found. Skipping article generation.")
+    if not GROQ_API_KEY and not OPENROUTER_API_KEY:
+        print("Neither GROQ_API_KEY nor OPENROUTER_API_KEY found. Skipping article generation.")
         return None
 
     # Format bonus data for the prompt
@@ -99,28 +101,62 @@ def generate_article(topic, geo_context, bonus_data):
     Output should be valid JSON with 'title', 'slug', 'content' (Markdown), and 'date' fields.
     """
 
-    url = "https://api.groq.com/openai/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    data = {
-        "model": "llama-3.3-70b-versatile",
-        "messages": [{"role": "user", "content": prompt}],
-        "response_format": {"type": "json_object"}
-    }
+    def _try_openrouter_article():
+        if not OPENROUTER_API_KEY:
+            return None
+        url = "https://openrouter.ai/api/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://games-income.com",
+            "X-Title": "Bonus Scraper"
+        }
+        data = {
+            "model": "meta-llama/llama-3.3-70b-instruct",
+            "messages": [{"role": "user", "content": prompt}],
+            "response_format": {"type": "json_object"}
+        }
+        try:
+            response = requests.post(url, headers=headers, json=data)
+            if response.status_code == 200:
+                res_json = response.json()
+                return json.loads(res_json['choices'][0]['message']['content'])
+            else:
+                print(f"OpenRouter error: {response.text}")
+                return None
+        except Exception as e:
+            print(f"Error generating article with OpenRouter: {e}")
+            return None
 
-    try:
-        response = requests.post(url, headers=headers, json=data)
-        res_json = response.json()
-        return json.loads(res_json['choices'][0]['message']['content'])
-    except Exception as e:
-        print(f"Error generating article: {e}")
-        return None
+    if GROQ_API_KEY:
+        url = "https://api.groq.com/openai/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        data = {
+            "model": "llama-3.3-70b-versatile",
+            "messages": [{"role": "user", "content": prompt}],
+            "response_format": {"type": "json_object"}
+        }
+        
+        try:
+            response = requests.post(url, headers=headers, json=data)
+            if response.status_code == 200:
+                res_json = response.json()
+                return json.loads(res_json['choices'][0]['message']['content'])
+            else:
+                print(f"Groq failed, status {response.status_code}. Trying OpenRouter...")
+                return _try_openrouter_article()
+        except Exception as e:
+            print(f"Groq exception: {e}. Trying OpenRouter...")
+            return _try_openrouter_article()
+    else:
+        return _try_openrouter_article()
 
 def generate_match_preview(event):
     """Generate a detailed SEO preview for a specific match."""
-    if not GROQ_API_KEY:
+    if not GROQ_API_KEY and not OPENROUTER_API_KEY:
         return None
 
     home = event.get('team_home')
@@ -148,29 +184,63 @@ def generate_match_preview(event):
     Output should be valid JSON with 'title', 'slug', 'content' (Markdown), and 'date' fields.
     """
 
-    url = "https://api.groq.com/openai/v1/chat/completions"
-    headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    data = {
-        "model": "llama-3.3-70b-versatile",
-        "messages": [{"role": "user", "content": prompt}],
-        "response_format": {"type": "json_object"}
-    }
+    def _try_openrouter_preview():
+        if not OPENROUTER_API_KEY:
+            return None
+        url = "https://openrouter.ai/api/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://games-income.com",
+            "X-Title": "Bonus Scraper"
+        }
+        data = {
+            "model": "meta-llama/llama-3.3-70b-instruct",
+            "messages": [{"role": "user", "content": prompt}],
+            "response_format": {"type": "json_object"}
+        }
+        try:
+            response = requests.post(url, headers=headers, json=data)
+            if response.status_code == 200:
+                res_json = response.json()
+                return json.loads(res_json['choices'][0]['message']['content'])
+            else:
+                print(f"OpenRouter error: {response.text}")
+                return None
+        except Exception as e:
+            print(f"Error generating match preview with OpenRouter: {e}")
+            return None
 
-    try:
-        response = requests.post(url, headers=headers, json=data)
-        res_json = response.json()
-        return json.loads(res_json['choices'][0]['message']['content'])
-    except Exception as e:
-        print(f"Error generating match preview: {e}")
-        return None
+    if GROQ_API_KEY:
+        url = "https://api.groq.com/openai/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {GROQ_API_KEY}",
+            "Content-Type": "application/json"
+        }
+        data = {
+            "model": "llama-3.3-70b-versatile",
+            "messages": [{"role": "user", "content": prompt}],
+            "response_format": {"type": "json_object"}
+        }
+    
+        try:
+            response = requests.post(url, headers=headers, json=data)
+            if response.status_code == 200:
+                res_json = response.json()
+                return json.loads(res_json['choices'][0]['message']['content'])
+            else:
+                print(f"Groq failed, status {response.status_code}. Trying OpenRouter...")
+                return _try_openrouter_preview()
+        except Exception as e:
+            print(f"Groq exception: {e}. Trying OpenRouter...")
+            return _try_openrouter_preview()
+    else:
+        return _try_openrouter_preview()
 
 def main():
     if not TOPICS_PATH.exists():
         print(f"Error: {TOPICS_PATH} not found.")
-        return
+        sys.exit(1)
 
     # 1. Generate standard blog posts from topics
     with open(TOPICS_PATH, "r") as f:
@@ -188,6 +258,7 @@ def main():
         selected = random.sample(indian_topics, min(4, len(indian_topics))) + \
                    random.sample(other_topics, min(2, len(other_topics)))
         
+        success_count = 0
         for item in selected:
             topic_name = item['title']
             geo = item.get('geo', 'all')
@@ -206,6 +277,11 @@ def main():
                 with open(OUTPUT_DIR / filename, "w") as f:
                     json.dump(result, f, indent=2, ensure_ascii=False)
                 print(f"✅ Blog saved: {filename}")
+                success_count += 1
+                
+        if success_count == 0:
+            print("❌ Error: No articles were generated (possible API limitation).")
+            sys.exit(1)
 
     # 2. Generate Match Previews from odds.json
     ODDS_FILE = BASE_DIR.parent / "frontend" / "data" / "odds.json"
