@@ -1,4 +1,7 @@
-# .env
+# Environment variables
+.env
+.env.local
+.env.production
 pbn-reporter-*.json
 # node_modules and other junk already ignored below
 *.log

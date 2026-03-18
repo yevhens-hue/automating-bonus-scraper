@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import type { Bonus } from '@/lib/bonuses';
 
 const GEO_FLAGS: Record<string, string> = {
@@ -214,7 +215,17 @@ export default function DetailedBonusTable({ bonuses, title }: { bonuses: Bonus[
                                         <td className="py-4 px-4 whitespace-nowrap">
                                             <div className="flex items-center gap-2">
                                                 <div className="w-6 h-6 rounded bg-white/10 p-1 flex items-center justify-center overflow-hidden border border-white/5 shadow-inner">
-                                                    <img src={bonus.logo_url} alt="" className="w-full h-full object-contain" onError={(e) => { (e.target as HTMLImageElement).src = '/logos/default.png'; }} />
+                                                    <Image
+                                                        src={bonus.logo_url}
+                                                        alt=""
+                                                        width={24}
+                                                        height={24}
+                                                        className="w-full h-full object-contain"
+                                                        unoptimized
+                                                        onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                                                            e.currentTarget.src = '/logos/default.png';
+                                                        }}
+                                                    />
                                                 </div>
                                                 <span className="text-white font-bold text-xs group-hover:text-purple-400 transition-colors uppercase tracking-tight">{bonus.brand_name}</span>
                                             </div>

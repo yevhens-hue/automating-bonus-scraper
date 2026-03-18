@@ -1,11 +1,17 @@
 import fs from 'fs';
 import path from 'path';
 
-// Determine the posts directory, accounting for whether we're in the project root or the frontend directory
-const baseDir = fs.existsSync(path.join(process.cwd(), 'frontend'))
-  ? path.join(process.cwd(), 'frontend')
-  : process.cwd();
+// Use __dirname equivalent for ESM/Next.js
+const getBaseDir = () => {
+    // Check if we're in frontend directory or project root
+    const cwd = process.cwd();
+    if (fs.existsSync(path.join(cwd, 'frontend'))) {
+        return path.join(cwd, 'frontend');
+    }
+    return cwd;
+};
 
+const baseDir = getBaseDir();
 const postsDirectory = path.join(baseDir, 'data', 'blog');
 
 export interface PostData {
