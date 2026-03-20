@@ -2,6 +2,8 @@
 .env
 .env.local
 .env.production
+.autopilot.json
+.cursor/
 pbn-reporter-*.json
 # node_modules and other junk already ignored below
 *.log
