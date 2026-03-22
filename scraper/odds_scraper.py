@@ -1,12 +1,22 @@
 import os
 import sys
 import json
+import time
 import random
 import sqlite3
 import requests
 import re
 from datetime import datetime, timezone
 from dotenv import load_dotenv
+import logging
+
+# Настроить логирование
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
@@ -32,7 +42,7 @@ SPORTS_TO_TRACK = {
         "tournament_label": "Big Bash League"
     },
     
-    # SOCCER (India Focus)
+    # SOCCER
     "soccer_india_super_league": {
         "sport_label": "Football",
         "tournament_label": "Indian Super League"
@@ -45,8 +55,50 @@ SPORTS_TO_TRACK = {
         "sport_label": "Football",
         "tournament_label": "Premier League"
     },
+    "soccer_spain_la_liga": {
+        "sport_label": "Football",
+        "tournament_label": "La Liga"
+    },
+    "soccer_italy_serie_a": {
+        "sport_label": "Football",
+        "tournament_label": "Serie A"
+    },
+    "soccer_germany_bundesliga": {
+        "sport_label": "Football",
+        "tournament_label": "Bundesliga"
+    },
 
-    # OTHERS (Popular in India)
+    # TENNIS
+    "tennis_atp_wimbledon": {
+        "sport_label": "Tennis",
+        "tournament_label": "Wimbledon"
+    },
+    "tennis_atp_us_open": {
+        "sport_label": "Tennis",
+        "tournament_label": "US Open"
+    },
+
+    # US SPORTS
+    "americanfootball_nfl": {
+        "sport_label": "American Football",
+        "tournament_label": "NFL"
+    },
+    "icehockey_nhl": {
+        "sport_label": "Ice Hockey",
+        "tournament_label": "NHL"
+    },
+    "baseball_mlb": {
+        "sport_label": "Baseball",
+        "tournament_label": "MLB"
+    },
+
+    # COMBAT SPORTS
+    "mma_mixed_martial_arts": {
+        "sport_label": "MMA",
+        "tournament_label": "UFC/MMA"
+    },
+
+    # OTHERS
     "basketball_nba": {
         "sport_label": "Basketball",
         "tournament_label": "NBA"
@@ -67,7 +119,7 @@ def generate_slug(home_team, away_team, sport_label):
 def get_active_affiliate_brands():
     """Fetch all unique active brands and their affiliate URLs from the database."""
     if not os.path.exists(DB_PATH):
-        print(f"❌ Database not found at {DB_PATH}")
+        logger.error(f"❌ Database not found at {DB_PATH}")
         return []
         
     conn = sqlite3.connect(DB_PATH)
@@ -90,7 +142,7 @@ def get_active_affiliate_brands():
 
 def fetch_odds_for_sport(sport_key, config):
     """Fetch matches and odds for a specific sport from The-Odds-API."""
-    print(f"📡 Fetching {sport_key}...")
+    logger.info(f"📡 Fetching {sport_key}...")
     url = f"https://api.the-odds-api.com/v4/sports/{sport_key}/odds"
     
     params = {
@@ -103,7 +155,7 @@ def fetch_odds_for_sport(sport_key, config):
     response = requests.get(url, params=params)
     
     if response.status_code != 200:
-        print(f"⚠️ Failed to fetch {sport_key}: {response.text}")
+        logger.warning(f"⚠️ Failed to fetch {sport_key}: {response.text}")
         return []
         
     data = response.json()
@@ -217,7 +269,7 @@ def map_our_brands_to_odds(events, our_brands):
     Otherwise uses a fallback affiliate link from our active db.
     """
     if not our_brands:
-        print("⚠️ No brands found in database. Using placeholder brands.")
+        logger.warning("⚠️ No brands found in database. Using placeholder brands.")
         our_brands = [
             {"brand_id": "1", "brand_name": "DemoCasino", "affiliate_url": "/"}
         ]
@@ -263,29 +315,50 @@ def map_our_brands_to_odds(events, our_brands):
 
 
 def main():
-    print("🚀 Starting Automated Odds Scraper...")
+    logger.info("🚀 Starting Automated Odds Scraper...")
     
     if not ODDS_API_KEY:
-        print("❌ ERROR: ODDS_API_KEY is not set in scraper/.env")
-        print("Please register at https://the-odds-api.com/ to get a free API key.")
-        print("Add it to scraper/.env like: ODDS_API_KEY=your_key")
+        logger.error("❌ ERROR: ODDS_API_KEY is not set in scraper/.env")
+        logger.error("Please register at https://the-odds-api.com/ to get a free API key.")
+        logger.error("Add it to scraper/.env like: ODDS_API_KEY=your_key")
         sys.exit(1)
         
     our_brands = get_active_affiliate_brands()
-    print(f"✅ Found {len(our_brands)} active affiliate brands in DB.")
+    logger.info(f"✅ Found {len(our_brands)} active affiliate brands in DB.")
     
     all_events = []
+    use_cache = False
     
-    for sport_key, config in SPORTS_TO_TRACK.items():
-        events = fetch_odds_for_sport(sport_key, config)
-        if events:
-            all_events.extend(events)
+    CACHE_FILE = os.path.join(os.path.dirname(__file__), "output", "odds_api_cache.json")
+    CACHE_TTL = 7200 # 2 hours
+    
+    if os.path.exists(CACHE_FILE):
+        file_age = time.time() - os.path.getmtime(CACHE_FILE)
+        if file_age < CACHE_TTL:
+            try:
+                with open(CACHE_FILE, "r") as f:
+                    all_events = json.load(f)
+                use_cache = True
+                logger.info(f"✅ Loaded {len(all_events)} events from local cache (age: {int(file_age/60)} mins)")
+            except:
+                pass
+                
+    if not use_cache:
+        for sport_key, config in SPORTS_TO_TRACK.items():
+            events = fetch_odds_for_sport(sport_key, config)
+            if events:
+                all_events.extend(events)
+        
+        if all_events:
+            os.makedirs(os.path.dirname(CACHE_FILE), exist_ok=True)
+            with open(CACHE_FILE, "w") as f:
+                json.dump(all_events, f)
             
     if not all_events:
-        print("⚠️ No events found across any tracked sports.")
+        logger.warning("⚠️ No events found across any tracked sports.")
         sys.exit(0)
         
-    print(f"✅ Fetched {len(all_events)} total matches.")
+    logger.info(f"✅ Fetched {len(all_events)} total matches.")
     
     # Map to our brands
     mapped_events = map_our_brands_to_odds(all_events, our_brands)
@@ -301,7 +374,7 @@ def main():
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=2, ensure_ascii=False)
         
-    print(f"🎉 Success! Wrote {len(mapped_events)} events to {OUTPUT_PATH}")
+    logger.info(f"🎉 Success! Wrote {len(mapped_events)} events to {OUTPUT_PATH}")
 
 if __name__ == "__main__":
     main()

@@ -8,6 +8,15 @@ import random
 import requests
 from pathlib import Path
 from dotenv import load_dotenv
+import logging
+
+# Настроить логирование
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -61,7 +70,7 @@ def get_db_data(geo=None):
 
 def generate_article(topic, geo_context, bonus_data):
     if not GROQ_API_KEY and not OPENROUTER_API_KEY:
-        print("Neither GROQ_API_KEY nor OPENROUTER_API_KEY found. Skipping article generation.")
+        logger.warning("Neither GROQ_API_KEY nor OPENROUTER_API_KEY found. Skipping article generation.")
         return None
 
     # Format bonus data for the prompt
@@ -122,10 +131,10 @@ def generate_article(topic, geo_context, bonus_data):
                 res_json = response.json()
                 return json.loads(res_json['choices'][0]['message']['content'])
             else:
-                print(f"OpenRouter error: {response.text}")
+                logger.warning(f"OpenRouter error: {response.text}")
                 return None
         except Exception as e:
-            print(f"Error generating article with OpenRouter: {e}")
+            logger.error(f"Error generating article with OpenRouter: {e}")
             return None
 
     if GROQ_API_KEY:
@@ -146,10 +155,10 @@ def generate_article(topic, geo_context, bonus_data):
                 res_json = response.json()
                 return json.loads(res_json['choices'][0]['message']['content'])
             else:
-                print(f"Groq failed, status {response.status_code}. Trying OpenRouter...")
+                logger.warning(f"Groq failed, status {response.status_code}. Trying OpenRouter...")
                 return _try_openrouter_article()
         except Exception as e:
-            print(f"Groq exception: {e}. Trying OpenRouter...")
+            logger.warning(f"Groq exception: {e}. Trying OpenRouter...")
             return _try_openrouter_article()
     else:
         return _try_openrouter_article()
@@ -205,10 +214,10 @@ def generate_match_preview(event):
                 res_json = response.json()
                 return json.loads(res_json['choices'][0]['message']['content'])
             else:
-                print(f"OpenRouter error: {response.text}")
+                logger.warning(f"OpenRouter error: {response.text}")
                 return None
         except Exception as e:
-            print(f"Error generating match preview with OpenRouter: {e}")
+            logger.error(f"Error generating match preview with OpenRouter: {e}")
             return None
 
     if GROQ_API_KEY:
@@ -229,17 +238,17 @@ def generate_match_preview(event):
                 res_json = response.json()
                 return json.loads(res_json['choices'][0]['message']['content'])
             else:
-                print(f"Groq failed, status {response.status_code}. Trying OpenRouter...")
+                logger.warning(f"Groq failed, status {response.status_code}. Trying OpenRouter...")
                 return _try_openrouter_preview()
         except Exception as e:
-            print(f"Groq exception: {e}. Trying OpenRouter...")
+            logger.warning(f"Groq exception: {e}. Trying OpenRouter...")
             return _try_openrouter_preview()
     else:
         return _try_openrouter_preview()
 
 def main():
     if not TOPICS_PATH.exists():
-        print(f"Error: {TOPICS_PATH} not found.")
+        logger.error(f"Error: {TOPICS_PATH} not found.")
         sys.exit(1)
 
     # 1. Generate standard blog posts from topics
@@ -248,7 +257,7 @@ def main():
     
     all_topics = topics_data.get("topics", [])
     if not all_topics:
-        print("No topics found in config.")
+        logger.warning("No topics found in config.")
     else:
         # Prioritize Indian topics
         indian_topics = [t for t in all_topics if t.get('geo') == 'IN']
@@ -276,11 +285,11 @@ def main():
                 filename = f"{date_str}-{slug}.json"
                 with open(OUTPUT_DIR / filename, "w") as f:
                     json.dump(result, f, indent=2, ensure_ascii=False)
-                print(f"✅ Blog saved: {filename}")
+                logger.info(f"✅ Blog saved: {filename}")
                 success_count += 1
                 
         if success_count == 0:
-            print("❌ Error: No articles were generated (possible API limitation).")
+            logger.error("❌ Error: No articles were generated (possible API limitation).")
             sys.exit(1)
 
     # 2. Generate Match Previews from odds.json
@@ -300,7 +309,7 @@ def main():
             selected_matches = random.sample(priority_matches, min(3, len(priority_matches)))
             
             for match in selected_matches:
-                print(f"Generating preview: {match['team_home']} vs {match['team_away']}...")
+                logger.info(f"Generating preview: {match['team_home']} vs {match['team_away']}...")
                 preview = generate_match_preview(match)
                 if preview:
                     date_str = datetime.datetime.now().strftime("%Y-%m-%d")
@@ -308,9 +317,9 @@ def main():
                     filename = f"preview-{date_str}-{slug}.json"
                     with open(OUTPUT_DIR / filename, "w") as f:
                         json.dump(preview, f, indent=2, ensure_ascii=False)
-                    print(f"✅ Match preview saved: {filename}")
+                    logger.info(f"✅ Match preview saved: {filename}")
         except Exception as e:
-            print(f"Error processing odds for previews: {e}")
+            logger.error(f"Error processing odds for previews: {e}")
 
 if __name__ == "__main__":
     main()

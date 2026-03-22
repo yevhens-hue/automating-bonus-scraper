@@ -3,16 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import type { Bonus } from '@/lib/bonuses';
 
-const BONUS_TYPE_LABELS: Record<string, string> = {
-    welcome: '🎁 Welcome',
-    reload: '🔁 Reload',
-    cashback: '💸 Cashback',
-    free_spins: '🎡 Free Spins',
-    sports: '🏆 Sports',
-    vip: '👑 VIP',
-    other: '🎯 Special',
-};
-
 export default function BonusTableRow({ bonus, rank }: { bonus: Bonus; rank: number }) {
     const rating = bonus.rating ?? 0;
     const isNew = bonus.is_new;

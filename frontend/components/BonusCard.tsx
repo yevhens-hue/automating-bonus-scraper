@@ -1,4 +1,5 @@
 'use client';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import type { Bonus } from '@/lib/bonuses';
 
@@ -17,6 +18,14 @@ const RANK_COLORS = ['from-yellow-500 to-amber-400', 'from-gray-400 to-gray-300'
 export default function BonusCard({ bonus, rank }: { bonus: Bonus; rank?: number }) {
     const isExpired = bonus.is_expired;
     const isNew = bonus.is_new;
+
+    const [ctaText, setCtaText] = useState('Claim Bonus →');
+
+    useEffect(() => {
+        // A/B Testing for the CTA button to optimize conversion
+        const ctas = ['Claim Bonus →', 'Get Offer →', 'Play Now →'];
+        setCtaText(ctas[Math.floor(Math.random() * ctas.length)]);
+    }, []);
 
     return (
         <div className={`group relative bg-white/5 hover:bg-white/8 border border-white/10 ${isExpired ? 'opacity-60 grayscale-[0.5]' : 'hover:border-purple-500/50'} rounded-2xl p-4 md:p-5 transition-all duration-300 ${!isExpired && 'hover:-translate-y-1 hover:shadow-2xl hover:shadow-purple-900/20'}`}>
@@ -57,6 +66,7 @@ export default function BonusCard({ bonus, rank }: { bonus: Bonus; rank?: number
                         height={24}
                         className="w-6 h-6 object-contain"
                         unoptimized
+                        priority={rank ? rank <= 3 : false}
                         onError={(e) => { (e.target as HTMLImageElement).src = '/logos/default.png'; }}
                     />
                 </div>
@@ -115,9 +125,19 @@ export default function BonusCard({ bonus, rank }: { bonus: Bonus; rank?: number
                     href={bonus.affiliate_url}
                     target="_blank"
                     rel="nofollow sponsored noopener noreferrer"
+                    onClick={() => {
+                        if (typeof window !== 'undefined' && 'dataLayer' in window) {
+                            (window as unknown as { dataLayer: Record<string, unknown>[] }).dataLayer.push({
+                                event: 'cta_click',
+                                cta_text: ctaText,
+                                brand: bonus.brand_name,
+                                card_type: 'regular'
+                            });
+                        }
+                    }}
                     className="block w-full text-center bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-3 px-4 rounded-xl transition-all transform hover:scale-105 active:scale-95 shadow-lg shadow-purple-900/20 text-sm"
                 >
-                    Claim Bonus via UPI →
+                    {ctaText}
                 </a>
             )}
 

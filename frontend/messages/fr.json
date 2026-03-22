@@ -1,0 +1,21 @@
+{
+  "Navigation": {
+    "all_bonuses": "Tous les Bonus",
+    "vip_bonuses": "Bonus VIP",
+    "bonuses_by_country": "Par Pays",
+    "holiday_bonuses": "Bonus de Vacances",
+    "blog": "Blog",
+    "top_odds": "Meilleures Cotes"
+  },
+  "HomePage": {
+    "title": "Augmentez Vos Gains Avec Les Meilleurs Bonus",
+    "subtitle": "Découvrez des bonus vérifiés avec une forte conversion de grandes marques mondiales.",
+    "cta": "Voir Tous Les Bonus"
+  },
+  "Newsletter": {
+    "subscribe": "S'abonner",
+    "placeholder": "Entrez votre email",
+    "title": "Rejoignez la liste VIP",
+    "subtitle": "Recevez des bonus exclusifs et des conseils de paris chaque semaine."
+  }
+}

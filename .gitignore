@@ -16,3 +16,5 @@ bot_package.zip
 .vercel
 # .env*.local
 scraper/.env
+# Next.js build output
+frontend/.next/

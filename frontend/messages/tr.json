@@ -1,0 +1,21 @@
+{
+  "Navigation": {
+    "all_bonuses": "Tüm Bonuslar",
+    "vip_bonuses": "VIP Bonuslar",
+    "bonuses_by_country": "Ülkeye Göre",
+    "holiday_bonuses": "Tatil Bonusları",
+    "blog": "Blog",
+    "top_odds": "En İyi Oranlar"
+  },
+  "HomePage": {
+    "title": "En İyi Bonuslarla Kazancınızı Artırın",
+    "subtitle": "Dünya çapındaki en iyi markalardan doğrulanmış, yüksek dönüşümlü bonusları keşfedin.",
+    "cta": "Tüm Bonusları Gör"
+  },
+  "Newsletter": {
+    "subscribe": "Abone Ol",
+    "placeholder": "E-posta adresiniz",
+    "title": "VIP Listesine Katılın",
+    "subtitle": "Özel bonuslar ve bahis ipuçlarını haftalık olarak alın."
+  }
+}

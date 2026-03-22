@@ -21,6 +21,15 @@ from oauth2client.service_account import ServiceAccountCredentials
 from typing import Optional, List
 from pathlib import Path
 from dotenv import load_dotenv
+import logging
+
+# Настроить логирование
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -76,7 +85,7 @@ def init_db():
             pass
     conn.commit()
     conn.close()
-    print("✅ Database initialized.")
+    logger.info("✅ Database initialized.")
 
 
 def save_bonuses(bonuses: list):
@@ -115,7 +124,7 @@ def save_bonuses(bonuses: list):
         ))
     conn.commit()
     conn.close()
-    print(f"💾 Saved {len(bonuses)} bonuses to database.")
+    logger.info(f"💾 Saved {len(bonuses)} bonuses to database.")
 
 
 def get_bonuses(geo: str = None, bonus_type: str = None, include_inactive: bool = False) -> list:
@@ -144,8 +153,8 @@ def get_bonuses(geo: str = None, bonus_type: str = None, include_inactive: bool 
 
 # ─── Scraping Logic ───────────────────────────────────────────────────────────
 
-def fetch_page_html(url: str, timeout: int = 20) -> Optional[str]:
-    """Fetch raw HTML from a URL using requests."""
+def fetch_page_html(url: str, timeout: int = 10, retries: int = 3) -> Optional[str]:
+    """Fetch raw HTML from a URL using requests with retry logic."""
     headers = {
         "User-Agent": (
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -155,13 +164,21 @@ def fetch_page_html(url: str, timeout: int = 20) -> Optional[str]:
         "Accept-Language": "en-US,en;q=0.9",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     }
-    try:
-        resp = requests.get(url, headers=headers, timeout=timeout)
-        if resp.status_code == 200:
-            return resp.text
-        print(f"  ⚠️  HTTP {resp.status_code} for {url}")
-    except Exception as e:
-        print(f"  ❌  Could not fetch {url}: {e}")
+    
+    for attempt in range(1, retries + 1):
+        try:
+            resp = requests.get(url, headers=headers, timeout=timeout)
+            if resp.status_code == 200:
+                return resp.text
+            logger.warning(f"  ⚠️  HTTP {resp.status_code} for {url} (Attempt {attempt}/{retries})")
+        except Exception as e:
+            logger.error(f"  ❌  Could not fetch {url}: {e} (Attempt {attempt}/{retries})")
+        
+        if attempt < retries:
+            sleep_time = 2 ** attempt  # Exponential backoff: 2s, 4s
+            logger.info(f"  ⏳  Retrying in {sleep_time}s...")
+            time.sleep(sleep_time)
+
     return None
 
 
@@ -173,7 +190,7 @@ def extract_bonuses_with_ai(html: str, brand_name: str, geo: str) -> list:
     groq_key = os.getenv("GROQ_API_KEY")
     openrouter_key = os.getenv("OPENROUTER_API_KEY")
     if not groq_key and not openrouter_key:
-        print("  ⚠️  Neither GROQ_API_KEY nor OPENROUTER_API_KEY is set. Cannot use AI extraction.")
+        logger.warning("  ⚠️  Neither GROQ_API_KEY nor OPENROUTER_API_KEY is set. Cannot use AI extraction.")
         return []
     
     # Strip whitespace to prevent "Invalid header value" errors from malformed secrets
@@ -226,9 +243,9 @@ Return ONLY the JSON array, no explanation, no markdown code blocks."""
                 if start >= 0 and end > start:
                     return json.loads(raw[start:end])
             else:
-                print(f"  ⚠️  OpenRouter fallback failed with status {resp.status_code}: {resp.text}")
+                logger.warning(f"  ⚠️  OpenRouter fallback failed with status {resp.status_code}: {resp.text}")
         except Exception as e:
-            print(f"  ⚠️  OpenRouter fallback exception: {e}")
+            logger.warning(f"  ⚠️  OpenRouter fallback exception: {e}")
         return []
 
     if groq_key:
@@ -254,10 +271,10 @@ Return ONLY the JSON array, no explanation, no markdown code blocks."""
                 if start >= 0 and end > start:
                     return json.loads(raw[start:end])
             else:
-                print(f"  ⚠️  Groq failed, status {resp.status_code}. Using OpenRouter fallback...")
+                logger.warning(f"  ⚠️  Groq failed, status {resp.status_code}. Using OpenRouter fallback...")
                 return _try_openrouter()
         except Exception as e:
-            print(f"  ⚠️  Groq exception: {e}. Using OpenRouter fallback...")
+            logger.warning(f"  ⚠️  Groq exception: {e}. Using OpenRouter fallback...")
             return _try_openrouter()
     else:
         # If Groq is missing but openrouter isn't
@@ -268,18 +285,18 @@ Return ONLY the JSON array, no explanation, no markdown code blocks."""
 
 def scrape_site(site: dict, geo: str, bonus_type: str) -> list:
     """Scrape a single site and return list of bonus dicts."""
-    print(f"\n  🔍 Scraping {site['name']} ({geo})...")
+    logger.info(f"\n  🔍 Scraping {site['name']} ({geo})...")
     html = fetch_page_html(site["bonus_url"])
 
     if not html:
-        print(f"  ⚠️  Falling back to static defaults for {site['name']}")
+        logger.warning(f"  ⚠️  Falling back to static defaults for {site['name']}")
         return get_fallback_bonuses(site, geo, bonus_type)
 
     # AI extraction
     ai_bonuses = extract_bonuses_with_ai(html, site["name"], geo)
 
     if not ai_bonuses:
-        print(f"  ⚠️  AI found no bonuses, using fallback for {site['name']}")
+        logger.warning(f"  ⚠️  AI found no bonuses, using fallback for {site['name']}")
         return get_fallback_bonuses(site, geo, bonus_type)
 
     result = []
@@ -300,7 +317,7 @@ def scrape_site(site: dict, geo: str, bonus_type: str) -> list:
             "rating": site.get("rating", 4.0),
             "extra_data": b.get("extra_data")
         })
-    print(f"  ✅ Found {len(result)} bonuses for {site['name']}")
+    logger.info(f"  ✅ Found {len(result)} bonuses for {site['name']}")
     return result
 
 
@@ -369,7 +386,7 @@ def export_to_sheets(geo: str = None, bonus_type: str = None, clear_sheets: bool
     """
     json_creds = os.getenv("GOOGLE_CREDENTIALS")
     if not json_creds:
-        print("  ⚠️  GOOGLE_CREDENTIALS not set. Skipping Sheets export.")
+        logger.warning("  ⚠️  GOOGLE_CREDENTIALS not set. Skipping Sheets export.")
         return
 
     sheet_id = "1yQJKYRpdc8I-xRlLYrEgz8hhN1bQYM4NuG7NOUbyqAc"
@@ -458,15 +475,15 @@ def export_to_sheets(geo: str = None, bonus_type: str = None, clear_sheets: bool
         if clear_sheets:
             full_data = [headers] + new_rows
             worksheet.update("A1", full_data)
-            print(f"🧹 Tab {tab_name} hard-reset with {len(new_rows)} rows.")
+            logger.info(f"🧹 Tab {tab_name} hard-reset with {len(new_rows)} rows.")
         elif new_rows:
             worksheet.append_rows(new_rows)
-            print(f"✅ Appended {len(new_rows)} NEW bonuses to Google Sheet (Tab: {tab_name}).")
+            logger.info(f"✅ Appended {len(new_rows)} NEW bonuses to Google Sheet (Tab: {tab_name}).")
         else:
-            print(f"ℹ️  No new bonuses to append for {tab_name}.")
+            logger.info(f"ℹ️  No new bonuses to append for {tab_name}.")
         
     except Exception as e:
-        print(f"  ❌ Google Sheets export failed: {e}")
+        logger.error(f"  ❌ Google Sheets export failed: {e}")
 
 
 # ─── Main Runner ──────────────────────────────────────────────────────────────
@@ -475,12 +492,12 @@ def run_scraper(geo: str, bonus_type: str = "all", dry_run: bool = False):
     """Main entry point: scrapes all sites for a given geo and type."""
     geo = geo.upper()
     if geo not in SITES_BY_GEO:
-        print(f"❌ GEO '{geo}' not found in config. Available: {list(SITES_BY_GEO.keys())}")
+        logger.error(f"❌ GEO '{geo}' not found in config. Available: {list(SITES_BY_GEO.keys())}")
         return
 
     geo_config = SITES_BY_GEO[geo]
-    print(f"\n🌍 Scraping bonuses for {geo_config['name']} ({geo}) — Type: {bonus_type}")
-    print("=" * 60)
+    logger.info(f"\n🌍 Scraping bonuses for {geo_config['name']} ({geo}) — Type: {bonus_type}")
+    logger.info("=" * 60)
 
     all_bonuses = []
     types_to_scrape = ["casino", "betting"] if bonus_type == "all" else [bonus_type]
@@ -488,23 +505,23 @@ def run_scraper(geo: str, bonus_type: str = "all", dry_run: bool = False):
     for t in types_to_scrape:
         sites = geo_config.get(t, [])
         if not sites:
-            print(f"  ℹ️  No {t} sites configured for {geo}")
+            logger.info(f"  ℹ️  No {t} sites configured for {geo}")
             continue
-        print(f"\n📂 {t.upper()} Sites ({len(sites)} configured):")
+        logger.info(f"\n📂 {t.upper()} Sites ({len(sites)} configured):")
         for site in sites:
             bonuses = scrape_site(site, geo, t)
             all_bonuses.extend(bonuses)
             time.sleep(1)  # Polite delay between requests
 
-    print(f"\n{'='*60}")
-    print(f"✅ Total bonuses collected: {len(all_bonuses)}")
+    logger.info(f"\n{'='*60}")
+    logger.info(f"✅ Total bonuses collected: {len(all_bonuses)}")
 
     if dry_run:
-        print("\n🔍 DRY RUN — Not saving to database. Preview:")
-        print(json.dumps(all_bonuses, indent=2, ensure_ascii=False))
+        logger.info("\n🔍 DRY RUN — Not saving to database. Preview:")
+        logger.info(json.dumps(all_bonuses, indent=2, ensure_ascii=False))
     else:
         save_bonuses(all_bonuses)
-        print("💾 Saved to database.")
+        logger.info("💾 Saved to database.")
         # Export to Google Sheets for this GEO
         export_to_sheets(geo, bonus_type)
 
@@ -544,9 +561,9 @@ def export_json_api(geo: str = None, bonus_type: str = None, output_file: str = 
     if output_file:
         with open(output_file, "w") as f:
             f.write(json_str)
-        print(f"📄 JSON API exported to: {output_file}")
+        logger.info(f"📄 JSON API exported to: {output_file}")
     else:
-        print(json_str)
+        logger.info(json_str)
     return output
 
 

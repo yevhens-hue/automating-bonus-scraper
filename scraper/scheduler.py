@@ -14,6 +14,15 @@ import argparse
 import subprocess
 import sys
 from pathlib import Path
+import logging
+
+# Настроить логирование
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger(__name__)
 
 # All GEOs to scrape
 ALL_GEOS = ["IN", "TR", "BR"]
@@ -22,9 +31,9 @@ INTERVAL_HOURS = 6
 
 def run_for_geo(geo: str, export: bool = False, sheets: bool = False, clear_sheets: bool = False):
     """Run the scraper for a given GEO."""
-    print(f"\n{'='*50}")
-    print(f"🌍 Starting scrape for GEO: {geo}")
-    print(f"{'='*50}")
+    logger.info(f"\n{'='*50}")
+    logger.info(f"🌍 Starting scrape for GEO: {geo}")
+    logger.info(f"{'='*50}")
     cmd = [sys.executable, str(Path(__file__).parent / "bonus_scraper.py"),
            "--geo", geo, "--type", "all"]
     if sheets:
@@ -34,7 +43,7 @@ def run_for_geo(geo: str, export: bool = False, sheets: bool = False, clear_shee
         
     result = subprocess.run(cmd, capture_output=False)
     if result.returncode != 0:
-        print(f"❌ Scraper failed for {geo}")
+        logger.error(f"❌ Scraper failed for {geo}")
         return
 
     if export:
@@ -44,7 +53,7 @@ def run_for_geo(geo: str, export: bool = False, sheets: bool = False, clear_shee
                       "--output", f"output/bonuses_{geo.lower()}.json"]
         subprocess.run(export_cmd, capture_output=False)
 
-    print(f"✅ GEO {geo} complete.")
+    logger.info(f"✅ GEO {geo} complete.")
 
 
 def run_all(export: bool = False, sheets: bool = False, clear_sheets: bool = False, github_action: bool = False):
@@ -58,38 +67,38 @@ def run_all(export: bool = False, sheets: bool = False, clear_sheets: bool = Fal
         try:
             run_for_geo(geo, export=export, sheets=sheets, clear_sheets=clear_sheets)
         except Exception as e:
-            print(f"⚠️ Error processing {geo}: {e}")
+            logger.warning(f"⚠️ Error processing {geo}: {e}")
         time.sleep(2)  # Brief pause between GEOs
         
     if github_action:
-        print("\n🚀 GitHub Action Mode: Consolidating data...")
+        logger.info("\n🚀 GitHub Action Mode: Consolidating data...")
         # Import bonus_scraper here to avoid circular imports if any
         from bonus_scraper import get_bonuses, export_json_api
         
         # Consolidated export for the frontend
         frontend_data_path = Path(__file__).parent.parent / "frontend" / "data" / "bonuses.json"
         export_json_api(output_file=str(frontend_data_path))
-        print(f"✨ Consolidated data exported to {frontend_data_path}")
+        logger.info(f"✨ Consolidated data exported to {frontend_data_path}")
 
         # Update Top Odds
-        print("\n📈 Fetching Live Odds from The-Odds-API...")
+        logger.info("\n📈 Fetching Live Odds from The-Odds-API...")
         odds_cmd = [sys.executable, str(Path(__file__).parent / "odds_scraper.py")]
         subprocess.run(odds_cmd, capture_output=False, check=True)
-        print("✨ Odds updated.")
+        logger.info("✨ Odds updated.")
 
         # Run SEO content generator
-        print("\n✍️ Generating AI Blog Content...")
+        logger.info("\n✍️ Generating AI Blog Content...")
         gen_cmd = [sys.executable, str(Path(__file__).parent / "content_generator.py")]
         subprocess.run(gen_cmd, capture_output=False, check=True)
-        print("✨ Blog articles generated.")
+        logger.info("✨ Blog articles generated.")
 
         # Submit new articles to Google Indexing API
-        print("\n🔎 Submitting new blog posts to Google Indexing API...")
+        logger.info("\n🔎 Submitting new blog posts to Google Indexing API...")
         idx_cmd = [sys.executable, str(Path(__file__).parent / "indexing_api.py"), "--all"]
         subprocess.run(idx_cmd, capture_output=False, check=True)
-        print("✨ Indexing requests sent.")
+        logger.info("✨ Indexing requests sent.")
 
-    print(f"\n🎉 All GEOs scraped successfully!")
+    logger.info(f"\n🎉 All GEOs scraped successfully!")
 
 
 def main():
@@ -105,7 +114,7 @@ def main():
     if args.github_action:
         run_all(export=False, github_action=True)
     elif args.loop:
-        print(f"⏰ Scheduler started. Running every {INTERVAL_HOURS} hours.")
+        logger.info(f"⏰ Scheduler started. Running every {INTERVAL_HOURS} hours.")
         while True:
             if args.geo:
                 run_for_geo(args.geo.upper(), export=args.export, sheets=args.sheets, clear_sheets=args.clear_sheets)
@@ -113,9 +122,9 @@ def main():
                 run_all(export=args.export, sheets=args.sheets, clear_sheets=args.clear_sheets)
                 
             # Run odds scraper in the background loop too
-            print("\n📈 Fetching Live Odds...")
+            logger.info("\n📈 Fetching Live Odds...")
             subprocess.run([sys.executable, str(Path(__file__).parent / "odds_scraper.py")], capture_output=False)
-            print(f"\n💤 Next run in {INTERVAL_HOURS} hours...")
+            logger.info(f"\n💤 Next run in {INTERVAL_HOURS} hours...")
             time.sleep(INTERVAL_HOURS * 3600)
     else:
         if args.geo:

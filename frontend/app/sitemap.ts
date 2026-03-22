@@ -1,55 +1,45 @@
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/posts';
-import fs from 'fs';
-import path from 'path';
+import bonusesData from '@/data/bonuses.json';
+import oddsData from '@/data/odds.json';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://games-income.com';
-  
-  // Static routes
-  const staticRoutes = [
-    '',
-    '/all-bonuses',
-    '/all-bonuses/table',
-    '/vip-bonuses',
-    '/holiday-bonuses',
-    '/top-odds',
-    '/bonuses-by-country',
-    '/bonuses-rating',
-  ].map(route => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily' as const,
-    priority: route === '' || route === '/all-bonuses' ? 1.0 : 0.9,
-  }));
+    const baseUrl = 'https://games-income.com';
 
-  // Blog posts
-  const posts = await getAllPosts();
-  const blogRoutes = posts.map(post => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
+    // 1. Static Routes
+    const staticRoutes: MetadataRoute.Sitemap = [
+        '',
+        '/all-bonuses',
+        '/all-bonuses/table',
+        '/vip-bonuses',
+        '/holiday-bonuses',
+        '/bonuses-by-country',
+        '/bonuses-rating',
+        '/blog',
+        '/top-odds'
+    ].map((route) => ({
+        url: `${baseUrl}${route}`,
+        lastModified: new Date(bonusesData.updated_at || new Date()),
+        changeFrequency: 'daily' as const,
+        priority: route === '' ? 1.0 : 0.8,
+    }));
 
-  // Dynamic Match Pages
-  let matchRoutes: { url: string; lastModified: Date; changeFrequency: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never" | undefined; priority: number; }[] = [];
-  try {
-    const filePath = path.join(process.cwd(), 'data', 'odds.json');
-    const fileContents = fs.readFileSync(filePath, 'utf8');
-    const oddsData = JSON.parse(fileContents);
-    
-    if (oddsData && oddsData.events) {
-      matchRoutes = oddsData.events.map((event: any) => ({
-        url: `${baseUrl}/match/${event.slug}`,
+    // 2. Blog Posts
+    const posts = await getAllPosts();
+    const blogRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: new Date(post.date || new Date()),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+    }));
+
+    // 3. Match Pages
+    const matchRoutes: MetadataRoute.Sitemap = (oddsData.events || []).map((match: { slug: string }) => ({
+        url: `${baseUrl}/match/${match.slug}`,
         lastModified: new Date(oddsData.updated_at || new Date()),
-        changeFrequency: 'hourly' as const, // Matches change odds frequently
+        changeFrequency: 'hourly' as const,
         priority: 0.9,
-      }));
-    }
-  } catch (error) {
-    console.error("Error generating match routes for sitemap:", error);
-  }
+    }));
 
-  return [...staticRoutes, ...blogRoutes, ...matchRoutes];
+    return [...staticRoutes, ...blogRoutes, ...matchRoutes];
 }

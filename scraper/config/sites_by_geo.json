@@ -83,6 +83,30 @@
                 "affiliate_url": "https://leon.bet/?ref=YOUR_REF",
                 "logo": "https://leon.bet/favicon.ico",
                 "rating": 4.4
+            },
+            {
+                "name": "Stake",
+                "brand_id": "stake_in",
+                "bonus_url": "https://stake.com/promotions",
+                "affiliate_url": "https://stake.com/?c=YOUR_REF",
+                "logo": "https://stake.com/favicon.ico",
+                "rating": 4.8
+            },
+            {
+                "name": "Roobet",
+                "brand_id": "roobet_in",
+                "bonus_url": "https://roobet.com/promotions",
+                "affiliate_url": "https://roobet.com/?ref=YOUR_REF",
+                "logo": "https://roobet.com/favicon.ico",
+                "rating": 4.5
+            },
+            {
+                "name": "BC.Game",
+                "brand_id": "bcgame_in",
+                "bonus_url": "https://bc.game/promotions",
+                "affiliate_url": "https://bc.game/i-YOUR_REF",
+                "logo": "https://bc.game/favicon.ico",
+                "rating": 4.6
             }
         ],
         "betting": [
@@ -196,6 +220,30 @@
                 "affiliate_url": "https://www.tipobet365.com/?ref=YOUR_REF",
                 "logo": "https://www.tipobet365.com/favicon.ico",
                 "rating": 4.3
+            },
+            {
+                "name": "Stake",
+                "brand_id": "stake_tr",
+                "bonus_url": "https://stake.com/promotions",
+                "affiliate_url": "https://stake.com/?c=YOUR_REF",
+                "logo": "https://stake.com/favicon.ico",
+                "rating": 4.8
+            },
+            {
+                "name": "Roobet",
+                "brand_id": "roobet_tr",
+                "bonus_url": "https://roobet.com/promotions",
+                "affiliate_url": "https://roobet.com/?ref=YOUR_REF",
+                "logo": "https://roobet.com/favicon.ico",
+                "rating": 4.5
+            },
+            {
+                "name": "BC.Game",
+                "brand_id": "bcgame_tr",
+                "bonus_url": "https://bc.game/promotions",
+                "affiliate_url": "https://bc.game/i-YOUR_REF",
+                "logo": "https://bc.game/favicon.ico",
+                "rating": 4.6
             }
         ],
         "betting": []
@@ -283,6 +331,127 @@
                 "bonus_url": "https://www.leovegas.com/pt-br/promocoes",
                 "affiliate_url": "https://www.leovegas.com/?ref=YOUR_REF",
                 "logo": "https://www.leovegas.com/favicon.ico",
+                "rating": 4.6
+            },
+            {
+                "name": "Stake",
+                "brand_id": "stake_br",
+                "bonus_url": "https://stake.com/promotions",
+                "affiliate_url": "https://stake.com/?c=YOUR_REF",
+                "logo": "https://stake.com/favicon.ico",
+                "rating": 4.8
+            },
+            {
+                "name": "Roobet",
+                "brand_id": "roobet_br",
+                "bonus_url": "https://roobet.com/promotions",
+                "affiliate_url": "https://roobet.com/?ref=YOUR_REF",
+                "logo": "https://roobet.com/favicon.ico",
+                "rating": 4.5
+            },
+            {
+                "name": "BC.Game",
+                "brand_id": "bcgame_br",
+                "bonus_url": "https://bc.game/promotions",
+                "affiliate_url": "https://bc.game/i-YOUR_REF",
+                "logo": "https://bc.game/favicon.ico",
+                "rating": 4.6
+            }
+        ],
+        "betting": []
+    },
+    "CA": {
+        "name": "Canada",
+        "currency": "CAD",
+        "language": "en",
+        "casino": [
+            {
+                "name": "JackpotCity",
+                "brand_id": "jackpotcity_ca",
+                "bonus_url": "https://www.jackpotcitycasino.com/canada/promotions",
+                "affiliate_url": "https://www.jackpotcitycasino.com/?ref=YOUR_REF",
+                "logo": "https://www.jackpotcitycasino.com/favicon.ico",
+                "rating": 4.8
+            },
+            {
+                "name": "Spin Casino",
+                "brand_id": "spincasino_ca",
+                "bonus_url": "https://www.spincasino.com/canada/promotions",
+                "affiliate_url": "https://www.spincasino.com/?ref=YOUR_REF",
+                "logo": "https://www.spincasino.com/favicon.ico",
+                "rating": 4.7
+            },
+            {
+                "name": "LeoVegas CA",
+                "brand_id": "leovegas_ca",
+                "bonus_url": "https://www.leovegas.com/en-ca/promotions",
+                "affiliate_url": "https://www.leovegas.com/en-ca/?ref=YOUR_REF",
+                "logo": "https://www.leovegas.com/favicon.ico",
+                "rating": 4.6
+            }
+        ],
+        "betting": [
+            {
+                "name": "Pinnacle",
+                "brand_id": "pinnacle_ca",
+                "bonus_url": "https://www.pinnacle.com/en/promotions",
+                "affiliate_url": "https://www.pinnacle.com/?ref=YOUR_REF",
+                "logo": "https://www.pinnacle.com/favicon.ico",
+                "rating": 4.9
+            },
+            {
+                "name": "888sport",
+                "brand_id": "888sport_ca",
+                "bonus_url": "https://www.888sport.ca/promotions",
+                "affiliate_url": "https://www.888sport.ca/?ref=YOUR_REF",
+                "logo": "https://www.888sport.ca/favicon.ico",
+                "rating": 4.5
+            }
+        ]
+    },
+    "GB": {
+        "name": "United Kingdom",
+        "currency": "GBP",
+        "language": "en",
+        "casino": [
+            {
+                "name": "William Hill",
+                "brand_id": "williamhill_gb",
+                "bonus_url": "https://www.williamhill.com/promotions",
+                "affiliate_url": "https://www.williamhill.com/?ref=YOUR_REF",
+                "logo": "https://sports.williamhill.com/favicon.ico",
+                "rating": 4.7
+            },
+            {
+                "name": "SkyBet",
+                "brand_id": "skybet_gb",
+                "bonus_url": "https://m.skybet.com/promotions",
+                "affiliate_url": "https://m.skybet.com/?ref=YOUR_REF",
+                "logo": "https://m.skybet.com/favicon.ico",
+                "rating": 4.6
+            },
+            {
+                "name": "BetVictor",
+                "brand_id": "betvictor_gb",
+                "bonus_url": "https://www.betvictor.com/en-gb/offers",
+                "affiliate_url": "https://www.betvictor.com/?ref=YOUR_REF",
+                "logo": "https://www.betvictor.com/favicon.ico",
+                "rating": 4.5
+            },
+            {
+                "name": "Betfred",
+                "brand_id": "betfred_gb",
+                "bonus_url": "https://www.betfred.com/promotions",
+                "affiliate_url": "https://www.betfred.com/?ref=YOUR_REF",
+                "logo": "https://www.betfred.com/favicon.ico",
+                "rating": 4.4
+            },
+            {
+                "name": "Unibet UK",
+                "brand_id": "unibet_gb",
+                "bonus_url": "https://www.unibet.co.uk/promotions",
+                "affiliate_url": "https://www.unibet.co.uk/?ref=YOUR_REF",
+                "logo": "https://www.unibet.co.uk/favicon.ico",
                 "rating": 4.6
             }
         ],

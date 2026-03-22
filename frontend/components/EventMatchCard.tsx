@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { OddsEvent } from '@/lib/odds';
@@ -27,7 +27,7 @@ function getSportBorderHover(sport: string) {
 
 export default React.memo(function EventMatchCard({ event }: { event: OddsEvent }) {
     const isLive = event.is_live;
-    const matchDate = new Date(event.start_time);
+    const matchDate = useMemo(() => new Date(event.start_time), [event.start_time]);
     const [timeLeft, setTimeLeft] = useState<string>('');
     const [activeCalc, setActiveCalc] = useState<{ outcomeLabel: string, odds: number, brandName: string } | null>(null);
     const sportGlow = getSportColor(event.sport);

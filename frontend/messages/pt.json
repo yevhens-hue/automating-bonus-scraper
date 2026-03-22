@@ -1,0 +1,21 @@
+{
+  "Navigation": {
+    "all_bonuses": "Todos os Bônus",
+    "vip_bonuses": "Bônus VIP",
+    "bonuses_by_country": "Por País",
+    "holiday_bonuses": "Bônus de Feriado",
+    "blog": "Blog",
+    "top_odds": "Melhores Odds"
+  },
+  "HomePage": {
+    "title": "Aumente Seus Ganhos com os Melhores Bônus",
+    "subtitle": "Descubra bônus verificados de alta conversão das melhores marcas globalmente.",
+    "cta": "Ver Todos os Bônus"
+  },
+  "Newsletter": {
+    "subscribe": "Inscrever-se",
+    "placeholder": "Seu e-mail",
+    "title": "Junte-se à Lista VIP",
+    "subtitle": "Receba bônus exclusivos e dicas de apostas semanalmente."
+  }
+}

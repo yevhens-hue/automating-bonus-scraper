@@ -1,0 +1,21 @@
+{
+  "Navigation": {
+    "all_bonuses": "All Bonuses",
+    "vip_bonuses": "VIP Bonuses",
+    "bonuses_by_country": "By Country",
+    "holiday_bonuses": "Holiday Bonuses",
+    "blog": "Blog",
+    "top_odds": "Top Odds"
+  },
+  "HomePage": {
+    "title": "Boost Your Earnings with the Best Bonuses",
+    "subtitle": "Discover verified, high-converting bonuses from top-tier brands globally.",
+    "cta": "View All Bonuses"
+  },
+  "Newsletter": {
+    "subscribe": "Subscribe",
+    "placeholder": "Enter your email",
+    "title": "Join the VIP List",
+    "subtitle": "Get exclusive bonuses and betting tips delivered weekly."
+  }
+}

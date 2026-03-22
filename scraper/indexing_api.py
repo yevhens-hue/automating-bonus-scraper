@@ -12,6 +12,15 @@ import json
 import argparse
 from pathlib import Path
 from dotenv import load_dotenv
+import logging
+
+# Настроить логирование
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -35,7 +44,7 @@ def get_credentials():
     """Load Google service account credentials."""
     creds_path = os.getenv("GOOGLE_CREDENTIALS")
     if not creds_path:
-        print("❌  GOOGLE_CREDENTIALS env var not set. Skipping indexing.")
+        logger.error("❌  GOOGLE_CREDENTIALS env var not set. Skipping indexing.")
         return None
 
     try:
@@ -46,10 +55,10 @@ def get_credentials():
         )
         return creds
     except ImportError:
-        print("⚠️  google-auth not installed. Run: pip install google-auth")
+        logger.warning("⚠️  google-auth not installed. Run: pip install google-auth")
         return None
     except Exception as e:
-        print(f"❌  Failed to load credentials: {e}")
+        logger.error(f"❌  Failed to load credentials: {e}")
         return None
 
 def index_url(url: str, creds) -> bool:
@@ -76,20 +85,20 @@ def index_url(url: str, creds) -> bool:
         )
         with urllib.request.urlopen(req) as resp:
             resp.read()
-            print(f"  ✅  Indexed: {url}")
+            logger.info(f"  ✅  Indexed: {url}")
             return True
     except urllib.error.HTTPError as e:
         body = e.read().decode()
-        print(f"  ❌  HTTP {e.code} for {url}: {body[:200]}")
+        logger.error(f"  ❌  HTTP {e.code} for {url}: {body[:200]}")
         return False
     except Exception as e:
-        print(f"  ❌  Error indexing {url}: {e}")
+        logger.error(f"  ❌  Error indexing {url}: {e}")
         return False
 
 def get_all_blog_urls() -> list:
     """Scan the blog output directory and collect all post URLs."""
     if not BLOG_DIR.exists():
-        print(f"⚠️  Blog directory not found: {BLOG_DIR}")
+        logger.warning(f"⚠️  Blog directory not found: {BLOG_DIR}")
         return []
 
     urls = []
@@ -110,7 +119,7 @@ def get_all_static_urls() -> list:
 def get_all_match_urls() -> list:
     """Scan the odds data and collect all match URLs."""
     if not ODDS_FILE.exists():
-        print(f"⚠️  Odds file not found: {ODDS_FILE}")
+        logger.warning(f"⚠️  Odds file not found: {ODDS_FILE}")
         return []
 
     urls = []
@@ -121,7 +130,7 @@ def get_all_match_urls() -> list:
             if slug:
                 urls.append(f"{SITE_URL}/match/{slug}")
     except Exception as e:
-        print(f"❌  Error reading odds file: {e}")
+        logger.error(f"❌  Error reading odds file: {e}")
     return urls
 
 def main():
@@ -151,16 +160,16 @@ def main():
         urls = get_all_match_urls()
 
     if not urls:
-        print("No URLs to index.")
+        logger.info("No URLs to index.")
         return
 
-    print(f"\n🔍  Submitting {len(urls)} URL(s) to Google Indexing API...")
-    print(f"    Site: {SITE_URL}\n")
+    logger.info(f"\n🔍  Submitting {len(urls)} URL(s) to Google Indexing API...")
+    logger.info(f"    Site: {SITE_URL}\n")
 
     for url in urls:
         index_url(url, creds)
 
-    print(f"\n✨  Done! Submitted {len(urls)} URLs.")
+    logger.info(f"\n✨  Done! Submitted {len(urls)} URLs.")
 
 if __name__ == "__main__":
     main()

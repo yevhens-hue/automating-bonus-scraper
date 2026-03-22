@@ -1,10 +1,18 @@
 'use client';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import type { Bonus } from '@/lib/bonuses';
 
 export default function VipBonusCard({ bonus, rank }: { bonus: Bonus; rank?: number }) {
     const isExpired = bonus.is_expired;
     const isNew = bonus.is_new;
+
+    const [ctaText, setCtaText] = useState('JOIN VIP CLUB NOW');
+
+    useEffect(() => {
+        const ctas = ['JOIN VIP CLUB NOW', 'BECOME A VIP TODAY', 'CLAIM VIP REWARDS'];
+        setCtaText(ctas[Math.floor(Math.random() * ctas.length)]);
+    }, []);
 
     let parsedTiers: string[] | null = null;
     let eventDetails: string | null = null;
@@ -19,7 +27,7 @@ export default function VipBonusCard({ bonus, rank }: { bonus: Bonus; rank?: num
             if (data.event) {
                 eventDetails = `${data.event} (Ends: ${data.deadline || 'Soon'})`;
             }
-        } catch (e) {
+        } catch {
             // Not a valid JSON, or simple string
             eventDetails = bonus.extra_data;
         }
@@ -47,6 +55,7 @@ export default function VipBonusCard({ bonus, rank }: { bonus: Bonus; rank?: num
                             height={48}
                             className="w-full h-full object-contain drop-shadow-md"
                             unoptimized
+                            priority={rank ? rank <= 2 : false}
                             onError={(e) => { (e.target as HTMLImageElement).src = '/logos/default.png'; }}
                         />
                     </div>
@@ -116,9 +125,19 @@ export default function VipBonusCard({ bonus, rank }: { bonus: Bonus; rank?: num
                     href={bonus.affiliate_url}
                     target="_blank"
                     rel="nofollow sponsored noopener noreferrer"
+                    onClick={() => {
+                        if (typeof window !== 'undefined' && 'dataLayer' in window) {
+                            (window as unknown as { dataLayer: Record<string, unknown>[] }).dataLayer.push({
+                                event: 'cta_click',
+                                cta_text: ctaText,
+                                brand: bonus.brand_name,
+                                card_type: 'vip'
+                            });
+                        }
+                    }}
                     className="block w-full text-center bg-gradient-to-r from-yellow-500 via-amber-400 to-yellow-500 hover:from-yellow-400 hover:to-amber-300 text-yellow-950 font-black tracking-wide py-4 rounded-xl transition-all transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(250,204,21,0.3)]"
                 >
-                    JOIN VIP CLUB NOW
+                    {ctaText}
                 </a>
             )}
         </div>
