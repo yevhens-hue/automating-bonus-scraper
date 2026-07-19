@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import bonusesData from '@/data/bonuses.json';
 import { Bonus } from '@/lib/bonuses';
 import DetailedBonusTable from '@/components/DetailedBonusTable';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 
 export const dynamic = 'force-dynamic';
 

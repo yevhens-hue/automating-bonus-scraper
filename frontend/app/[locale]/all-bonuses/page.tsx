@@ -6,7 +6,7 @@ import bonusesData from '@/data/bonuses.json';
 import { Bonus } from '@/lib/bonuses';
 import { groupByGeo, GEO_NAMES, GEO_FLAGS } from '@/lib/geo';
 import BonusCard from '@/components/BonusCard';
-import Link from 'next/link';
+import { Link } from '@/i18n/routing';
 
 export const dynamic = 'force-dynamic';
 
